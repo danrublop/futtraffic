@@ -1,0 +1,22 @@
+{
+  "name": "futtraffic-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FutTraffic desktop shell - Electron: static renderer over a custom protocol, FastAPI sidecar",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "build:electron": "node electron/build.mjs",
+    "build:renderer": "node scripts/build-renderer.mjs",
+    "build:backend": "bash scripts/build-backend.sh",
+    "typecheck": "tsc -p electron/tsconfig.json",
+    "dev": "node electron/build.mjs && ([ -f ../frontend/out/index.html ] || node scripts/build-renderer.mjs) && electron .",
+    "dist": "node scripts/build-renderer.mjs && node electron/build.mjs && bash scripts/build-backend.sh && electron-builder"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.0",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,31 @@
+fut traffic
+Copyright 2026 Daniel Lopez
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+No full match video is distributed with this repository. The small fixtures
+under model/validation/ (a 20-frame video excerpt, median background frames,
+image tiles, calibrations, track excerpts, ball candidates) come from the
+third-party datasets below and remain under their terms.
+
+SoccerTrack v2
+  Scott et al., University of Tsukuba. CC BY 4.0.
+  https://github.com/AtomScott/SoccerTrack-v2  (arXiv:2508.01802)
+  Used for: model/validation/fixtures/detect/118575.f0-19.mp4 (20 frames),
+  model/validation/fixtures/calib/*.median40.png, docs/img/ frame stills,
+  model/validation/nvidia_fixture.npz,
+  model/validation/soccertrack/, and calibration/tracking fixtures named after
+  SoccerTrack v2 match ids. Changes: frames cut, cropped, median-filtered,
+  re-encoded, or reduced to derived numbers.
+
+TeamTrack
+  Scott et al. MIT License.
+  https://github.com/AtomScott/TeamTrack
+  Used for: model/validation/ball_cands_*, ball_extents_*, calib_soccer_* fixtures
+  (clips soccer_side F_20200220_1 and soccer_top D_20220220_1). Derived numbers only.
+
+ssac26 vision layer ("Wide Open Gazes", J. Bekkers / UnravelSports). BSD 3-Clause.
+  https://github.com/USSoccerFederation/ssac26_visual_exploratory_behavior
+  Vendored in data/vendor/ssac26/ with its LICENSE retained.
+
+Third-party software dependencies and their licences: docs/THIRD_PARTY_NOTICES.md.

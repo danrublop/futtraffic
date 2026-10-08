@@ -1,0 +1,56 @@
+{
+ "arms": {
+  "drop": {
+   "pooled_sprint_ratio": 4.5751,
+   "pooled_hsr_ratio": 3.6776,
+   "pooled_ratio_matched": 1.3443,
+   "pooled_coverage": 0.6691,
+   "pooled_unattributed_frac": 0.0922
+  },
+  "gtpix": {
+   "pooled_sprint_ratio": 4.6438,
+   "pooled_hsr_ratio": 3.6378,
+   "pooled_ratio_matched": 1.3267,
+   "pooled_coverage": 0.6691,
+   "pooled_unattributed_frac": 0.0922
+  },
+  "feedpix": {
+   "pooled_sprint_ratio": 3.5322,
+   "pooled_hsr_ratio": 3.74,
+   "pooled_ratio_matched": 1.39,
+   "pooled_coverage": 0.6691,
+   "pooled_unattributed_frac": 0.0922
+  },
+  "position": {
+   "pooled_sprint_ratio": 1.9828,
+   "pooled_hsr_ratio": 1.6549,
+   "pooled_ratio_matched": 1.2392,
+   "pooled_coverage": 0.6691,
+   "pooled_unattributed_frac": 0.0922
+  }
+ },
+ "verdict": {
+  "pooled_sprint_ratio": {
+   "detector_share": -0.0192,
+   "annotation_share": 0.3109,
+   "map_share": 0.4334,
+   "position_share": 0.7251,
+   "driver": "INCONCLUSIVE"
+  },
+  "pooled_hsr_ratio": {
+   "detector_share": 0.0149,
+   "annotation_share": -0.0382,
+   "map_share": 0.7787,
+   "position_share": 0.7554,
+   "driver": "MAP"
+  },
+  "pooled_ratio_matched": {
+   "detector_share": 0.0511,
+   "annotation_share": -0.1839,
+   "map_share": 0.438,
+   "position_share": 0.3053,
+   "driver": "INCONCLUSIVE"
+  }
+ },
+ "protocol": "model/validation/dist_eval.py docstring N23"
+}

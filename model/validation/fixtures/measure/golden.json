@@ -1,0 +1,1422 @@
+{
+ "reason": "teams.distance_m now justified by product.distance.ratio_raw.p21id (stride-2 tracks, 8 clips); accepted-ids set updated",
+ "date": "2026-09-29",
+ "git_head": "8b8c20cbcb3074eae7a1a1dadb9d71c8a559b67e",
+ "uncommitted_engine_files": [
+  "model/engine/stats.py"
+ ],
+ "constants": {
+  "MAX_SPEED": 9.5,
+  "SPRINT_SPEED": 5.5,
+  "SPRINT_MIN_S": 0.8,
+  "MIN_MINUTES": 0.16666666666666666,
+  "DISTANCE_WINDOW_S": 0.4
+ },
+ "accepted": [
+  "product.distance.ratio_raw.p21id",
+  "product.player.distance.spread",
+  "product.speed.peak_ms"
+ ],
+ "accepted_note": "api-golden.json ids (METRICS' only) frozen at bless time; --fast resolves tiers against this set, not the live file",
+ "fixtures": {
+  "118575.id.tracks.json.gz": "cbc34ae71719c467a5ea567a39550cb5d396ced42987944d580185d08892f64c",
+  "corrections.json": "d7ca8748302bfb4fd14b7c3179320582492fee793d423475b1c0b7f3580059fc",
+  "118575.p35.calibration.json": "8de4e4a68b3640ffee4564937c56996ffc8de76c48d5adc4fbbff70c5909f2db"
+ },
+ "made_by": {
+  "118575.id.tracks.json.gz": "check.py measure --make-fixture: jobs.apply_identity's output on identity --fast's input (the track replay + committed crop/OCR lookups), all keys but _perf's wall-clock two, gzip -9, mtime 0",
+  "corrections.json": "hand-written in apply_corrections' stored form: one merge [keep, drop] of two tracks that never overlap, one split of a full-length track at frame 3000"
+ },
+ "fast": {
+  "sha256": "3e65fbce2ec39aead552ed5ef24e52ffc2b496faa60e32d7af4dcf8b17c54b38",
+  "summary": {
+   "players": {
+    "1": {
+     "team": "away",
+     "minutes": 4.0,
+     "distance_km": 0.59,
+     "top_speed_kmh": 30.7,
+     "sprints": null
+    },
+    "13": {
+     "team": "away",
+     "minutes": 4.0,
+     "distance_km": 0.44,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "8": {
+     "team": "away",
+     "minutes": 4.0,
+     "distance_km": 0.42,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "27": {
+     "team": "away",
+     "minutes": 3.9,
+     "distance_km": 0.42,
+     "top_speed_kmh": 23.3,
+     "sprints": null
+    },
+    "15": {
+     "team": "away",
+     "minutes": 4.0,
+     "distance_km": 0.42,
+     "top_speed_kmh": 24.6,
+     "sprints": null
+    },
+    "18": {
+     "team": "home",
+     "minutes": 3.5,
+     "distance_km": 0.39,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "3": {
+     "team": "home",
+     "minutes": 4.0,
+     "distance_km": 0.39,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "66": {
+     "team": "away",
+     "minutes": 2.8,
+     "distance_km": 0.37,
+     "top_speed_kmh": 31.4,
+     "sprints": null
+    },
+    "45": {
+     "team": "home",
+     "minutes": 3.4,
+     "distance_km": 0.36,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "28": {
+     "team": "away",
+     "minutes": 2.5,
+     "distance_km": 0.31,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "11": {
+     "team": "home",
+     "minutes": 3.7,
+     "distance_km": 0.3,
+     "top_speed_kmh": 29.2,
+     "sprints": null
+    },
+    "6": {
+     "team": "home",
+     "minutes": 2.6,
+     "distance_km": 0.28,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "24": {
+     "team": "home",
+     "minutes": 4.0,
+     "distance_km": 0.26,
+     "top_speed_kmh": 31.4,
+     "sprints": null
+    },
+    "23": {
+     "team": "home",
+     "minutes": 1.8,
+     "distance_km": 0.26,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "107": {
+     "team": "home",
+     "minutes": 2.2,
+     "distance_km": 0.24,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "0": {
+     "team": "home",
+     "minutes": 3.2,
+     "distance_km": 0.23,
+     "top_speed_kmh": 26.6,
+     "sprints": null
+    },
+    "21": {
+     "team": "away",
+     "minutes": 2.0,
+     "distance_km": 0.17,
+     "top_speed_kmh": 16.2,
+     "sprints": null
+    },
+    "143": {
+     "team": "home",
+     "minutes": 1.5,
+     "distance_km": 0.15,
+     "top_speed_kmh": 26.2,
+     "sprints": null
+    },
+    "22": {
+     "team": "away",
+     "minutes": 1.9,
+     "distance_km": 0.15,
+     "top_speed_kmh": 22.9,
+     "sprints": null
+    },
+    "61": {
+     "team": "away",
+     "minutes": 0.7,
+     "distance_km": 0.14,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "59": {
+     "team": "home",
+     "minutes": 0.6,
+     "distance_km": 0.11,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "164": {
+     "team": "home",
+     "minutes": 0.8,
+     "distance_km": 0.08,
+     "top_speed_kmh": 18.4,
+     "sprints": null
+    },
+    "191": {
+     "team": "home",
+     "minutes": 2.0,
+     "distance_km": 0.08,
+     "top_speed_kmh": 8.4,
+     "sprints": null
+    },
+    "79": {
+     "team": "away",
+     "minutes": 0.4,
+     "distance_km": 0.08,
+     "top_speed_kmh": 34.0,
+     "sprints": null
+    },
+    "135": {
+     "team": "away",
+     "minutes": 0.6,
+     "distance_km": 0.07,
+     "top_speed_kmh": 18.5,
+     "sprints": null
+    },
+    "16": {
+     "team": "home",
+     "minutes": 0.6,
+     "distance_km": 0.06,
+     "top_speed_kmh": 27.9,
+     "sprints": null
+    },
+    "140": {
+     "team": "home",
+     "minutes": 0.5,
+     "distance_km": 0.06,
+     "top_speed_kmh": 29.3,
+     "sprints": null
+    },
+    "64": {
+     "team": "away",
+     "minutes": 0.2,
+     "distance_km": 0.05,
+     "top_speed_kmh": 34.1,
+     "sprints": null
+    },
+    "14": {
+     "team": "home",
+     "minutes": 1.0,
+     "distance_km": 0.05,
+     "top_speed_kmh": 14.7,
+     "sprints": null
+    },
+    "175": {
+     "team": "home",
+     "minutes": 0.9,
+     "distance_km": 0.04,
+     "top_speed_kmh": 12.6,
+     "sprints": null
+    },
+    "74": {
+     "team": "home",
+     "minutes": 0.2,
+     "distance_km": 0.04,
+     "top_speed_kmh": 27.6,
+     "sprints": null
+    },
+    "188": {
+     "team": "away",
+     "minutes": 0.5,
+     "distance_km": 0.04,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "78": {
+     "team": "home",
+     "minutes": 0.2,
+     "distance_km": 0.02,
+     "top_speed_kmh": 10.9,
+     "sprints": null
+    },
+    "20": {
+     "team": "home",
+     "minutes": 0.2,
+     "distance_km": 0.01,
+     "top_speed_kmh": 12.1,
+     "sprints": null
+    },
+    "190": {
+     "team": "home",
+     "minutes": 0.3,
+     "distance_km": 0.01,
+     "top_speed_kmh": 13.3,
+     "sprints": null
+    }
+   },
+   "officials": 8,
+   "territory": {
+    "defensive_third": 17.9,
+    "middle_third": 61.6,
+    "attacking_third": 20.5
+   },
+   "teams": {
+    "home": {
+     "distance_m": 3442,
+     "distance_coverage": 1.0,
+     "top_speed_kmh": null,
+     "sprints": null
+    },
+    "away": {
+     "distance_m": 3670,
+     "distance_coverage": 1.0,
+     "top_speed_kmh": null,
+     "sprints": null
+    }
+   },
+   "fields": {
+    "players.minutes": [
+     "not_evaluated",
+     [
+      "not_evaluated",
+      "track_span_not_playing_time",
+      "identity_contaminated"
+     ],
+     35,
+     null
+    ],
+    "players.distance_km": [
+     "prov",
+     [
+      "distance_bias_measured",
+      "identity_contaminated",
+      "distance_unbounded"
+     ],
+     35,
+     null
+    ],
+    "players.top_speed_kmh": [
+     "prov",
+     [
+      "extreme_value_statistic",
+      "peak_speed_overreads",
+      "identity_contaminated",
+      "measures_clamp"
+     ],
+     23,
+     null
+    ],
+    "players.sprints": [
+     "not_evaluated",
+     [
+      "sprints_withheld",
+      "count_metric_unstable",
+      "unvalidated_end_to_end",
+      "identity_contaminated"
+     ],
+     0,
+     null
+    ],
+    "players.avg_position": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "identity_contaminated"
+     ],
+     35,
+     null
+    ],
+    "players.clamped_frac": [
+     "not_evaluated",
+     [],
+     35,
+     null
+    ],
+    "players.observed_frac": [
+     "not_evaluated",
+     [],
+     35,
+     null
+    ],
+    "players.observed_minutes": [
+     "not_evaluated",
+     [],
+     35,
+     null
+    ],
+    "players.role": [
+     "not_evaluated",
+     [
+      "role_unvalidated"
+     ],
+     35,
+     null
+    ],
+    "players.role_confidence": [
+     "not_evaluated",
+     [
+      "role_unvalidated"
+     ],
+     35,
+     null
+    ],
+    "players.jersey": [
+     "not_evaluated",
+     [
+      "jersey_ocr_unvalidated"
+     ],
+     35,
+     null
+    ],
+    "players.team": [
+     "not_evaluated",
+     [
+      "kit_colour_clustering"
+     ],
+     35,
+     null
+    ],
+    "derived.share": [
+     "prov",
+     [
+      "rank_only",
+      "role_correlated_bias",
+      "identity_contaminated"
+     ],
+     35,
+     null
+    ],
+    "derived.per90": [
+     "prov",
+     [
+      "distance_bias_measured",
+      "minutes_includes_gaps",
+      "identity_contaminated",
+      "distance_unbounded"
+     ],
+     35,
+     null
+    ],
+    "territory": [
+     "not_evaluated",
+     [
+      "rank_only"
+     ],
+     45298,
+     null
+    ],
+    "meta.calibration_rms_m": [
+     "not_evaluated",
+     [],
+     null,
+     0.17933035492352062
+    ],
+    "teams.home.distance_m": [
+     "prov",
+     [
+      "distance_bias_measured",
+      "team_distance_partial",
+      "distance_unbounded"
+     ],
+     21,
+     3442
+    ],
+    "teams.home.top_speed_kmh": [
+     "prov",
+     [
+      "extreme_value_statistic",
+      "peak_speed_overreads",
+      "identity_contaminated",
+      "measures_clamp"
+     ],
+     14,
+     null
+    ],
+    "teams.home.sprints": [
+     "not_evaluated",
+     [
+      "sprints_withheld",
+      "count_metric_unstable",
+      "unvalidated_end_to_end"
+     ],
+     0,
+     null
+    ],
+    "teams.home.shape.width_m": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     203,
+     25.4
+    ],
+    "teams.home.shape.depth_m": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     203,
+     34.3
+    ],
+    "teams.home.shape.defensive_line_m": [
+     "not_evaluated",
+     [
+      "single_clip_reference",
+      "low_coverage"
+     ],
+     203,
+     35.9
+    ],
+    "teams.home.shape.compactness_m2": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     203,
+     1098.1
+    ],
+    "teams.home.shape.stretch_index_m": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     203,
+     17.6
+    ],
+    "shape_series.home.samples": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     203,
+     null
+    ],
+    "shape_series.home.formation": [
+     "not_evaluated",
+     [
+      "estimate_not_measurement"
+     ],
+     8,
+     "4-3-3 / 3-5-2"
+    ],
+    "shape_series.home.window_fit_unstable": [
+     "not_evaluated",
+     [
+      "estimate_not_measurement"
+     ],
+     8,
+     null
+    ],
+    "structure_stress.home": [
+     "not_evaluated",
+     [
+      "rank_only",
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     2,
+     "moderate"
+    ],
+    "teams.away.distance_m": [
+     "prov",
+     [
+      "distance_bias_measured",
+      "team_distance_partial",
+      "distance_unbounded"
+     ],
+     14,
+     3670
+    ],
+    "teams.away.top_speed_kmh": [
+     "prov",
+     [
+      "extreme_value_statistic",
+      "peak_speed_overreads",
+      "identity_contaminated",
+      "measures_clamp"
+     ],
+     9,
+     null
+    ],
+    "teams.away.sprints": [
+     "not_evaluated",
+     [
+      "sprints_withheld",
+      "count_metric_unstable",
+      "unvalidated_end_to_end"
+     ],
+     0,
+     null
+    ],
+    "teams.away.shape.width_m": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     162,
+     24.7
+    ],
+    "teams.away.shape.depth_m": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     162,
+     21.7
+    ],
+    "teams.away.shape.defensive_line_m": [
+     "not_evaluated",
+     [
+      "single_clip_reference",
+      "low_coverage"
+     ],
+     162,
+     41.7
+    ],
+    "teams.away.shape.compactness_m2": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     162,
+     537.7
+    ],
+    "teams.away.shape.stretch_index_m": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     162,
+     13.7
+    ],
+    "shape_series.away.samples": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     162,
+     null
+    ],
+    "shape_series.away.formation": [
+     "not_evaluated",
+     [
+      "estimate_not_measurement"
+     ],
+     6,
+     "4-3-3 / 3-5-2"
+    ],
+    "shape_series.away.window_fit_unstable": [
+     "not_evaluated",
+     [
+      "estimate_not_measurement"
+     ],
+     6,
+     null
+    ],
+    "structure_stress.away": [
+     "not_evaluated",
+     [
+      "rank_only",
+      "unvalidated_end_to_end",
+      "low_coverage"
+     ],
+     5,
+     "moderate"
+    ],
+    "relative_shape": [
+     "not_evaluated",
+     [
+      "unvalidated_end_to_end",
+      "paired_only",
+      "team_purity",
+      "low_coverage"
+     ],
+     136,
+     null
+    ]
+   }
+  }
+ },
+ "real": {
+  "variant": "p21id",
+  "inputs": {
+   "117092.p21id.tracks.json": "f2cac021badc89dd488a5be5f1dcd9b783676fa6defbf547851a366b983b9603",
+   "117092.p05.calibration.json": "f5e4a67051d340e53fe8e35eab85f5a2eae358203917e6201caf89a94b47be3b",
+   "117093.p21id.tracks.json": "c334d8958db2bf88f44b7dc227fa805f6c71875d0dff35bb0b1601c937ebb2bc",
+   "117093.p05.calibration.json": "9bacdedac4da1075b76fe879410692f99bbfc218f524af05ed8363d866560d34",
+   "118575.p21id.tracks.json": "22e6ac2114e1b84b46d8fe6cb37769c719e66a609e365188506ce6f0f1bb55ab",
+   "118575.p05.calibration.json": "b1a8c915d106486429dcb98743532d32968dbc2d80072d129f2353014b7a9ac5",
+   "118576.p21id.tracks.json": "503afaa0fcd7354a102766ea900a543e361fdd9edab3caa4a65e5a2377bd8b09",
+   "118576.p05.calibration.json": "3d06c6e859875c0872806c2ccd71e8a1f9cb4b661bc872e648642fcbd5630037",
+   "118577.p21id.tracks.json": "e38956f7556d519958df337b1c1d8a2fbcc474823d0b0988f2f6a965526ed9fa",
+   "118577.p05.calibration.json": "61d2d9c1ef7ff69638803f352611449a94de697696492e188e0e7682943aa89f",
+   "118578.p21id.tracks.json": "97a86111acf1a36a81719b1d2ce5055cc6945b6dd2bff2d202636085c5484d57",
+   "118578.p05.calibration.json": "44c2cedbf3bf2ea8b8f12180d1a76f2fd00e766d2055255abd279b7f864fa5aa",
+   "128057.p21id.tracks.json": "ee206e018882d214f0e51d116ea0d98bd5a185fb4eb08a4d159b156fd7c52dfe",
+   "128057.p05.calibration.json": "0845bb711dd53a6b16c53ae30b25d29358dfcd198886f49154d70725eded53a5",
+   "128058.p21id.tracks.json": "cbf75bbb47aa5f08c0b10d633210f6df0f9252a7dd1c282996d60d842b7acd7b",
+   "128058.p05.calibration.json": "bfcf0841e5084c990804233018bee847b2fdad1f0e16483c62ec6132699e600d",
+   "132877.p21id.tracks.json": "3390a0afba3a23432afc94981cfd0f4bc1dffeb60fc385bc948be577f1bb6558",
+   "132877.p05.calibration.json": "853e23a007660fbd511aa20d5bf4542071807bccb15127d3cd21c9c85035a77e"
+  },
+  "result": {
+   "variant": "p21id",
+   "oracle": null,
+   "credit": "fragment",
+   "settle_s": 0.0,
+   "clips": 9,
+   "method": "kalman",
+   "common_support": false,
+   "sequences": [
+    "117092",
+    "117093",
+    "118575",
+    "118576",
+    "118577",
+    "118578",
+    "128057",
+    "128058",
+    "132877"
+   ],
+   "pooled_ratio_raw": 0.8855,
+   "pooled_ratio_matched": 1.3469,
+   "mean_coverage": 0.6924,
+   "pooled_ours_m": 92771.64449971291,
+   "pooled_gt_m": 104761.97591717474,
+   "pooled_gt_matched_m": 68879.74169116015,
+   "pooled_orphan_m": 797.8586623696099,
+   "pooled_uncredited_m": 0.0,
+   "pooled_orphan_ids": 32,
+   "pooled_fragments": 473,
+   "mean_unattributed_frac": 0.0922,
+   "mean_attribution_contaminated": 0.3514,
+   "player_ratio_n": 197,
+   "player_ratio_median": 1.2333,
+   "player_ratio_iqr": [
+    1.1132,
+    1.3951
+   ],
+   "player_ratio_min": 0.7584,
+   "player_ratio_max": 2.8372,
+   "player_ratio_cv": 0.2402,
+   "player_ratio_corr_m_per_px": -0.1161,
+   "player_peak_median_ms": 10.5794,
+   "player_gt_peak_median_ms": 7.3144,
+   "player_peak_n": 197,
+   "player_gt_n": 198,
+   "median_of_per_player_ratio": 1.2406,
+   "per_clip_ratio_matched_min": 1.1971,
+   "per_clip_ratio_matched_max": 1.5268,
+   "clips_over_one": 9,
+   "team_ratio_matched": {
+    "home": 1.3473,
+    "away": 1.3465
+   },
+   "team_coverage": {
+    "home": 0.6889,
+    "away": 0.6958
+   },
+   "pooled_hsr_ratio": 3.6701,
+   "pooled_sprint_ratio": 4.4795,
+   "pooled_our_hsr_m": 18772.234331119264,
+   "pooled_gt_matched_hsr_m": 5114.893174485722,
+   "pooled_gt_hsr_m": 7888.854339250054,
+   "pooled_our_sprints": 1093,
+   "pooled_gt_matched_sprints": 244,
+   "pooled_gt_sprints": 369,
+   "pooled_our_observed_s": 39711.28,
+   "pooled_gt_alt_hsr_m": 7888.854339250054,
+   "pooled_gt_alt_sprints": 369,
+   "mean_clamped_frac": 0.4064,
+   "our_peak_max_ms": 23.848951809208035,
+   "gt_peak_max_ms": 15.321284333623225,
+   "per_clip": {
+    "117092": {
+     "seq": "117092",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 13440.355489165317,
+      "gt_matched_m": 8210.946489746977,
+      "ours_m": 12130.79061256153,
+      "ratio_raw": 0.9025647143292105,
+      "ratio_matched": 1.4773924818179327,
+      "coverage": 0.6628484848484848,
+      "ids": 61,
+      "attributed_ids": 58,
+      "orphan_ids": 2,
+      "orphan_m": 17.673215795801525,
+      "uncredited_m": 0.0,
+      "fragments": 58,
+      "unattributed_frac": 0.0862,
+      "attribution_contaminated": 0.464
+     },
+     "teams": {
+      "home": {
+       "gt_m": 6785.082437410002,
+       "gt_matched_m": 3784.3780798034986,
+       "ours_m": 5805.738419131993,
+       "ratio_raw": 0.8556621784168266,
+       "ratio_matched": 1.534132768106894,
+       "coverage": 0.6122121212121212
+      },
+      "away": {
+       "gt_m": 6655.273051755315,
+       "gt_matched_m": 4426.568409943478,
+       "ours_m": 6325.052193429536,
+       "ratio_raw": 0.9503820721166829,
+       "ratio_matched": 1.4288838684208427,
+       "coverage": 0.7134848484848485
+      }
+     },
+     "spread": {
+      "median_ratio": 1.394426270604357,
+      "iqr": [
+       1.3382850829242845,
+       1.5626906208651419
+      ],
+      "min": 0.9456486366627957,
+      "max": 2.30390590938759,
+      "cv": 0.1943773898111939
+     },
+     "speed": {
+      "our_hsr_m": 3498.487884964093,
+      "gt_hsr_m": 921.9307947491396,
+      "gt_matched_hsr_m": 479.5516500647455,
+      "hsr_ratio": 7.295330720875954,
+      "our_sprints": 202,
+      "gt_sprints": 43,
+      "our_observed_s": 4288.719999999999,
+      "gt_alt_hsr_m": 921.9307947491396,
+      "gt_alt_sprints": 43,
+      "gt_matched_sprints": 20,
+      "sprint_ratio": 10.1,
+      "our_peak_max_ms": 21.717269503621477,
+      "our_peak_median_ms": 13.56427248655529,
+      "gt_peak_max_ms": 12.916024279432845,
+      "gt_peak_median_ms": 7.069827346696966,
+      "clamped_frac": 0.7413793103448276
+     }
+    },
+    "117093": {
+     "seq": "117093",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 13004.574939001921,
+      "gt_matched_m": 8607.353906967492,
+      "ours_m": 11326.345016351794,
+      "ratio_raw": 0.8709508053495112,
+      "ratio_matched": 1.3158916362418105,
+      "coverage": 0.6863971035657783,
+      "ids": 73,
+      "attributed_ids": 60,
+      "orphan_ids": 13,
+      "orphan_m": 162.2883716484511,
+      "uncredited_m": 0.0,
+      "fragments": 60,
+      "unattributed_frac": 0.1545,
+      "attribution_contaminated": 0.3074
+     },
+     "teams": {
+      "home": {
+       "gt_m": 6372.561954707737,
+       "gt_matched_m": 4244.709966111264,
+       "ours_m": 5371.81978697025,
+       "ratio_raw": 0.8429607785926369,
+       "ratio_matched": 1.2655328231746237,
+       "coverage": 0.6972130948034562
+      },
+      "away": {
+       "gt_m": 6632.012984294184,
+       "gt_matched_m": 4362.643940856227,
+       "ours_m": 5954.525229381545,
+       "ratio_raw": 0.8978458340601784,
+       "ratio_matched": 1.364889115432347,
+       "coverage": 0.6755811123281003
+      }
+     },
+     "spread": {
+      "median_ratio": 1.2406288599237616,
+      "iqr": [
+       1.1565685047760244,
+       1.3529618816527402
+      ],
+      "min": 0.8834104752656073,
+      "max": 1.998238130544899,
+      "cv": 0.18459269826160132
+     },
+     "speed": {
+      "our_hsr_m": 2929.6159223132067,
+      "gt_hsr_m": 1272.4852421638345,
+      "gt_matched_hsr_m": 816.6946037262186,
+      "hsr_ratio": 3.587162090880308,
+      "our_sprints": 173,
+      "gt_sprints": 60,
+      "our_observed_s": 4262.4800000000005,
+      "gt_alt_hsr_m": 1272.4852421638345,
+      "gt_alt_sprints": 60,
+      "gt_matched_sprints": 37,
+      "sprint_ratio": 4.675675675675675,
+      "our_peak_max_ms": 22.474840089501072,
+      "our_peak_median_ms": 11.75296776812567,
+      "gt_peak_max_ms": 9.364368825149267,
+      "gt_peak_median_ms": 7.49181653052514,
+      "clamped_frac": 0.4166666666666667
+     }
+    },
+    "118575": {
+     "seq": "118575",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 11454.180377198898,
+      "gt_matched_m": 6317.6593830063675,
+      "ours_m": 9646.085854130255,
+      "ratio_raw": 0.8421454470310332,
+      "ratio_matched": 1.526844875505143,
+      "coverage": 0.6031515151515152,
+      "ids": 48,
+      "attributed_ids": 44,
+      "orphan_ids": 4,
+      "orphan_m": 164.73597100313043,
+      "uncredited_m": 0.0,
+      "fragments": 44,
+      "unattributed_frac": 0.0947,
+      "attribution_contaminated": 0.3417
+     },
+     "teams": {
+      "home": {
+       "gt_m": 5961.4861058373945,
+       "gt_matched_m": 3361.8294911257167,
+       "ours_m": 5309.658550940536,
+       "ratio_raw": 0.8906602240910032,
+       "ratio_matched": 1.5793955538068005,
+       "coverage": 0.6230909090909091
+      },
+      "away": {
+       "gt_m": 5492.694271361504,
+       "gt_matched_m": 2955.829891880651,
+       "ours_m": 4336.427303189719,
+       "ratio_raw": 0.7894900187326146,
+       "ratio_matched": 1.4670760706160466,
+       "coverage": 0.5832121212121213
+      }
+     },
+     "spread": {
+      "median_ratio": 1.3264588721466564,
+      "iqr": [
+       1.1568484280688627,
+       1.5238469901030391
+      ],
+      "min": 1.0248519754386227,
+      "max": 2.8371684523550416,
+      "cv": 0.3101540194419056
+     },
+     "speed": {
+      "our_hsr_m": 1977.3381112981467,
+      "gt_hsr_m": 975.2011068496977,
+      "gt_matched_hsr_m": 540.884793220951,
+      "hsr_ratio": 3.6557472794218597,
+      "our_sprints": 115,
+      "gt_sprints": 46,
+      "our_observed_s": 4115.839999999999,
+      "gt_alt_hsr_m": 975.2011068496977,
+      "gt_alt_sprints": 46,
+      "gt_matched_sprints": 32,
+      "sprint_ratio": 3.59375,
+      "our_peak_max_ms": 14.214652687576105,
+      "our_peak_median_ms": 9.901898258582314,
+      "gt_peak_max_ms": 12.869212034047665,
+      "gt_peak_median_ms": 7.7607499977571806,
+      "clamped_frac": 0.38636363636363635
+     }
+    },
+    "118576": {
+     "seq": "118576",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 10202.514454390172,
+      "gt_matched_m": 6358.213109808479,
+      "ours_m": 7611.300953050696,
+      "ratio_raw": 0.7460220700570075,
+      "ratio_matched": 1.1970817620612848,
+      "coverage": 0.6490507484483389,
+      "ids": 56,
+      "attributed_ids": 53,
+      "orphan_ids": 3,
+      "orphan_m": 155.31916443617408,
+      "uncredited_m": 0.0,
+      "fragments": 53,
+      "unattributed_frac": 0.1048,
+      "attribution_contaminated": 0.4051
+     },
+     "teams": {
+      "home": {
+       "gt_m": 5015.770459925711,
+       "gt_matched_m": 3109.2564150298203,
+       "ours_m": 3586.0351630910723,
+       "ratio_raw": 0.7149520082193285,
+       "ratio_matched": 1.1533417269018256,
+       "coverage": 0.6481684313009615
+      },
+      "away": {
+       "gt_m": 5186.743994464459,
+       "gt_matched_m": 3248.956694778659,
+       "ours_m": 4025.265789959624,
+       "ratio_raw": 0.7760679521209413,
+       "ratio_matched": 1.2389410411128463,
+       "coverage": 0.6499330655957162
+      }
+     },
+     "spread": {
+      "median_ratio": 1.1227218725010695,
+      "iqr": [
+       1.024696398859359,
+       1.339199720264058
+      ],
+      "min": 0.8756065941943934,
+      "max": 1.7126008314367904,
+      "cv": 0.18748127902024694
+     },
+     "speed": {
+      "our_hsr_m": 789.9776463020889,
+      "gt_hsr_m": 403.7856824185051,
+      "gt_matched_hsr_m": 270.83477942350925,
+      "hsr_ratio": 2.9168249660682855,
+      "our_sprints": 53,
+      "gt_sprints": 19,
+      "our_observed_s": 4116.32,
+      "gt_alt_hsr_m": 403.7856824185051,
+      "gt_alt_sprints": 19,
+      "gt_matched_sprints": 15,
+      "sprint_ratio": 3.533333333333333,
+      "our_peak_max_ms": 21.688542288072057,
+      "our_peak_median_ms": 8.951595863686958,
+      "gt_peak_max_ms": 12.355430785357113,
+      "gt_peak_median_ms": 7.007120647271498,
+      "clamped_frac": 0.20754716981132076
+     }
+    },
+    "118577": {
+     "seq": "118577",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 9175.971105668841,
+      "gt_matched_m": 6876.000515048568,
+      "ours_m": 8795.953649074143,
+      "ratio_raw": 0.9585855870492087,
+      "ratio_matched": 1.279225274899796,
+      "coverage": 0.750810207336523,
+      "ids": 52,
+      "attributed_ids": 50,
+      "orphan_ids": 1,
+      "orphan_m": 71.44347627895067,
+      "uncredited_m": 0.0,
+      "fragments": 50,
+      "unattributed_frac": 0.0886,
+      "attribution_contaminated": 0.3178
+     },
+     "teams": {
+      "home": {
+       "gt_m": 4449.239891903033,
+       "gt_matched_m": 3368.1074754396623,
+       "ours_m": 4172.312488983024,
+       "ratio_raw": 0.9377584914169326,
+       "ratio_matched": 1.238770591320986,
+       "coverage": 0.7578484848484849
+      },
+      "away": {
+       "gt_m": 4726.731213765809,
+       "gt_matched_m": 3507.893039608906,
+       "ours_m": 4623.64116009112,
+       "ratio_raw": 0.9781899902887524,
+       "ratio_matched": 1.318067885161803,
+       "coverage": 0.7437719298245612
+      }
+     },
+     "spread": {
+      "median_ratio": 1.1996761351773175,
+      "iqr": [
+       1.0810417113995459,
+       1.3278410470783995
+      ],
+      "min": 0.7846696492665496,
+      "max": 1.8983326674419059,
+      "cv": 0.20838335408525563
+     },
+     "speed": {
+      "our_hsr_m": 1300.1390161687814,
+      "gt_hsr_m": 763.250750881001,
+      "gt_matched_hsr_m": 615.2908852580447,
+      "hsr_ratio": 2.113047742651869,
+      "our_sprints": 75,
+      "gt_sprints": 32,
+      "our_observed_s": 4646.48,
+      "gt_alt_hsr_m": 763.250750881001,
+      "gt_alt_sprints": 32,
+      "gt_matched_sprints": 31,
+      "sprint_ratio": 2.4193548387096775,
+      "our_peak_max_ms": 19.699680990293363,
+      "our_peak_median_ms": 10.56264625440544,
+      "gt_peak_max_ms": 12.923150925853468,
+      "gt_peak_median_ms": 7.54380324902705,
+      "clamped_frac": 0.42
+     }
+    },
+    "118578": {
+     "seq": "118578",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 12482.71818951584,
+      "gt_matched_m": 8019.5260438686055,
+      "ours_m": 9993.5286497449,
+      "ratio_raw": 0.8005891423663161,
+      "ratio_matched": 1.2461495349074319,
+      "coverage": 0.6936969696969698,
+      "ids": 56,
+      "attributed_ids": 52,
+      "orphan_ids": 3,
+      "orphan_m": 13.979424354343138,
+      "uncredited_m": 0.0,
+      "fragments": 50,
+      "unattributed_frac": 0.0914,
+      "attribution_contaminated": 0.3339
+     },
+     "teams": {
+      "home": {
+       "gt_m": 6070.9739439464765,
+       "gt_matched_m": 3795.2165277552463,
+       "ours_m": 5109.762393381835,
+       "ratio_raw": 0.8416709477853895,
+       "ratio_matched": 1.3463691349394766,
+       "coverage": 0.6959090909090908
+      },
+      "away": {
+       "gt_m": 6411.744245569362,
+       "gt_matched_m": 4224.30951611336,
+       "ours_m": 4883.766256363065,
+       "ratio_raw": 0.761690745811928,
+       "ratio_matched": 1.1561099483203703,
+       "coverage": 0.6914848484848485
+      }
+     },
+     "spread": {
+      "median_ratio": 1.1327115962003358,
+      "iqr": [
+       1.0801758469358527,
+       1.2278463980116223
+      ],
+      "min": 0.7782858908732612,
+      "max": 1.9169677464558248,
+      "cv": 0.1928414365626336
+     },
+     "speed": {
+      "our_hsr_m": 2019.6826689524273,
+      "gt_hsr_m": 1302.9827294187796,
+      "gt_matched_hsr_m": 857.2137987296883,
+      "hsr_ratio": 2.3561014439401355,
+      "our_sprints": 100,
+      "gt_sprints": 59,
+      "our_observed_s": 4543.5199999999995,
+      "gt_alt_hsr_m": 1302.9827294187796,
+      "gt_alt_sprints": 59,
+      "gt_matched_sprints": 39,
+      "sprint_ratio": 2.5641025641025643,
+      "our_peak_max_ms": 19.87627963917651,
+      "our_peak_median_ms": 10.028338504542734,
+      "gt_peak_max_ms": 9.162035792078516,
+      "gt_peak_median_ms": 8.058530564352376,
+      "clamped_frac": 0.38
+     }
+    },
+    "128057": {
+     "seq": "128057",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 12063.523788087336,
+      "gt_matched_m": 8487.599861330307,
+      "ours_m": 11753.809182300927,
+      "ratio_raw": 0.974326356773777,
+      "ratio_matched": 1.3848213127778963,
+      "coverage": 0.7306650845807472,
+      "ids": 57,
+      "attributed_ids": 55,
+      "orphan_ids": 2,
+      "orphan_m": 104.45072280380008,
+      "uncredited_m": 0.0,
+      "fragments": 55,
+      "unattributed_frac": 0.0774,
+      "attribution_contaminated": 0.3014
+     },
+     "teams": {
+      "home": {
+       "gt_m": 6177.2834497688455,
+       "gt_matched_m": 4500.937931716801,
+       "ours_m": 5825.626744872968,
+       "ratio_raw": 0.9430725969181426,
+       "ratio_matched": 1.2943139481709955,
+       "coverage": 0.7508823171473774
+      },
+      "away": {
+       "gt_m": 5886.240338318489,
+       "gt_matched_m": 3986.661929613506,
+       "ours_m": 5928.182437427959,
+       "ratio_raw": 1.0071254479427951,
+       "ratio_matched": 1.4870040505297315,
+       "coverage": 0.7104478520141172
+      }
+     },
+     "spread": {
+      "median_ratio": 1.2869724973527097,
+      "iqr": [
+       1.1349561477357604,
+       1.480547700153808
+      ],
+      "min": 0.7584090451682882,
+      "max": 2.208497071010719,
+      "cv": 0.23870835516516423
+     },
+     "speed": {
+      "our_hsr_m": 2586.0455650692093,
+      "gt_hsr_m": 872.6658034521976,
+      "gt_matched_hsr_m": 605.7690073968349,
+      "hsr_ratio": 4.269029173648544,
+      "our_sprints": 156,
+      "gt_sprints": 38,
+      "our_observed_s": 4702.5599999999995,
+      "gt_alt_hsr_m": 872.6658034521976,
+      "gt_alt_sprints": 38,
+      "gt_matched_sprints": 28,
+      "sprint_ratio": 5.571428571428571,
+      "our_peak_max_ms": 15.867505273268996,
+      "our_peak_median_ms": 10.691864818830151,
+      "gt_peak_max_ms": 14.887202645688355,
+      "gt_peak_median_ms": 7.14631999448029,
+      "clamped_frac": 0.4
+     }
+    },
+    "128058": {
+     "seq": "128058",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 11985.694697160241,
+      "gt_matched_m": 8310.784356029037,
+      "ours_m": 10615.285723292856,
+      "ratio_raw": 0.8856629500005474,
+      "ratio_matched": 1.2772904780752763,
+      "coverage": 0.7219081486884896,
+      "ids": 60,
+      "attributed_ids": 58,
+      "orphan_ids": 1,
+      "orphan_m": 24.370976329926343,
+      "uncredited_m": 0.0,
+      "fragments": 58,
+      "unattributed_frac": 0.0635,
+      "attribution_contaminated": 0.3975
+     },
+     "teams": {
+      "home": {
+       "gt_m": 5987.6738002236,
+       "gt_matched_m": 4109.078066382518,
+       "ours_m": 5243.949351535253,
+       "ratio_raw": 0.8757907538883342,
+       "ratio_matched": 1.2761863529528497,
+       "coverage": 0.7168475122336707
+      },
+      "away": {
+       "gt_m": 5998.020896936641,
+       "gt_matched_m": 4201.706289646519,
+       "ours_m": 5371.336371757603,
+       "ratio_raw": 0.8955181157339576,
+       "ratio_matched": 1.2783702623368,
+       "coverage": 0.7269687851433088
+      }
+     },
+     "spread": {
+      "median_ratio": 1.2252390038566041,
+      "iqr": [
+       1.1022659381302828,
+       1.3195429816326534
+      ],
+      "min": 0.9451485338055509,
+      "max": 2.3699402928350177,
+      "cv": 0.22717062331981522
+     },
+     "speed": {
+      "our_hsr_m": 1998.5599089157931,
+      "gt_hsr_m": 857.8808694464946,
+      "gt_matched_hsr_m": 564.4098093669638,
+      "hsr_ratio": 3.540973023054573,
+      "our_sprints": 119,
+      "gt_sprints": 44,
+      "our_observed_s": 4488.5599999999995,
+      "gt_alt_hsr_m": 857.8808694464946,
+      "gt_alt_sprints": 44,
+      "gt_matched_sprints": 23,
+      "sprint_ratio": 5.173913043478261,
+      "our_peak_max_ms": 23.848951809208035,
+      "our_peak_median_ms": 10.883862054782934,
+      "gt_peak_max_ms": 15.321284333623225,
+      "gt_peak_median_ms": 7.547297610793488,
+      "clamped_frac": 0.3275862068965517
+     }
+    },
+    "132877": {
+     "seq": "132877",
+     "variant": "p21id",
+     "credit": "fragment",
+     "settle_s": 0.0,
+     "method": "kalman",
+     "common_support": false,
+     "map_checks": null,
+     "window_s": 0.4,
+     "squad": {
+      "gt_m": 10952.442876986184,
+      "gt_matched_m": 7691.658025354312,
+      "ours_m": 10898.544859205816,
+      "ratio_raw": 0.9950789044612485,
+      "ratio_matched": 1.41693050097658,
+      "coverage": 0.7326589154383716,
+      "ids": 48,
+      "attributed_ids": 45,
+      "orphan_ids": 3,
+      "orphan_m": 83.5973397190325,
+      "uncredited_m": 0.0,
+      "fragments": 45,
+      "unattributed_frac": 0.0691,
+      "attribution_contaminated": 0.294
+     },
+     "teams": {
+      "home": {
+       "gt_m": 5561.030134351441,
+       "gt_matched_m": 3731.201208040256,
+       "ours_m": 5388.344022877671,
+       "ratio_raw": 0.9689471002131317,
+       "ratio_matched": 1.4441311852243417,
+       "coverage": 0.6981293295492691
+      },
+      "away": {
+       "gt_m": 5391.412742634744,
+       "gt_matched_m": 3960.4568173140556,
+       "ours_m": 5510.200836328146,
+       "ratio_raw": 1.0220328324622667,
+       "ratio_matched": 1.3913043596988672,
+       "coverage": 0.7671885013274742
+      }
+     },
+     "spread": {
+      "median_ratio": 1.2977772845720614,
+      "iqr": [
+       1.1824008067092548,
+       1.4951420435521077
+      ],
+      "min": 0.848816263822895,
+      "max": 2.2786287230909026,
+      "cv": 0.23296685184118512
+     },
+     "speed": {
+      "our_hsr_m": 1672.3876071355155,
+      "gt_hsr_m": 518.6713598704049,
+      "gt_matched_hsr_m": 364.24384729876624,
+      "hsr_ratio": 4.591395625589693,
+      "our_sprints": 100,
+      "gt_sprints": 28,
+      "our_observed_s": 4546.8,
+      "gt_alt_hsr_m": 518.6713598704049,
+      "gt_alt_sprints": 28,
+      "gt_matched_sprints": 19,
+      "sprint_ratio": 5.2631578947368425,
+      "our_peak_max_ms": 17.252834220364576,
+      "our_peak_median_ms": 10.576138213264905,
+      "gt_peak_max_ms": 14.196639453850002,
+      "gt_peak_median_ms": 6.995009594037397,
+      "clamped_frac": 0.37777777777777777
+     }
+    }
+   },
+   "pooled_coverage": 0.6924,
+   "pooled_unattributed_frac": 0.0922,
+   "pooled_attribution_contaminated": 0.3514,
+   "pooled_clamped_frac": 0.4064
+  }
+ }
+}

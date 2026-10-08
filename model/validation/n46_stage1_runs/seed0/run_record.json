@@ -1,0 +1,89 @@
+{
+ "args": {
+  "dataset": "C:\\n46_pc\\n46_dataset",
+  "out": "C:\\n46_pc\\runs\\seed0",
+  "epochs": 17,
+  "batch": 4,
+  "accum": 0,
+  "seed": 0,
+  "workers": 2,
+  "device": "cuda"
+ },
+ "resumed_from_epoch": null,
+ "resumed_from": null,
+ "corrupt_checkpoint_set_aside": null,
+ "previous": null,
+ "grad_accum_steps": 4,
+ "effective_batch": 16,
+ "amp_dtype": "fp16",
+ "dataset": {
+  "dir": "C:\\n46_pc\\n46_dataset",
+  "manifest_sha256": "e046f29c67d6af68e7d0be13d0b7eed4a9ea492010a821ccfefabbe7d09dc5d8",
+  "split": {
+   "train": [
+    "117092",
+    "117093",
+    "118575",
+    "132831",
+    "132877"
+   ],
+   "valid": [
+    "118576"
+   ],
+   "test_not_written": [
+    "118577",
+    "118578",
+    "128057",
+    "128058"
+   ]
+  },
+  "constants": {
+   "FRAME_STEP": 10,
+   "VISIBLE_MIN": 0.4,
+   "MIN_PX": 2,
+   "EMPTY_KEEP": 4,
+   "TILE": 1024,
+   "SIZE": 576,
+   "CLASS": "person",
+   "SEED": 0
+  },
+  "train_images": 11771
+ },
+ "env": {
+  "python": "3.12.10",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "torch": "2.13.0+cu126",
+  "cuda": "12.6",
+  "rfdetr": "1.9.0",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+  "capability": [
+   7,
+   5
+  ],
+  "gpu_mem_gb": 8.0
+ },
+ "status": "done",
+ "lr": 0.0001,
+ "lr_scheduler": "cosine to 0 over the run, no warmup",
+ "multi_scale": "on, expanded_scales off (480-704 px); the product infers at 576 only",
+ "seconds": 22029.3,
+ "seconds_per_image_epoch": 0.1101,
+ "peak_gpu_mem_gb": 4.18,
+ "peak_gpu_reserved_gb": 4.72,
+ "outputs": [
+  "checkpoint_best_ema.pth",
+  "checkpoint_best_regular.pth",
+  "checkpoint_best_total.pth",
+  "last_ema.pth"
+ ],
+ "best_total_source": "regular",
+ "reload_check": {
+  "tiles": 20,
+  "top_score_median": 0.9207,
+  "boxes_at_0.5_per_tile": 7.85,
+  "product_wrapper_boxes_per_tile": 7.9,
+  "gt_boxes_per_tile": 8.15,
+  "reading": "usable"
+ }
+}

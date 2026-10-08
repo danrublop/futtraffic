@@ -1,0 +1,11 @@
+{"seq": "118575", "by": "Claude, read off 6x ruled crops of the 40-frame median, 2026-09-17; +-1.5 px on the white right goal, +-3 px on the blue left one",
+ "note": "post CENTRES: goal is 7.32 m between posts, posts and bar 0.12 m, so centres at y = 34 -+ 3.72 and the bar's centreline at z = 2.50",
+ "points": [
+  {"name": "post_R_far_base",  "xyz": [105.0, 30.28, 0.0],  "uv": [3213.5, 297.0]},
+  {"name": "post_R_far_top",   "xyz": [105.0, 30.28, 2.50], "uv": [3227.0, 250.0]},
+  {"name": "post_R_near_base", "xyz": [105.0, 37.72, 0.0],  "uv": [3322.5, 333.5]},
+  {"name": "post_R_near_top",  "xyz": [105.0, 37.72, 2.50], "uv": [3335.5, 281.5]},
+  {"name": "post_L_far_base",  "xyz": [0.0, 30.28, 0.0],    "uv": [840.0, 323.0]},
+  {"name": "post_L_far_top",   "xyz": [0.0, 30.28, 2.50],   "uv": [829.5, 277.5]},
+  {"name": "post_L_near_base", "xyz": [0.0, 37.72, 0.0],    "uv": [733.0, 362.0]},
+  {"name": "post_L_near_top",  "xyz": [0.0, 37.72, 2.50],   "uv": [722.5, 313.5]}]}

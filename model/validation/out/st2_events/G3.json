@@ -1,0 +1,970 @@
+{
+ "commit": "1f04562",
+ "labels_sha": "50781f127b3e",
+ "seed": 0,
+ "device": "cpu",
+ "n_configs": 1,
+ "smoke": false,
+ "budget": {
+  "rule": "train-loss plateau",
+  "rel": 0.01,
+  "window": 3,
+  "cap_min": 90,
+  "stopped_by": "plateau",
+  "epochs": 18
+ },
+ "losses": [
+  0.5909,
+  0.5214,
+  0.487,
+  0.4753,
+  0.4576,
+  0.4424,
+  0.4359,
+  0.4259,
+  0.3965,
+  0.3867,
+  0.3759,
+  0.37,
+  0.3593,
+  0.3624,
+  0.3525,
+  0.351,
+  0.3513,
+  0.3511
+ ],
+ "train": {
+  "halves": 12,
+  "centres": 170294,
+  "slots": 33,
+  "gb": 1.1
+ },
+ "minutes": {
+  "train": 17.3,
+  "total": 17.9
+ },
+ "checkpoints": {
+  "12": {
+   "117093": {
+    "periods": 2,
+    "classes": {
+     "BALL PLAYER BLOCK": {
+      "n": 30,
+      "ap": 0.071,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "CROSS": {
+      "n": 45,
+      "ap": 0.593,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "DRIVE": {
+      "n": 887,
+      "ap": 0.407,
+      "chance": 0.118,
+      "metronome": 0.135,
+      "shift-copy*": 0.542,
+      "worst": 0.542,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "FREE KICK": {
+      "n": 17,
+      "ap": 0.061,
+      "chance": 0.004,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.004,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "GOAL": {
+      "n": 5,
+      "ap": 0.208,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HEADER": {
+      "n": 3,
+      "ap": 0.023,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HIGH PASS": {
+      "n": 150,
+      "ap": 0.345,
+      "chance": 0.02,
+      "metronome": 0.025,
+      "shift-copy*": null,
+      "worst": 0.025,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "OUT": {
+      "n": 78,
+      "ap": 0.123,
+      "chance": 0.005,
+      "metronome": 0.004,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PASS": {
+      "n": 947,
+      "ap": 0.375,
+      "chance": 0.12,
+      "metronome": 0.146,
+      "shift-copy*": 0.499,
+      "worst": 0.499,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PLAYER SUCCESSFUL TACKLE": {
+      "n": 20,
+      "ap": 0.021,
+      "chance": 0.0,
+      "metronome": 0.017,
+      "shift-copy*": null,
+      "worst": 0.017,
+      "beats": true,
+      "tie": true,
+      "zero_floor": false
+     },
+     "SHOT": {
+      "n": 23,
+      "ap": 0.332,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "THROW IN": {
+      "n": 39,
+      "ap": 0.251,
+      "chance": 0.005,
+      "metronome": 0.008,
+      "shift-copy*": null,
+      "worst": 0.008,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     }
+    },
+    "match_drop": {
+     "117093": 0.004
+    },
+    "period_drop": {
+     "117093 P1": 0.004,
+     "117093 P2": 0.004
+    },
+    "attribution": {
+     "matched": 2211,
+     "n_gt": 2244,
+     "model": 0.459,
+     "nearest": 0.889,
+     "chance": 0.045,
+     "beats": false
+    }
+   },
+   "132877": {
+    "periods": 2,
+    "classes": {
+     "BALL PLAYER BLOCK": {
+      "n": 33,
+      "ap": 0.073,
+      "chance": 0.0,
+      "metronome": 0.005,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "CROSS": {
+      "n": 24,
+      "ap": 0.594,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "DRIVE": {
+      "n": 884,
+      "ap": 0.426,
+      "chance": 0.113,
+      "metronome": 0.127,
+      "shift-copy*": 0.605,
+      "worst": 0.605,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "FREE KICK": {
+      "n": 13,
+      "ap": 0.012,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": true,
+      "zero_floor": true
+     },
+     "GOAL": {
+      "n": 3,
+      "ap": 0.146,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HEADER": {
+      "n": 4,
+      "ap": 0.095,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HIGH PASS": {
+      "n": 87,
+      "ap": 0.335,
+      "chance": 0.009,
+      "metronome": 0.008,
+      "shift-copy*": null,
+      "worst": 0.009,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "OUT": {
+      "n": 63,
+      "ap": 0.192,
+      "chance": 0.001,
+      "metronome": 0.005,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PASS": {
+      "n": 1076,
+      "ap": 0.436,
+      "chance": 0.146,
+      "metronome": 0.158,
+      "shift-copy*": 0.594,
+      "worst": 0.594,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PLAYER SUCCESSFUL TACKLE": {
+      "n": 30,
+      "ap": 0.021,
+      "chance": 0.0,
+      "metronome": 0.013,
+      "shift-copy*": null,
+      "worst": 0.013,
+      "beats": true,
+      "tie": true,
+      "zero_floor": false
+     },
+     "SHOT": {
+      "n": 24,
+      "ap": 0.396,
+      "chance": 0.004,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.004,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "THROW IN": {
+      "n": 31,
+      "ap": 0.379,
+      "chance": 0.005,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     }
+    },
+    "match_drop": {
+     "132877": 0.168
+    },
+    "period_drop": {
+     "132877 P1": 0.002,
+     "132877 P2": 0.005
+    },
+    "attribution": {
+     "matched": 2227,
+     "n_gt": 2272,
+     "model": 0.429,
+     "nearest": 0.911,
+     "chance": 0.045,
+     "beats": false
+    }
+   },
+   "all": {
+    "periods": 4,
+    "classes": {
+     "BALL PLAYER BLOCK": {
+      "n": 63,
+      "ap": 0.072,
+      "chance": 0.002,
+      "metronome": 0.006,
+      "shift-copy*": null,
+      "worst": 0.006,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "CROSS": {
+      "n": 69,
+      "ap": 0.594,
+      "chance": 0.002,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.002,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "DRIVE": {
+      "n": 1771,
+      "ap": 0.417,
+      "chance": 0.117,
+      "metronome": 0.141,
+      "shift-copy*": 0.578,
+      "worst": 0.578,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "FREE KICK": {
+      "n": 30,
+      "ap": 0.036,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "GOAL": {
+      "n": 8,
+      "ap": 0.177,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HEADER": {
+      "n": 7,
+      "ap": 0.059,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HIGH PASS": {
+      "n": 237,
+      "ap": 0.34,
+      "chance": 0.02,
+      "metronome": 0.024,
+      "shift-copy*": null,
+      "worst": 0.024,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "OUT": {
+      "n": 141,
+      "ap": 0.158,
+      "chance": 0.014,
+      "metronome": 0.004,
+      "shift-copy*": null,
+      "worst": 0.014,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PASS": {
+      "n": 2023,
+      "ap": 0.405,
+      "chance": 0.125,
+      "metronome": 0.159,
+      "shift-copy*": 0.544,
+      "worst": 0.544,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PLAYER SUCCESSFUL TACKLE": {
+      "n": 50,
+      "ap": 0.021,
+      "chance": 0.0,
+      "metronome": 0.019,
+      "shift-copy*": null,
+      "worst": 0.019,
+      "beats": true,
+      "tie": true,
+      "zero_floor": false
+     },
+     "SHOT": {
+      "n": 47,
+      "ap": 0.364,
+      "chance": 0.001,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.001,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "THROW IN": {
+      "n": 70,
+      "ap": 0.315,
+      "chance": 0.003,
+      "metronome": 0.005,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     }
+    },
+    "match_drop": {
+     "117093": 0.004,
+     "132877": 0.168
+    },
+    "period_drop": {
+     "117093 P1": 0.004,
+     "117093 P2": 0.004,
+     "132877 P1": 0.002,
+     "132877 P2": 0.005
+    },
+    "attribution": {
+     "matched": 4438,
+     "n_gt": 4516,
+     "model": 0.444,
+     "nearest": 0.9,
+     "chance": 0.045,
+     "beats": false
+    }
+   }
+  },
+  "stop": {
+   "117093": {
+    "periods": 2,
+    "classes": {
+     "BALL PLAYER BLOCK": {
+      "n": 30,
+      "ap": 0.068,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "CROSS": {
+      "n": 45,
+      "ap": 0.599,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "DRIVE": {
+      "n": 887,
+      "ap": 0.46,
+      "chance": 0.118,
+      "metronome": 0.135,
+      "shift-copy*": 0.542,
+      "worst": 0.542,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "FREE KICK": {
+      "n": 17,
+      "ap": 0.069,
+      "chance": 0.004,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.004,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "GOAL": {
+      "n": 5,
+      "ap": 0.364,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HEADER": {
+      "n": 3,
+      "ap": 0.057,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HIGH PASS": {
+      "n": 150,
+      "ap": 0.355,
+      "chance": 0.02,
+      "metronome": 0.025,
+      "shift-copy*": null,
+      "worst": 0.025,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "OUT": {
+      "n": 78,
+      "ap": 0.188,
+      "chance": 0.005,
+      "metronome": 0.004,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PASS": {
+      "n": 947,
+      "ap": 0.417,
+      "chance": 0.12,
+      "metronome": 0.146,
+      "shift-copy*": 0.499,
+      "worst": 0.499,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PLAYER SUCCESSFUL TACKLE": {
+      "n": 20,
+      "ap": 0.03,
+      "chance": 0.0,
+      "metronome": 0.017,
+      "shift-copy*": null,
+      "worst": 0.017,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "SHOT": {
+      "n": 23,
+      "ap": 0.319,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "THROW IN": {
+      "n": 39,
+      "ap": 0.323,
+      "chance": 0.005,
+      "metronome": 0.008,
+      "shift-copy*": null,
+      "worst": 0.008,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     }
+    },
+    "match_drop": {
+     "117093": 0.004
+    },
+    "period_drop": {
+     "117093 P1": 0.004,
+     "117093 P2": 0.004
+    },
+    "attribution": {
+     "matched": 2219,
+     "n_gt": 2244,
+     "model": 0.47,
+     "nearest": 0.889,
+     "chance": 0.045,
+     "beats": false
+    }
+   },
+   "132877": {
+    "periods": 2,
+    "classes": {
+     "BALL PLAYER BLOCK": {
+      "n": 33,
+      "ap": 0.065,
+      "chance": 0.0,
+      "metronome": 0.005,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "CROSS": {
+      "n": 24,
+      "ap": 0.559,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "DRIVE": {
+      "n": 884,
+      "ap": 0.447,
+      "chance": 0.113,
+      "metronome": 0.127,
+      "shift-copy*": 0.605,
+      "worst": 0.605,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "FREE KICK": {
+      "n": 13,
+      "ap": 0.107,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "GOAL": {
+      "n": 3,
+      "ap": 0.105,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HEADER": {
+      "n": 4,
+      "ap": 0.313,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HIGH PASS": {
+      "n": 87,
+      "ap": 0.268,
+      "chance": 0.009,
+      "metronome": 0.008,
+      "shift-copy*": null,
+      "worst": 0.009,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "OUT": {
+      "n": 63,
+      "ap": 0.184,
+      "chance": 0.001,
+      "metronome": 0.005,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PASS": {
+      "n": 1076,
+      "ap": 0.457,
+      "chance": 0.146,
+      "metronome": 0.158,
+      "shift-copy*": 0.594,
+      "worst": 0.594,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PLAYER SUCCESSFUL TACKLE": {
+      "n": 30,
+      "ap": 0.027,
+      "chance": 0.0,
+      "metronome": 0.013,
+      "shift-copy*": null,
+      "worst": 0.013,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "SHOT": {
+      "n": 24,
+      "ap": 0.346,
+      "chance": 0.004,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.004,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "THROW IN": {
+      "n": 31,
+      "ap": 0.354,
+      "chance": 0.005,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     }
+    },
+    "match_drop": {
+     "132877": 0.168
+    },
+    "period_drop": {
+     "132877 P1": 0.002,
+     "132877 P2": 0.005
+    },
+    "attribution": {
+     "matched": 2247,
+     "n_gt": 2272,
+     "model": 0.462,
+     "nearest": 0.912,
+     "chance": 0.045,
+     "beats": false
+    }
+   },
+   "all": {
+    "periods": 4,
+    "classes": {
+     "BALL PLAYER BLOCK": {
+      "n": 63,
+      "ap": 0.066,
+      "chance": 0.002,
+      "metronome": 0.006,
+      "shift-copy*": null,
+      "worst": 0.006,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "CROSS": {
+      "n": 69,
+      "ap": 0.579,
+      "chance": 0.002,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.002,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "DRIVE": {
+      "n": 1771,
+      "ap": 0.453,
+      "chance": 0.117,
+      "metronome": 0.141,
+      "shift-copy*": 0.578,
+      "worst": 0.578,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "FREE KICK": {
+      "n": 30,
+      "ap": 0.088,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "GOAL": {
+      "n": 8,
+      "ap": 0.234,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HEADER": {
+      "n": 7,
+      "ap": 0.185,
+      "chance": 0.0,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.0,
+      "beats": true,
+      "tie": false,
+      "zero_floor": true
+     },
+     "HIGH PASS": {
+      "n": 237,
+      "ap": 0.312,
+      "chance": 0.02,
+      "metronome": 0.024,
+      "shift-copy*": null,
+      "worst": 0.024,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "OUT": {
+      "n": 141,
+      "ap": 0.186,
+      "chance": 0.014,
+      "metronome": 0.004,
+      "shift-copy*": null,
+      "worst": 0.014,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PASS": {
+      "n": 2023,
+      "ap": 0.437,
+      "chance": 0.125,
+      "metronome": 0.159,
+      "shift-copy*": 0.544,
+      "worst": 0.544,
+      "beats": false,
+      "tie": false,
+      "zero_floor": false
+     },
+     "PLAYER SUCCESSFUL TACKLE": {
+      "n": 50,
+      "ap": 0.028,
+      "chance": 0.0,
+      "metronome": 0.019,
+      "shift-copy*": null,
+      "worst": 0.019,
+      "beats": true,
+      "tie": true,
+      "zero_floor": false
+     },
+     "SHOT": {
+      "n": 47,
+      "ap": 0.332,
+      "chance": 0.001,
+      "metronome": 0.0,
+      "shift-copy*": null,
+      "worst": 0.001,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     },
+     "THROW IN": {
+      "n": 70,
+      "ap": 0.338,
+      "chance": 0.003,
+      "metronome": 0.005,
+      "shift-copy*": null,
+      "worst": 0.005,
+      "beats": true,
+      "tie": false,
+      "zero_floor": false
+     }
+    },
+    "match_drop": {
+     "117093": 0.004,
+     "132877": 0.168
+    },
+    "period_drop": {
+     "117093 P1": 0.004,
+     "117093 P2": 0.004,
+     "132877 P1": 0.002,
+     "132877 P2": 0.005
+    },
+    "attribution": {
+     "matched": 4466,
+     "n_gt": 4516,
+     "model": 0.466,
+     "nearest": 0.9,
+     "chance": 0.045,
+     "beats": false
+    }
+   }
+  }
+ }
+}

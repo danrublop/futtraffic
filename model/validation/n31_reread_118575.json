@@ -1,0 +1,82 @@
+{
+ "seq": "118575",
+ "by": "Claude, read off 8x ruled crops of a 40-frame median, 2026-09-17; pen_l_bl and pen_l_tl unreadable and left out",
+ "points": {
+  "half_b": [
+   2033,
+   155
+  ],
+  "corner_br": [
+   2893,
+   200
+  ],
+  "corner_bl": [
+   1154,
+   219
+  ],
+  "pen_r_bl": [
+   2767,
+   207
+  ],
+  "circle_b": [
+   2043,
+   211.5
+  ],
+  "pen_l_br": [
+   1289,
+   225.5
+  ],
+  "pen_r_br": [
+   3011,
+   232
+  ],
+  "centre": [
+   2048,
+   245
+  ],
+  "goal_r_bl": [
+   3064,
+   265
+  ],
+  "goal_l_br": [
+   994,
+   288
+  ],
+  "circle_t": [
+   2056.5,
+   298
+  ],
+  "goal_r_tl": [
+   3336,
+   356
+  ],
+  "goal_l_tr": [
+   726,
+   387
+  ],
+  "pen_r_tl": [
+   3366,
+   423
+  ],
+  "pen_r_tr": [
+   3618,
+   437
+  ],
+  "pen_l_tr": [
+   710,
+   455
+  ],
+  "corner_tr": [
+   3934,
+   552
+  ],
+  "corner_tl": [
+   107,
+   599
+  ],
+  "half_t": [
+   2126.5,
+   715
+  ]
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "checkpoint": "model/validation/out/ball/run/checkpoint_best_ema.pth - gitignored, and NOT rebuildable: ball_train.fetch/tiles refuse (DFL, dfl-dataset (not published)). This file is the only record of the run.",
+ "test_clips": [
+  "538438",
+  "a9f16c"
+ ],
+ "tiles": 159,
+ "mAP50": 0.9147,
+ "mAP50_95": 0.601,
+ "pass": true,
+ "valid_clips": [
+  "42ba34",
+  "4b770a"
+ ],
+ "valid_mAP50_selected_epoch": 0.824,
+ "valid_mAP50_best": 0.824,
+ "epochs": 12,
+ "note": "Written by ball_train.py test (scored once, 2026-09-19). valid is BELOW the 0.85 bar that test passes: 159 test tiles from 2 matches is a thin population and the split could flip it. Every tile contains a ball, so this measures localisation, never false positives on empty pitch."
+}

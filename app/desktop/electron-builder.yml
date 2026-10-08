@@ -1,0 +1,31 @@
+appId: com.futtraffic.app
+productName: FutTraffic
+directories:
+  output: dist
+files:
+  - dist-electron/**/*
+  - package.json
+  # The desktop renderer is the static export Next writes to frontend/out.
+  - from: ../frontend/out
+    to: out
+asar: true
+mac:
+  category: public.app-category.sports
+  icon: icon.png
+  target:
+    - dmg
+# The frozen Python backend is a spawned binary - it must live outside the
+# asar. The renderer loads no node runtime at all (static bundle + protocol).
+extraResources:
+  - from: resources/backend
+    to: backend
+  # The demo match, SYNTHETIC. It is engine/demo.py's output: fabricated tracks
+  # run through the real stats pipeline, so every number is computed rather than
+  # copied, and it carries demo/synthetic_tracking/source in its meta.
+  #
+  # What used to sit here was a third party's real match report, redistributed
+  # inside the app with no licence to do it, with its provenance markers
+  # stripped. Do not replace this with real footage or a real feed unless the
+  # rights to ship it are written down somewhere.
+  - from: resources/demo-job
+    to: demo-job

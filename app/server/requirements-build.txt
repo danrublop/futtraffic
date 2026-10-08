@@ -1,0 +1,27 @@
+# Build-only dependencies for the packaged Electron backend
+# (app/desktop/backend.spec). Kept out of requirements.txt on purpose: the core
+# pipeline and every module self-check must run without the heavy ML stack.
+-r requirements.txt
+
+# Real detection on real video. The stub detector needs none of this; the
+# shipped product does.
+rfdetr
+
+# The coach-workspace agent (futtraffic/agent.py). Lazy-imported with a clear
+# error, same pattern as rfdetr: the core pipeline and every self-check run
+# without it.
+anthropic
+
+pyinstaller
+
+# THE NEURAL ENGINE HALF IS NOT IN THIS FILE and cannot be: coremltools has no
+# working native extension for this repo's Python 3.14, so the CoreML worker is
+# frozen separately, by a Python 3.12, into resources/backend/coreml/. See
+# app/desktop/coreml_worker.spec. That interpreter needs:
+#
+#     python3.12 -m venv ~/.venvs/ftcoreml
+#     ~/.venvs/ftcoreml/bin/pip install coremltools numpy pyinstaller rfdetr
+#
+# rfdetr there is BUILD-only, to export the .mlpackage once; the frozen worker
+# imports coremltools and numpy and nothing else. Without this env the build
+# still succeeds and warns - and every job in it runs ~4x slower.

@@ -1,0 +1,1452 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Inter Variable is the UI face (the monochrome editorial language).
+     Geist stays only as fallback; Geist Mono remains the readout face and
+     Geist Display the condensed display face for wordmark-style headings. */
+  --font-sans: "Inter Variable", "Inter", var(--font-geist), Geist, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-condensed: var(--font-geist-display);
+  --font-heading: var(--font-sans);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  /* In shadcn "accent" is the subtle hover surface. Dreambyte's --accent is
+     Signal Blue, reserved for machine state only — so the Tailwind `accent`
+     color maps to the card-hover surface, NOT to var(--accent). */
+  --color-accent-foreground: var(--ink);
+  --color-accent: var(--card-hover);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  /* Radius communicates rank: xs 4 / sm 6 / md 8 controls+cards,
+     xl 12 dialogs+content cards, lg 16 floating panels, pill for hero CTAs. */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+  --radius-pill: 9999px;
+}
+
+:root {
+  /* ---------------------------------------------------------------------
+     Dreambyte "monochrome editorial, one signal" — dark theme (default).
+     Flat matte monochrome: depth by surface-value lift only (bg -> panel ->
+     card), hairlines instead of visible borders, no gradients, no glow.
+     ONE accent — Signal Blue #4a9eff — reserved for machine state: focus
+     rings, active toggles, selection, switch ON. Primary actions are pure
+     monochrome (white fill on dark), inverted on light.
+
+     The shadcn CSS vars (--background, --card, --primary, ...) are ALIASES
+     onto this ladder, so the existing components inherit the look without
+     class-level rewrites. New code uses the ladder names directly.
+
+     The product's own functional colors survive untouched: the tier
+     semantics (ok/info/warn/bad), the team pastels (home/away), and the
+     chart palette. `ok` stays the brand blue — green stays reserved for
+     genuine success states.
+     --------------------------------------------------------------------- */
+
+  /* Text ladder */
+  --ink: #f4f4f4;
+  --ink-soft: #d6d6d6;
+  --graphite: #b0b0b0;
+  --slate: #8a8a8a;
+  --mute: #6e6e6e;
+  --stone: #585858;
+  --ash: #404040;
+
+  /* Surfaces (inverted elevation: canvas darkest, panels lift lighter) */
+  --bg: #121212;
+  --panel: #1a1a1a;
+  --panel-2: #0f0f0f;
+  --card: #232323;
+  --card-hover: #2c2c2c;
+  --input-bg: #0c0c0c;
+  --surface-cool: #1d1d1d;
+  --scrim: rgba(0, 0, 0, 0.62);
+
+  /* Hairlines */
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.14);
+  --border-input: rgba(255, 255, 255, 0.12);
+
+  /* The grid inside a table, and the ONE hairline that must not be
+     translucent. Every other rule in the app is a single line over a surface,
+     but a table's rules CROSS: two 8%-white borders meeting at a cell corner
+     composite to 16% and print a brighter dot at every intersection, which
+     reads as a highlight nobody asked for. Mixed to the same value instead of
+     layered, so a crossing is exactly as bright as a straight. Resolves per
+     theme on its own, because --ink and --panel already do. */
+  --grid-line: color-mix(in oklab, var(--ink) 8%, var(--panel));
+  /* The same argument one step stronger, for the locked table's edge: it runs
+     ALONGSIDE every cell border in the first column, and a translucent one
+     flared at every row boundary. */
+  --grid-line-strong: color-mix(in oklab, var(--ink) 22%, var(--panel));
+
+  /* Action language (monochrome, inverts per theme) */
+  --action: #f4f4f4;
+  --on-action: #121212;
+
+  /* Signal Blue — the one functional accent (machine state only) */
+  --accent: #4a9eff;
+  --accent-soft: rgba(74, 158, 255, 0.22);
+  --accent-strong: #2f86f0;
+  /* Legible foreground on the accent fill, in both themes. */
+  --accent-contrast: #ffffff;
+
+  --switch-off: #3a3a3a;
+  --switch-off-hover: #4a4a4a;
+
+  /* Status (semantic only) */
+  --success: #34d399;
+  --danger: #f87171;
+  --warn: #fbbf24;
+
+  /* Depth: dark = surface lift + faint shadow */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 16px 40px -16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 28px 64px -22px rgba(0, 0, 0, 0.7);
+
+  /* Motion: one easing, small durations */
+  --ease-swift: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+  --dur-enter: 700ms;
+
+  /* UI typeface chain (Inter Variable; system fonts are fallback only) */
+  --font-ui: "Inter Variable", "Inter", var(--font-geist), Geist, ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ── shadcn aliases onto the ladder ─────────────────────────────────── */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card-foreground: var(--ink);
+  --popover: var(--panel);
+  --popover-foreground: var(--ink);
+  --primary: var(--action);
+  --primary-foreground: var(--on-action);
+  --secondary: var(--card);
+  --secondary-foreground: var(--ink);
+  --muted: var(--card);
+  --muted-foreground: var(--slate);
+  --destructive: var(--danger);
+  --border: var(--hairline);
+  --input: var(--border-input);
+  --ring: var(--accent);
+  --radius: 8px;
+
+
+  /* Data-viz palette (isolated from chrome) */
+  --chart-1: #60a5fa;
+  --chart-2: #fbbf24;
+  --chart-3: #9ca3af;
+  --chart-4: #a78bfa;
+  --chart-5: #34d399;
+
+  /* Product tier semantics. Each one is a claim about how far a number can
+     be trusted; `ok` is the brand blue, NOT a semantic green. */
+  --ok: #60a5fa;                                   /* measured / structural */
+  --info: #60a5fa;                                 /* working               */
+  --bad: #f87171;                                  /* failed                */
+  --home: #f472b6;                                 /* data, from the pastels */
+  --away: #a78bfa;
+  --chalk-faint: #6b7280;                          /* muted-soft            */
+
+  /* Timeline. The NLE timeline in components/timeline reads `--tl-*`
+     verbatim, so it stays diffable against its origin. Only this mapping is
+     ours. */
+  --tl-track-bg: var(--panel-2);
+  --tl-ruler-tick: var(--slate);
+  --tl-ruler-tick-minor: var(--ash);
+  --tl-ruler-label: var(--mute);
+  --tl-playhead: var(--accent);
+}
+
+.light {
+  /* ---------------------------------------------------------------------
+     Dreambyte light theme. Light surfaces are white and depth comes from
+     soft shadow, not lift; the primary action inverts to black-on-white.
+     Selected by the `light` class on <html> (next-themes attribute=class).
+     --------------------------------------------------------------------- */
+  --ink: #111111;
+  --ink-soft: #2a2a2a;
+  --graphite: #4d4d4d;
+  --slate: #5b6472;
+  --mute: #8a8a8a;
+  --stone: #9a9a9a;
+  --ash: #b6b6b6;
+
+  --bg: #f4f4f6;
+  --panel: #ffffff;
+  --panel-2: #fafaf8;
+  --card: #f5f5f5;
+  --card-hover: #eeeeee;
+  --input-bg: #f4f4f6;
+  --surface-cool: #eef1f4;
+  --scrim: rgba(15, 17, 21, 0.45);
+
+  --hairline: #ededed;
+  --hairline-strong: #e4e4e2;
+  --border-input: #dcdce0;
+
+  --action: #111111;
+  --on-action: #ffffff;
+
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.14);
+  --accent-strong: #1d4ed8;
+
+  --switch-off: #dfe1e4;
+  --switch-off-hover: #c9cbcd;
+
+  --success: #059669;
+  --danger: #dc2626;
+  --warn: #d97706;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 12px 36px -14px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.28);
+
+  /* shadcn aliases resolve through the ladder automatically, except the
+     chart palette which has its own light values. */
+  --chart-1: #3b82f6;
+  --chart-2: #f59e0b;
+  --chart-3: #6b7280;
+  --chart-4: #8b5cf6;
+  --chart-5: #34d399;
+
+  /* Product tier semantics, dimmed one step for a white canvas. */
+  --ok: #3b82f6;
+  --info: #3b82f6;
+  --bad: #ef4444;
+  --home: #ec4899;
+  --away: #8b5cf6;
+  --chalk-faint: #898989;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "cv05" 1,
+      "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+    font-feature-settings:
+      "cv05" 1,
+      "ss01" 1;
+  }
+  /* The shell is h-dvh overflow-hidden, so the window never scrolls — but a
+     trackpad flick still rubber-bands the whole app up and down against a
+     dead background. Chained overscroll from the panes does the same. Panes
+     keep their own scrolling; only the bounce goes. */
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+  /* Headings are Inter at 600 — never 700+ — with the slight negative
+     tracking the editorial scale calls for; applied once, never per-heading. */
+  .font-heading, h1, h2, h3 {
+    font-family: var(--font-heading), var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+}
+
+@theme inline {
+  --color-home: var(--home);
+  --color-away: var(--away);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-info: var(--info);
+  --color-chalk-faint: var(--chalk-faint);
+}
+
+/* Thin 5px scrollbars — chrome stays out of the way. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hairline-strong) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+   THE SIGNATURE: the tolerance rule.
+
+   An engineering drawing states a dimension with the tolerance it was measured
+   to. This product's whole claim is that it says what it does not know, so an
+   unvalidated figure is set the same way: the number in mono, over a dotted
+   dimension line with end ticks. It reads as an instrument reading with a band,
+   not as a fact.
+
+   Deliberately quiet — no colour fill, no icon, no badge. It has to be able to
+   appear on every distance on a page of twenty-two players without turning the
+   report into a warning label.
+   --------------------------------------------------------------------------- */
+.tol {
+  position: relative;
+  display: inline-block;
+  /* A dimension line under a one-character value collapses to a tick and reads
+     as a typo. Sprints are single digits, so the band gets a floor. */
+  min-width: 2.75ch;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.tol::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.32em;
+  height: 0.3em;
+  border-bottom: 1px dotted var(--warn);
+  border-left: 1px solid var(--warn);
+  border-right: 1px solid var(--warn);
+  opacity: 0.9;
+  pointer-events: none;
+}
+/* Inside a right-aligned data cell the ticks must not straddle the padding. */
+
+/* A section label, set like a team sheet: condensed, uppercase, wide. */
+.eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8125rem;                 /* caption, 13px / 500 */
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Every measured quantity is an instrument reading, so it is set in mono and
+   tabular, and columns of them line up. */
+.readout {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* The touchline: a full-bleed hairline used to set sections apart, the way a
+   pitch is set out. One weight, one opacity, never doubled up. */
+.touchline { border-top: 1px solid var(--border); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------- notepad --
+   The document surface. These class names are also what a SAVED doc carries,
+   so a note that leaves the app keeps its shape wherever it is opened — the
+   editor and the exported file are styled by the same rules.               */
+
+/* The document surface. No visible page: the frame, the shadow and the page
+   margins read as a picture of a document rather than as one, and they cost
+   width the figures need. The typography does the work instead. */
+/* THE EDITOR IS THE PAGE, at screen scale.
+ *
+ *  The export prints a dense landscape sheet: 8pt body, 10.5pt headings, a
+ *  figure every few centimetres. The editor was 15.5px on a 48rem column with
+ *  1.72 leading — an airy blog post. Every density decision in doc-export.ts
+ *  was therefore invisible until somebody pressed Print, and a note laid out
+ *  to look right on screen came out wrong on paper.
+ *
+ *  These are the same PROPORTIONS scaled for a screen rather than the same
+ *  numbers: 8pt is unreadable on a monitor at arm's length, but 13px with 1.5
+ *  leading sits at the same ratio of type to figure to whitespace. And the
+ *  column is 64rem, not 48, because three of them side by side is the layout
+ *  the format is built on and 48rem gives each one 15 characters.
+ */
+/* The pane is the container the document measures itself against - `cqi` on
+   `.ft-doc` resolves here. Without it the type would size against the viewport,
+   and the note would change scale when the window did rather than when its own
+   column did. */
+.ft-print-root { container-type: inline-size; }
+
+/* THE EDITOR IS THE PAGE, TO SCALE.
+ *
+ *  Not "the same proportions, scaled" - that was the previous attempt and it
+ *  did not hold. It set the screen to 13px on a 64rem column while the sheet
+ *  was 7.2pt on a 273mm one: 27% fewer characters to the line and three times
+ *  the padding in a table cell. Every line broke somewhere else on paper, a
+ *  table that fitted a column on screen ran off the sheet, and a section laid
+ *  out to fill a page spilled onto two. You cannot lay a page out in a window
+ *  that is not that page.
+ *
+ *  So the document is the PRINTABLE MEASURE - 273 mm of landscape A4 between
+ *  its margins - and everything inside it is sized in `em` against a body that
+ *  is a fixed FRACTION of that measure. 7.2pt on 273mm is 0.93% of it, so
+ *  `0.93cqi` reproduces the sheet at whatever width the pane happens to be:
+ *  wider window, bigger type, same layout, same line breaks, same page.
+ *
+ *  `em` and not `rem` throughout, and that is load-bearing: rem is root-relative
+ *  and would ignore the scale entirely. doc-export.ts then sets one number - the
+ *  real 7.2pt - and the printed sheet is this stylesheet at 1:1.
+ */
+.ft-doc {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  /* No horizontal padding: the document IS the printable measure, and a sheet
+     has to be able to be exactly that wide. The inset lives on the sheet. */
+  padding: 1.6em 0 12em;
+  color: var(--ink-soft);
+  /* THE PRINTER'S EXACT METRICS, not a proportional model of them.
+   *
+   *  This was `0.814cqi` - the same type-to-measure ratio as the sheet, sized
+   *  to whatever the pane happened to be - and it was wrong by 4%, which is a
+   *  page every twenty. The ratio is not enough: a line box is rounded to whole
+   *  pixels, so 8.79px type and 8.40px type round differently, and over seventy
+   *  lines that half-pixel is four ems - the exact two lines that kept falling
+   *  off the bottom of the Philosophy page while the editor said it fitted.
+   *
+   *  So the document is 273 mm wide at 6.3pt, the same numbers the printer
+   *  uses, and the line boxes are therefore the same line boxes. What you lose
+   *  is type that grows with the window; what you get is a page that is the
+   *  page. */
+  width: 273mm;
+  font-size: 6.3pt;
+  line-height: 1.32;
+}
+/* A page of prose is the NARROWER SHEET at the same type size - 182 mm of the
+   273 - not smaller type on the same one. */
+.ft-doc[data-orient="portrait"] { width: 182mm; }
+.ft-doc:focus { outline: none; }
+/* `.ft-page > * + *` too: the moment content moves inside a sheet it stops
+   being a CHILD of .ft-doc, so every block lost its top margin on screen while
+   the print stylesheet went on adding one - and sheets printed longer than they
+   looked. */
+.ft-doc > * + *,
+.ft-page > * + * { margin-top: 0.56em; }
+/* The first thing on a page does not need space above it. */
+.ft-doc > :first-child, .ft-page > :first-child { margin-top: 0; }
+.ft-doc h1, .ft-doc h2, .ft-doc h3 {
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+}
+.ft-doc h1 { font-size: 1.67em; }
+.ft-doc h2 { font-size: 1.32em; }
+.ft-doc h3 { font-size: 1.14em; }
+/* A heading that opens a column needs no space above it — and inside a layout
+   cell it always does, because the cell IS where the column begins. */
+.ft-doc h1:first-child, .ft-doc h2:first-child, .ft-doc h3:first-child { margin-top: 0; }
+.ft-doc ul, .ft-doc ol { padding-left: 1.5em; }
+.ft-doc ul { list-style: disc; }
+.ft-doc ol { list-style: decimal; }
+.ft-doc li::marker { color: var(--mute); }
+.ft-doc blockquote {
+  border-left: 2px solid var(--hairline-strong);
+  padding-left: 0.9rem;
+  color: var(--graphite);
+}
+.ft-doc code {
+  background: var(--card);
+  border-radius: var(--radius-xs);
+  padding: 0.1em 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+}
+.ft-doc pre {
+  background: var(--input-bg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  overflow-x: auto;
+}
+.ft-doc pre code { background: none; padding: 0; }
+.ft-doc hr { border: 0; border-top: 1px solid var(--hairline); margin: 1.1em 0; }
+.ft-doc a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* The tactics board. Capped so it stays a figure inside a document rather
+   than a screen of its own — Expand is the way to draw at full size. */
+.ft-pitch, .ft-pitch-wrap {
+  /* 78 mm - the cap the sheet uses - in `em`, NOT in per cent. A percentage
+     resolves against the containing block, so inside a layout column it capped
+     the board at a fraction of the COLUMN and a formation shrank to a thumbnail
+     the moment it sat beside anything. `em` is against the type, which is
+     itself a fixed fraction of the page, so this is 78 mm wherever it lands. */
+  /* 31em, not the sheet's 78 mm. Two boards stacked in a column plus their
+     captions is what a source page does, and at 78 mm that column is eight ems
+     taller than the page it has to sit on. A board is a figure; this is the
+     size the report actually draws one at. */
+  max-width: 26em;
+  margin: 0.56em auto;
+}
+.ft-pitch svg, .ft-pitch-wrap svg { width: 100%; height: auto; }
+
+/* TEXT BESIDE A FIGURE. Docs' "Wrap text"; `data-wrap` absent is its "Break
+   text", which is what every figure did before and still does by default.
+   The gap is Docs' "Margin from text" — its default is 1/8 inch, which is
+   about 3 mm, and this is that in the document's own em. */
+.ft-doc [data-wrap="left"] { float: left; margin: 0.2em 1.4em 0.6em 0; }
+.ft-doc [data-wrap="right"] { float: right; margin: 0.2em 0 0.6em 1.4em; }
+
+/* AND NOT INSIDE A COLUMN, A CELL, OR A SHEET'S LAST INCH.
+   Three places where a float is wrong, and only the first two are taste.
+
+   A layout cell and a column are already a column: floating inside one starves
+   the measure beside it to nothing. They also establish their own formatting
+   contexts, so the wrap would not work there anyway — a block box does not
+   avoid a float, only its LINE boxes do, which is why a table or a nested
+   columns block sits over a float instead of beside it.
+
+   The third is the one that matters on paper and it has no CSS answer: a float
+   that starts near the bottom of a sheet continues at the top of the next one,
+   but the text that was flowing beside it has already been used up. You get a
+   paragraph fragment above and the figure alone overleaf, wrapped by the NEXT
+   paragraph — a pairing the author never wrote. Chromium fragments floats
+   correctly since 102 and prints them since 108; the break is not a bug, it is
+   the feature doing exactly what it says. So on paper a float keeps its side
+   only while it is clear of the fold, and `break-inside: avoid` on the figure
+   is what stops it being the thing that straddles it. */
+.ft-doc .ft-grid td [data-wrap],
+.ft-doc .ft-col [data-wrap] { float: none !important; margin-left: 0; margin-right: 0; }
+.ft-doc [data-wrap] { break-inside: avoid; page-break-inside: avoid; }
+/* !important, and only here. Every board saved before the corners were
+   squared carries `border-radius:10px` as an INLINE style baked into the
+   stored HTML, and an inline style beats a stylesheet. Without this, a note
+   written last week keeps rounded pitches for ever while a new one does not. */
+.ft-doc .ft-pitch svg,
+.ft-doc .ft-pitch-wrap svg,
+.ft-doc .ft-chart svg { border-radius: 0 !important; }
+.ft-pitch figcaption, .ft-pitch-cap {
+  margin-top: 0.4rem;
+  color: var(--mute);
+  font-size: 12px;
+  text-align: center;
+}
+
+
+/* A stat pulled out of the report: label, figure, and the tier note when the
+   number is anything less than the sturdiest. */
+.ft-stat {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 8.5rem;
+  margin: 0.35rem 0.5rem 0.35rem 0;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  background: var(--card);
+  vertical-align: top;
+}
+.ft-stat__label {
+  color: var(--mute);
+  font-size: 11px;
+  text-transform: capitalize;
+}
+.ft-stat__value {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+/* Never silent: a number the pipeline could not stand fully behind says so in
+   the document, because the document is what leaves the building. */
+.ft-stat__tier {
+  color: var(--warn, #d8a24a);
+  font-size: 10.5px;
+}
+
+/* The bounding box. An OUTLINE rather than a border: a border is part of the
+   box model, so turning one on at hover reflowed the figure by two pixels and
+   every chart in the note twitched as the cursor crossed it. An outline is
+   painted outside the box and moves nothing.
+
+   Only on hover or when the block is selected — a permanent frame round every
+   figure is a document made of boxes, which is what a printed note must never
+   look like. `.ft-controls` is stripped on export, so no part of this reaches
+   paper. */
+.ft-chart-wrap .ft-chart {
+  position: relative;
+  /* Square. A bounding box is a measuring frame, not a card — rounding it
+     makes the corner ambiguous about where the block actually ends, which is
+     the one thing a selection outline exists to say. Every frame and every
+     pitch in the document follows the same rule. */
+  border-radius: 0;
+  outline: 1px solid transparent;
+  /* Inward, for the same reason ProseMirror-selectednode is: `.ft-grid-wrap`
+     scrolls, so it clips, and an outline offset outside the box loses whichever
+     edge is flush against it. A figure in the left-hand column of a layout row
+     showed its frame on three sides. */
+  outline-offset: -3px;
+  transition: outline-color 0.12s ease;
+}
+.ft-doc[contenteditable="true"] .ft-chart-wrap .ft-chart:hover {
+  outline-color: var(--hairline-strong);
+}
+.ft-chart-wrap .ft-chart[data-selected] { outline-color: var(--accent); }
+
+/* The minute marks under the momentum swing. Outside the SVG because that one
+   is drawn with preserveAspectRatio:none to fill its width at a fixed height,
+   which stretches any text inside it. */
+.ft-chart__ticks {
+  position: relative;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.62rem;
+  color: var(--mute);
+}
+.ft-chart__ticks > span {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+.ft-chart__ticks > span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -0.28rem;
+  width: 1px;
+  height: 0.25rem;
+  background: var(--hairline-strong);
+}
+
+/* A REAL table: cells you type in, borders you drag. This is the document
+   editor's table, and .ft-grid--layout is the same node with its rules turned
+   off — the borderless table Word and Google Docs users reach for when they
+   want two figures level with each other rather than text flowing between
+   columns. */
+/* prosemirror-tables wraps the table in a div of its own. A table wider than
+   the reading column has to scroll inside it rather than push the page out. */
+.ft-grid-wrap { overflow-x: auto; margin: 0.7em 0; }
+.ft-grid-wrap > .ft-grid { margin: 0; }
+.ft-grid {
+  border-collapse: collapse;
+  table-layout: fixed;   /* required: prosemirror-tables sizes by <col> */
+  width: 100%;
+  margin: 0.7em 0;
+  overflow: hidden;      /* keeps a dragged border from painting outside */
+}
+.ft-grid td, .ft-grid th {
+  border: 1px solid var(--grid-line);
+  /* The sheet's own cell padding, 1.5pt by 3pt of a 7.2pt body. In rem it was
+     three times this and every table came out a third taller than it prints. */
+  padding: 0.21em 0.42em;
+  vertical-align: top;
+  position: relative;    /* the resize handle is absolutely placed in here */
+  min-width: 2em;
+}
+.ft-grid th {
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+}
+.ft-grid p { margin: 0; }
+.ft-grid p + p { margin-top: 0.3em; }
+/* Borderless, and no cell padding on the outside edges, so a chart in a layout
+   cell lines up with the body text above it rather than sitting inset.
+
+   `> tbody > tr >` is load-bearing, not tidiness. A layout cell can hold a real
+   table — that is the whole point of it — and a descendant selector strips the
+   borders off THAT table too, because its cells are also inside the layout
+   table. Which is exactly what happened: a chart beside its table, and the
+   table had no rules. */
+.ft-grid--layout,
+.ft-grid--layout > tbody > tr > td,
+.ft-grid--layout > tbody > tr > th {
+  border: 0;
+  background: none;
+}
+.ft-grid--layout > tbody > tr > td,
+.ft-grid--layout > tbody > tr > th { padding: 0 0.55em; vertical-align: top; }
+.ft-grid--layout > tbody > tr > :first-child { padding-left: 0; }
+.ft-grid--layout > tbody > tr > :last-child { padding-right: 0; }
+.ft-grid--layout > tbody > tr > * > :first-child { margin-top: 0; }
+.ft-grid--layout > tbody > tr > * > :last-child { margin-bottom: 0; }
+/* A table inside a layout cell already sits in a row with its own spacing. */
+.ft-grid--layout .ft-grid-wrap { margin: 0; }
+/* A LOCKED table: imported numbers, held still until somebody unlocks them
+   through the right-click menu. The signal has to be quiet — this is the
+   ordinary state of every figure a coach pulls in, so a loud one would make a
+   normal document look like a wall of warnings. A hairline down the left edge
+   and a cursor that is not a caret is enough to say "not yours to type in",
+   and the menu says the rest. */
+.ft-grid[data-locked="1"] { border-left: 2px solid var(--grid-line-strong); }
+.ft-grid[data-locked="1"] td,
+.ft-grid[data-locked="1"] th { cursor: default; }
+
+/* The comparison's share column. It was never a number — it is home's share of
+   the pair as a picture, and it survived the move from a read-only block to a
+   real table as a cell ATTRIBUTE the stylesheet draws, rather than a node type
+   of its own. Drawn as a background so it prints and so the cell can still
+   hold text if somebody unlocks it and types there. */
+.ft-grid__bar {
+  /* The width comes from `colwidth` on the cell, not from here — `.ft-grid` is
+     table-layout:fixed and the <colgroup> wins. A min-width fighting it only
+     shows up as a column that will not drag. */
+  vertical-align: middle;
+  background-image: linear-gradient(
+    to right,
+    var(--home) 0 calc(var(--bar, 0) * 100%),
+    var(--away) calc(var(--bar, 0) * 100%) 100%
+  );
+  background-repeat: no-repeat;
+  /* Inset, so the bar reads as a mark inside the cell rather than a rule
+     running edge to edge across the row. */
+  background-position: 50% 50%;
+  background-size: calc(100% - 1.2rem) 4px;
+}
+/* Nothing to select in it, so nothing should look selectable. */
+.ft-grid__bar, .ft-grid__bar * { cursor: default; user-select: none; }
+.ft-grid__bar p { min-height: 0; }
+
+/* Selected cells. prosemirror-tables marks them; without a visible fill,
+   merge and delete-column act on a selection nobody can see. */
+.ft-grid .selectedCell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  pointer-events: none;
+}
+/* ...but NOT in a layout row, where it is a second bounding box drawn around
+   the first. The rationale above is a DATA table's: a cell selection has to be
+   visible because merge and delete-column act on it. A layout row's cells are
+   scaffolding — nobody merges them — so the only thing that fill ever did
+   there was put a blue rectangle around the cell at the same moment the figure
+   inside it drew its own, which reads as two boxes for one selection. The
+   figure's own outline and its corner handles say what is selected. */
+.ft-grid--layout .selectedCell::after { content: none; }
+/* Same argument for the row itself: selecting the block that holds the columns
+   should not frame every column as well. The table keeps its own outline; what
+   goes is the second one inside it. */
+.ft-doc .ft-grid--layout.ProseMirror-selectednode .selectedCell::after { content: none; }
+/* The drag target on a column border. Wider than the rule it sits on, because
+   a 1px hit area is a 1px hit area. */
+.ft-grid .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 5;
+}
+.ft-doc.resize-cursor { cursor: col-resize; }
+
+/* Side-by-side blocks — the row a scouting report is laid out in. Equal
+   widths by flex rather than a grid template, so the column count lives in the
+   document (how many children there are) and nowhere else. `min-width: 0` is
+   load-bearing: without it a wide table inside a column refuses to shrink and
+   pushes the row past the page instead of scrolling inside its own container. */
+.ft-cols-wrap { margin: 1.25rem 0; }
+.ft-cols {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+.ft-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+/* TipTap's NodeViewContent puts a wrapper div of its own between .ft-cols and
+   the columns, so in the EDITOR the flex container's only child is that
+   wrapper and every column stacks. `display: contents` dissolves it, making
+   the columns flex items again. It is only ever present in the editor — the
+   exported markup has .ft-col as a direct child — so the rule is inert on
+   paper rather than a second layout to keep in step. */
+.ft-cols > [data-node-view-content-react] { display: contents; }
+/* Blocks inside a column already sit in a row that has its own margin, and the
+   first one carrying a top margin knocks the columns out of alignment with
+   each other whenever they start with different block types. */
+.ft-col > :first-child { margin-top: 0; }
+.ft-col > * + * { margin-top: 0.7rem; }
+.ft-col > .ft-figure, .ft-col > .ft-figure-wrap,
+.ft-col > .ft-chart, .ft-col > .ft-chart-wrap,
+.ft-col > .ft-pitch-wrap, .ft-col > .ft-cols-wrap { margin: 0; }
+/* Narrow enough that four across on a phone is unreadable whatever the flex
+   says, so the row stacks instead. Print keeps the columns — that is the
+   layout's whole reason for existing. */
+@media (max-width: 640px) {
+  .ft-cols { flex-direction: column; }
+}
+
+/* A wide table out of the match report: every player, many columns. Styled
+   with .ft-* like everything else the document carries, because a note that
+   leaves the app keeps this stylesheet and nothing else — Tailwind utilities
+   would render as unstyled markup in someone's inbox. */
+.ft-figure, .ft-figure-wrap { margin: 0.9rem 0; }
+.ft-figure__title {
+  margin: 0 0 0.3rem;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+/* The one place a document is allowed to scroll sideways: twenty columns do
+   not fit a reading column, and wrapping them would lose the row. */
+.ft-figure__scroll {
+  border-radius: 0;
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+}
+.ft-figure__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.ft-figure__table th, .ft-figure__table td {
+  padding: 0.28rem 0.5rem;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+.ft-figure__table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  color: var(--mute);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ft-figure__table thead th:first-child { text-align: left; }
+.ft-figure__table tbody th {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: left;
+}
+/* Numbers right, names left. Centred columns of figures do not line up on
+   the decimal point, which is the only thing a column of numbers is for. */
+.ft-figure__table td { color: var(--ink-soft); text-align: right; }
+.ft-figure__table tbody tr:last-child th,
+.ft-figure__table tbody tr:last-child td { border-bottom: 0; }
+.ft-figure__who { display: inline-flex; align-items: center; gap: 0.4rem; }
+.ft-figure__dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--mute);
+}
+.ft-figure__dot--home { background: var(--home); }
+.ft-figure__dot--away { background: var(--away); }
+/* Never silent, for the same reason .ft-stat__tier is not: what the figures
+   rest on travels with them out of the building. */
+.ft-figure__note {
+  margin: 0.45rem 0 0;
+  color: var(--mute);
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+.ft-figure__empty {
+  margin: 0;
+  padding: 0.75rem 0;
+  color: var(--mute);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* The home-against-away split on a comparison row. One bar, filled from the
+   left by the home share — the shape a reader already knows from every match
+   summary they have ever seen. */
+.ft-figure__splitcell { width: 6rem; min-width: 5rem; }
+.ft-figure__split {
+  display: block;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--away);
+  overflow: hidden;
+}
+.ft-figure__split > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--home);
+}
+
+/* A timeline's last column is a sentence, not a quantity. Centring it is
+   right for numbers and wrong for prose, so the one figure whose tail column
+   is words says so. */
+.ft-figure[data-kind="events"] td:last-child { text-align: left; }
+.ft-figure[data-kind="events"] thead th:last-child { text-align: left; }
+
+/* A chart the coach built. Marks are drawn in chart-svg.ts with their colours
+   inline — a validated pair that has to survive leaving the app — so what lives
+   here is only the type around them. */
+.ft-chart, .ft-chart-wrap { margin: 0.7em 0; }
+.ft-chart__title {
+  margin: 0 0 0.6rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.ft-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* The chart's OWN svg is the one that fills the block. The editing chrome now
+   lives inside .ft-chart too, and its icons are svgs — which the rule above
+   blew up to the full width of the chart, so the Edit pill stretched across
+   the figure with a slider glyph the size of a hand inside it. */
+.ft-chart .ft-controls svg {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  flex: none;
+}
+/* Text on a chart wears TEXT tokens, never the series colour: a coloured mark
+   beside a label already carries the identity, and colouring the words too
+   makes the ink itself part of the encoding. */
+.ft-chart__cat { fill: var(--ink-soft); font-size: 6px; text-anchor: end; }
+.ft-chart__val {
+  fill: var(--mute);
+  font-size: 5.5px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.ft-chart__legend { fill: var(--ink-soft); font-size: 6px; }
+.ft-chart__axis {
+  fill: var(--mute);
+  font-size: 5px;
+  text-anchor: end;
+  font-variant-numeric: tabular-nums;
+}
+.ft-chart__grid { stroke: var(--hairline); stroke-width: 1; }
+/* One row is not a chart, it is a number. Proportional figures, not tabular:
+   equal-width digits make a standalone value look loose at this size. */
+.ft-chart__hero {
+  fill: var(--ink);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.ft-chart__scroll { overflow-x: auto; }
+/* The key under a shot map or a momentum swing. A legend inside those SVGs
+   would have to be positioned against a pitch; beneath them it is just text. */
+.ft-chart__legendrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin: 0.45rem 0 0;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.ft-chart__key { display: inline-flex; align-items: center; gap: 0.35rem; }
+.ft-chart__swatch { width: 9px; height: 9px; border-radius: 2px; }
+.ft-chart__sub {
+  margin: 0.3rem 0 0;
+  color: var(--mute);
+  font-size: 10.5px;
+}
+.ft-chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.ft-chart__table th, .ft-chart__table td {
+  padding: 0.38rem 0.6rem;
+  border-bottom: 1px solid var(--hairline);
+  text-align: right;
+  white-space: nowrap;
+}
+.ft-chart__table thead th {
+  color: var(--mute);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.ft-chart__table th:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+.ft-chart__table td { color: var(--ink-soft); }
+.ft-pitch__note,
+.ft-chart__note {
+  margin: 0.5rem 0 0;
+  color: var(--mute);
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+.ft-chart__empty {
+  margin: 0;
+  padding: 0.75rem 0;
+  color: var(--mute);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* Printing the app itself is not the export — the Print button builds a
+   standalone document instead (lib/doc-export.ts), because there is no CSS
+   selector for "my ancestors" and the notepad sits several panes deep. This is
+   only so a stray Cmd+P does not put the editing chrome on paper. */
+@media print {
+  .ft-controls { display: none !important; }
+}
+
+/* Selected block, so an atom node shows it is picked. Square, like every
+   other bounding box here. */
+.ft-doc .ProseMirror-selectednode {
+  outline: 2px solid var(--accent);
+  /* INSIDE the box, not 2px outside it, and that is the whole fix for a
+     reported bug: selecting a figure inside a layout row drew the outline on
+     three sides. `.ft-grid-wrap` is `overflow-x: auto` so a wide data table can
+     scroll, which makes it a CLIPPING container - and an outline offset
+     OUTSIDE the box sits at x = -2 for a figure flush against that container's
+     left edge, where there is nothing to scroll into and it is simply cut off.
+     Top, right and bottom survived because each of those had room.
+
+     Drawn inward it cannot be clipped by any ancestor, on any edge, however
+     the document is scrolled - and it hugs the object the way a selection in
+     Docs or Slides does rather than floating off it. */
+  outline-offset: -2px;
+  border-radius: 0;
+}
+
+/* ONE BOX PER SELECTION.
+   ProseMirror marks the node's outer element, which for a node view is the
+   WRAPPER — and a chart and a board each draw their own frame on the figure
+   inside it. Both rules fired, so selecting one figure drew two outlines two
+   pixels apart: the reported double bounding box. The inner one wins because
+   it is the one that hugs the picture and carries the corner handles. */
+.ft-doc .ft-chart-wrap.ProseMirror-selectednode,
+.ft-doc .ft-pitch-wrap.ProseMirror-selectednode { outline: none; }
+
+/* ...so the board needs the frame the chart already had. Inward, like every
+   other outline here, so a scrolling ancestor cannot clip an edge off it. */
+.ft-pitch-wrap [data-selected] {
+  outline: 1px solid var(--accent);
+  outline-offset: -3px;
+}
+
+/* A CONTAINER IS NOT AN OBJECT, and it must not be drawn like one.
+   A figure and the layout row holding it are both selectable, they nest, and
+   until now both were a solid accent line — so two frames a few pixels apart
+   said nothing about which was which. An OBJECT gets the solid accent line and
+   four corner handles; a CONTAINER gets a dashed, quieter line and no handles,
+   because there is nothing on it to drag. Same language a drawing tool uses
+   for a group versus the thing inside it, and it survives both frames being
+   visible at once, which is the case that was unreadable. */
+.ft-doc .ft-grid-wrap.ProseMirror-selectednode,
+.ft-doc .ft-grid.ProseMirror-selectednode,
+.ft-doc .ft-cols.ProseMirror-selectednode {
+  outline: 1px dashed var(--hairline-strong);
+  outline-offset: -1px;
+}
+
+/* ===========================================================================
+   THE REPORT LOOK
+   ---------------------------------------------------------------------------
+   Everything below is a NAMED LOOK a document asks for by key, never a style a
+   document carries. `data-variant` on a table, `data-tone` on a cell,
+   `data-theme` on a chart: the document says "report" and the rules live here.
+   That is the difference between a notepad you can design in and one where a
+   coach pastes inline styles into a file that then cannot be restyled, cannot
+   be themed for print, and cannot be made safe - a saved note is a file people
+   hand-edit, and `style` takes anything.
+
+   The target is the scouting report the product is measured against: no
+   vertical rules, a hairline between rows, a shaded total column, group rows
+   that read as headings, and a secondary figure quieter than the number it
+   belongs to.
+   =========================================================================== */
+
+/* --- a table dressed as a report ---------------------------------------- */
+/* COLUMNS SIZE TO THEIR CONTENT. `table-layout: fixed` is there for the editor,
+   where prosemirror-tables drags a column by writing <col> widths - but an
+   imported report table has no colgroup at all, so fixed layout gave every
+   column an equal share of 273 mm. A three-column table came out with its label
+   a third of the way across and its number two thirds, separated by a hand's
+   width of nothing. Auto layout gives the slack to the widest column, which is
+   the label, which is how the source draws it. */
+.ft-grid[data-variant="report"] { table-layout: auto; width: auto; max-width: 100%; }
+.ft-grid[data-variant="report"] > tbody > tr > td,
+.ft-grid[data-variant="report"] > tbody > tr > th {
+  /* Horizontal rules only. Vertical ones make a grid; a report makes ROWS, and
+     the eye is meant to run along one. */
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid var(--grid-line);
+  /* THE RULE IS PART OF THE ROW HEIGHT, so the row pays for it out of its own
+     padding. A 1px border is 0.12em at this body size, which is what came off
+     the top and bottom here - a twenty-row table is otherwise 2.4em taller than
+     the one that was fitted to the sheet, and eight sheets of a long test
+     report spilled onto a second page the day the rules came back. Tighter is
+     also righter: a row separated by a line does not also need to be separated
+     by air. */
+  padding: 0.15em 0.42em;
+  vertical-align: baseline;
+}
+.ft-grid[data-variant="report"] > tbody > tr:first-child > th {
+  background: none;
+  border-bottom: 1px solid var(--grid-line-strong);
+  color: var(--mute);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+/* The last rule under the last row is the table's own bottom edge, and a report
+   does not draw one. */
+.ft-grid[data-variant="report"] > tbody > tr:last-child > td,
+.ft-grid[data-variant="report"] > tbody > tr:last-child > th { border-bottom: 0; }
+
+/* PAPER, and there is only one of it.
+ *
+ *  These are the tokens the printed document wears: ink on white, the light
+ *  theme's values, shadows off. They live HERE rather than in doc-export.ts so
+ *  that the print PREVIEW and the print are the same stylesheet and cannot
+ *  drift - documentRules() lifts every rule mentioning .ft-, so the export
+ *  carries this block out with all the others and simply puts the class on the
+ *  document.
+ *
+ *  A class, not a media query: the app around it stays dark. A coach checking
+ *  the layout of a report is not changing the theme of the application, and a
+ *  page that only looks right in a print dialogue is a page nobody checks. */
+.ft-paper {
+  --ink: #14171b;
+  --ink-soft: #2f353d;
+  --graphite: #4a515a;
+  --slate: #5b6472;
+  --mute: #6b7480;
+  --stone: #9aa1ab;
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --panel-2: #ffffff;
+  --card: #f4f5f7;
+  --card-hover: #eceef1;
+  --input-bg: #ffffff;
+  --hairline: #d7dbe0;
+  --hairline-strong: #b9bfc7;
+  /* THESE TWO WERE MISSING AND IT SHOWED. Every chart in the report draws its
+     gridlines with a stroke of var(--grid-line-strong), and an undefined custom
+     property does not fall back to anything sensible - the declaration is
+     invalid at computed-value time, so stroke resets to its SVG initial of
+     none. Printed charts had no gridlines at all while the same chart on
+     screen had them, which is exactly how it was reported. */
+  --grid-line: #dfe3e8;
+  --grid-line-strong: #b9bfc7;
+  --accent: #1f6fd0;
+  --home: #ec4899;
+  --away: #8b5cf6;
+  --danger: #b4232a;
+  --warn: #8f6410;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius-xs: 4px; --radius-sm: 6px; --radius-md: 8px;
+  --radius-lg: 12px; --radius-pill: 9999px;
+  --shadow-sm: none; --shadow-md: none;
+  color: var(--ink-soft);
+}
+
+/* WHAT IS ACTUALLY PAPER, AND WHAT IS THE DESK IT IS LYING ON.
+   `.ft-paper` used to paint itself white. In the export that is right: the
+   class sits on the <article>, and the article IS the sheet. In the EDITOR it
+   sits on the scrolling pane, so the same declaration turned the whole surface
+   white - the surround, and the gaps between sheets, not just the sheets. The
+   block above already says the intent: "A class, not a media query: the app
+   around it stays dark." It just did not hold, because one `background` was
+   doing two different jobs.
+
+   So the class now carries TOKENS ONLY, and the paint goes where the paper
+   actually is. */
+.ft-doc.ft-paper { background: #fff; }
+
+/* In the editor: a document made of SHEETS paints the sheets and leaves the
+   desk alone - `.ft-page` is already `var(--panel-2)`, which the tokens above
+   make white. A document with no sheets in it has nothing else to be the
+   paper, so the document column itself takes the white; without this a
+   flowing note under Paper would be dark ink on the app's dark surface. */
+.ft-paper .ft-doc:not(:has(.ft-page)) { background: #fff; }
+
+/* --- what a cell IS ------------------------------------------------------
+   Tones work in any variant, because a group row in the app's own grid is
+   still a group row. */
+.ft-grid .ft-cell--group {
+  background: color-mix(in oklab, var(--ink) 10%, var(--panel));
+  color: var(--ink);
+  font-weight: 600;
+}
+/* `> tbody > tr >` and not a descendant selector: the report variant sets
+   padding on exactly that path, so a plainer selector loses to it and the
+   indent - the whole reason a member row reads as a member - did nothing. */
+.ft-grid > tbody > tr > .ft-cell--sub { padding-left: 1.7em; }
+.ft-grid .ft-cell--shade { background: color-mix(in oklab, var(--ink) 7%, var(--panel)); }
+.ft-grid .ft-cell--num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+/* The share beside a count, or a per-90 beside a total: present, and plainly
+   secondary to the figure it qualifies. */
+.ft-grid .ft-cell--muted {
+  color: var(--mute);
+  font-size: 0.92em;
+  font-variant-numeric: tabular-nums;
+}
+.ft-grid .ft-cell--note {
+  color: var(--slate);
+  font-style: italic;
+  font-size: 0.92em;
+}
+.ft-grid .ft-cell--strong { color: var(--ink); font-weight: 600; }
+
+/* --- a chart dressed as a report -----------------------------------------
+   The marks carry a class per series and their colour as an ATTRIBUTE, so a
+   theme is a stylesheet: a presentation attribute loses to any CSS rule, and a
+   figure with no stylesheet at all still draws in its own colours. */
+.ft-chart[data-theme="report"] .ft-chart__grid {
+  stroke: var(--grid-line-strong);
+  stroke-dasharray: 3 3;
+}
+/* Scored is a solid red bar, conceded is the same bar hollow. One hue and one
+   fill, the oldest convention in the format, needing no legend to guess at. */
+.ft-chart[data-theme="report"] .ft-mark--s0 { fill: #e11d26; }
+.ft-chart[data-theme="report"] .ft-mark--s1 {
+  fill: var(--panel);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.ft-chart[data-theme="report"] .ft-swatch--s0 { fill: #e11d26; rx: 4.5px; }
+.ft-chart[data-theme="report"] .ft-swatch--s1 {
+  fill: var(--panel);
+  stroke: var(--ink);
+  stroke-width: 1;
+  rx: 4.5px;
+}
+/* A line or an area wears the same pair. `ft-stroke` and not `ft-mark`, because
+   a line's colour is its stroke and a band's is its fill, and a rule that set
+   both would flood the area under the line. */
+.ft-chart[data-theme="report"] .ft-stroke--s0 { stroke: #e11d26; }
+.ft-chart[data-theme="report"] .ft-stroke--s1 { stroke: var(--ink); }
+.ft-chart[data-theme="report"] .ft-mark--c0 { fill: #e11d26; }
+.ft-chart[data-theme="report"] .ft-swatch--c0 { fill: #e11d26; }
+.ft-chart[data-theme="report"] .ft-chart__val {
+  font-family: inherit;
+  fill: var(--ink-soft);
+}
+.ft-chart[data-theme="report"] .ft-chart__axis,
+.ft-chart[data-theme="report"] .ft-chart__cat { fill: var(--slate); }
+
+/* A penalty is a dot and a miss is a ring, so the key is a dot and a ring. A
+   square swatch beside a round mark is a key you decode twice. */
+.ft-chart__swatch--dot { border-radius: 999px; }
+.ft-chart__swatch--ring {
+  border-radius: 999px;
+  background: var(--panel);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+/* --- a player's face -----------------------------------------------------
+   The silhouette is not a placeholder to be swapped for a layout later: the
+   page has the same shape whether the photographs have arrived or not. */
+.ft-face {
+  display: flex;
+  align-items: center;
+  gap: 0.42em;
+  /* Tight to the thing it heads. Three of these stack in a column of TOP-10
+     panels, so the margin above is paid for three times a page. */
+  margin: 0.3em 0 0.2em;
+}
+.ft-face__pic {
+  flex: none;
+  /* 22 px against a 9.6 px body on the sheet. In px it was four times the size
+     it prints at, and a card's proportions came out wrong. */
+  width: 2.3em;
+  height: 2.3em;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--ink) 7%, var(--panel));
+  color: var(--mute);
+  display: block;
+}
+.ft-face__pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ft-face__who { display: flex; flex-direction: column; gap: 0.05em; min-width: 0; }
+.ft-face__name { color: var(--ink); font-weight: 700; }
+.ft-face__sub { color: var(--mute); font-size: 0.9em; }
+
+/* --- paper ---------------------------------------------------------------
+   The document says which way up its paper is (page-nodes.ts) and the editor
+   wears it, so the surface you type on is the shape of the page it prints to.
+   Landscape is the default and the report format; portrait is a page of prose. */
+/* NOT DRAWN. It was a pill reading "A4 LANDSCAPE" above the first sheet, and
+   it told you something the toolbar already tells you better: the orientation
+   button shows the current paper as its icon and changes it on click, so the
+   chip was a second, read-only copy of that state sitting inside the document
+   it describes. A document is not the place to print its own settings.
+
+   The NODE stays - it carries the orientation and the margin, and both the
+   editor and doc-export read it - so this is display only, and no stored file
+   changes. It is hidden rather than emptied for the same reason the export
+   hides it: `display: none` takes it off the page and leaves it in the sibling
+   chain, which `.ft-head + .ft-pagesetup + .ft-page` in doc-export depends on. */
+.ft-pagesetup { display: none; }
+.ft-pagebreak {
+  position: relative;
+  height: 0;
+  margin: 1.5em 0;
+  border-top: 1px dashed var(--hairline-strong);
+  user-select: none;
+}
+.ft-pagebreak::after {
+  content: "New page";
+  position: absolute;
+  right: 0;
+  top: -0.72em;
+  padding: 0 0.4em;
+  background: var(--panel);
+  color: var(--mute);
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* FIGURE CAPS, in em so they are the same millimetres on both sides. They were
+   in mm in doc-export.ts and absent on screen, so a chart was a column wide in
+   the editor and half a page on paper.
+   130 mm and 150 mm of a 273 mm measure, at 6.3pt: 58.5em and 67.5em.
+   !important because every svg carries an inline max-width of 100% so it can
+   never overflow the box it lands in, and inline beats a stylesheet; this is
+   the one place that needs to say something narrower. */
+.ft-doc .ft-chart svg { max-width: 58.5em !important; }
+.ft-doc .ft-chart svg, .ft-doc .ft-figure svg { max-height: 67.5em; }
+
+/* ...AND NOT INSIDE A LAYOUT CELL, WHERE THE CELL IS ALREADY THE CONSTRAINT.
+   Every cap above answers one question - "what stops a figure eating a whole
+   sheet" - and a figure sharing a row is already answered: the row gave it a
+   column and it cannot be wider than that. Applying both meant the narrower one
+   won, so a board in a two-thirds cell (182mm) was drawn at its own 57.8mm cap
+   and CENTRED, leaving 124mm of nothing inside a cell it was supposed to fill.
+   That is the reported bug: the selection outline is the cell, the picture is a
+   quarter of it.
+
+   The 26em board cap was justified as a HEIGHT limit wearing a width - a board
+   is 1.5:1, so two stacked in a column at full width overflow the sheet. That
+   was the right call when nothing could see an overflow. writePdf measures
+   every sheet against the paper now and says what does not fit, so the cap can
+   go back to answering only the question it is good at. */
+.ft-grid--layout > tbody > tr > td .ft-pitch,
+.ft-grid--layout > tbody > tr > td .ft-pitch-wrap { max-width: none; }
+.ft-grid--layout > tbody > tr > td .ft-chart svg { max-width: none !important; }
+/* `:not(.ft-goalfig)` because the attribute selector was a proxy for "is this
+   pitch-shaped", and it is not one. A meet-fitted preserveAspectRatio is what
+   every pitch figure has, but the GOAL MOUTH has it too - at an aspect of 2.79
+   against a pitch's 1.474 - so it was taking the 150mm pitch cap and printing
+   as a letterbox strip. Match the class, not the side effect. */
+.ft-doc .ft-pitchfig,
+.ft-doc .ft-chart svg[preserveAspectRatio="xMidYMid meet"]:not(.ft-goalfig) { max-width: 67.5em !important; }
+
+/* A SHEET. The size of the printable page, drawn as one.
+ *
+ *  MIN-height, not height. A fixed height with visible overflow does not show
+ *  you the overflow - it draws it ON TOP OF THE NEXT SHEET, and a section two
+ *  pages long printed its second page over the one below it. So a sheet given
+ *  more than it can hold GROWS, and the fold lines say where the paper ran out.
+ *  Nothing is hidden, nothing collides, and a sheet that is too long is
+ *  obviously too long.
+ *
+ *  71.5em is 185 mm at 7.2pt less a line of slack: a sheet filled to the exact
+ *  fold prints as two pages, because the printer's usable height rounds a
+ *  fraction under the CSS value.
+ */
+.ft-page {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 80em;
+  padding: 1.2em 1.4em;
+  margin: 0 0 1.6em;
+  background: var(--panel-2, var(--panel));
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgb(0 0 0 / 0.25));
+  /* WHERE THE PAPER ENDS - and everything past it TINTED, not marked with a
+     hairline.
+     A sheet 2% over the fold looks exactly like one that fits, which is how a
+     section four lines too long got printed as a page and a nearly blank one
+     after it, while the editor "looked fine". A line was not enough. The area
+     below the fold is drawn as off-the-paper, so a sheet that does not fit is
+     unmistakable at a glance and its overage is legible by eye.
+     80em against a page that holds 84.1: FOUR EMS OF MARGIN, and they are
+     earned. The same table measures 76.4em in the editor and 79.8em under the
+     print stylesheet - a residue of half-point borders and letter-spacing that
+     is not worth chasing rule by rule - so a fold drawn at the page's exact
+     height is a promise the printer breaks. A fold has to be a promise: filled to the exact fold, a
+     sheet prints as two pages, because the printer's usable height rounds a
+     fraction under the CSS value. */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(80em - 1.5px),
+    var(--warn, #d9822b) calc(80em - 1.5px),
+    var(--warn, #d9822b) 80em,
+    color-mix(in oklab, var(--warn, #d9822b) 7%, transparent) 80em,
+    color-mix(in oklab, var(--warn, #d9822b) 7%, transparent) 160em
+  );
+}
+
+/* WALKING THROUGH A BOARD, rather than presenting it finished.
+   The marks arrive one at a time in the order they were drawn, which is the
+   order a coach explains them in — the discs are the starting picture and stay
+   put throughout. Editor only: board-canvas passes `animate` from the Animated
+   toggle, never from the note or the exporter, so a saved board and a printed
+   one are stills.
+
+   Reduced motion gets the finished board immediately. An animation whose whole
+   content is "these appear in this order" has no still equivalent worth
+   half-playing, so it is skipped rather than softened. */
+.ft-mark-in {
+  opacity: 0;
+  animation: ft-mark-in 0.4s ease forwards;
+  animation-delay: calc(var(--i, 0) * 0.42s);
+}
+
+@keyframes ft-mark-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-mark-in {
+    opacity: 1;
+    animation: none;
+  }
+}

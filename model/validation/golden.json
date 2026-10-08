@@ -1,0 +1,86 @@
+{
+  "1/boxcar": {
+    "clamped_frac": 0.0,
+    "distance_m": 388.56,
+    "minutes": 6.6633,
+    "sprints": 0,
+    "top_speed_ms": 5.5184
+  },
+  "1/kalman": {
+    "clamped_frac": 0.0,
+    "distance_m": 389.313,
+    "minutes": 6.6633,
+    "sprints": 0,
+    "top_speed_ms": 4.0489
+  },
+  "10/boxcar": {
+    "clamped_frac": 0.0,
+    "distance_m": 1126.417,
+    "minutes": 6.6633,
+    "sprints": 15,
+    "top_speed_ms": 9.3822
+  },
+  "10/kalman": {
+    "clamped_frac": 0.0,
+    "distance_m": 1181.287,
+    "minutes": 6.6633,
+    "sprints": 7,
+    "top_speed_ms": 7.2388
+  },
+  "11/boxcar": {
+    "clamped_frac": 0.0,
+    "distance_m": 1002.506,
+    "minutes": 6.6633,
+    "sprints": 14,
+    "top_speed_ms": 8.5776
+  },
+  "11/kalman": {
+    "clamped_frac": 0.0,
+    "distance_m": 1039.729,
+    "minutes": 6.6633,
+    "sprints": 6,
+    "top_speed_ms": 6.5958
+  },
+  "12/boxcar": {
+    "clamped_frac": 0.0,
+    "distance_m": 413.857,
+    "minutes": 6.6633,
+    "sprints": 2,
+    "top_speed_ms": 6.2548
+  },
+  "12/kalman": {
+    "clamped_frac": 0.0,
+    "distance_m": 411.949,
+    "minutes": 6.6633,
+    "sprints": 0,
+    "top_speed_ms": 5.0199
+  },
+  "13/boxcar": {
+    "clamped_frac": 0.0,
+    "distance_m": 876.305,
+    "minutes": 6.6633,
+    "sprints": 10,
+    "top_speed_ms": 8.0564
+  },
+  "13/kalman": {
+    "clamped_frac": 0.0,
+    "distance_m": 897.106,
+    "minutes": 6.6633,
+    "sprints": 2,
+    "top_speed_ms": 6.1558
+  },
+  "14/boxcar": {
+    "clamped_frac": 0.0,
+    "distance_m": 979.649,
+    "minutes": 6.6633,
+    "sprints": 12,
+    "top_speed_ms": 9.3822
+  },
+  "14/kalman": {
+    "clamped_frac": 0.0,
+    "distance_m": 1015.576,
+    "minutes": 6.6633,
+    "sprints": 6,
+    "top_speed_ms": 7.096
+  }
+}

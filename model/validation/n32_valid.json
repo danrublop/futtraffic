@@ -1,0 +1,47 @@
+{
+ "reviewed": "2026-09-17, by eye on validation/out/stc2025/n32_crops, before any position was read",
+ "accepted": [
+  "117093:114649223",
+  "117093:114649412",
+  "118575:115386851",
+  "118575:115395683",
+  "118577:115978604",
+  "118578:116180848",
+  "118578:116182105",
+  "128057:123112774",
+  "128057:123113011"
+ ],
+ "rejected": {
+  "118576:115978697": "(b) the thrower's lower legs are behind another player",
+  "128057:123114953": "(c) standing on the lettering beyond the near touchline, well back from the line"
+ },
+ "sides_by_eye": {
+  "far": [
+   "117093:114649412",
+   "118575:115386851",
+   "118575:115395683"
+  ],
+  "near": [
+   "117093:114649223",
+   "118577:115978604",
+   "118578:116180848",
+   "118578:116182105",
+   "128057:123112774",
+   "128057:123113011"
+  ]
+ },
+ "edge": {
+  "reviewed": "2026-09-17, by eye, before any position was read",
+  "accepted": [
+   "118575:edge:22:2750",
+   "118578:edge:6:1650"
+  ],
+  "rejected": {
+   "118575:edge:11:1250": "another player covers the lower legs",
+   "118575:edge:14:400": "another player covers the lower legs",
+   "118575:edge:22:400": "another player covers the lower legs",
+   "118578:edge:7:1000": "mid-stride, not standing"
+  }
+ },
+ "note": "3 far throw-ins + 2 edge-standers = 5 far references: under the rule's minimum of 8, so the verdict is UNRESOLVED (too few) whatever the numbers say. The criteria were not loosened to reach 8."
+}

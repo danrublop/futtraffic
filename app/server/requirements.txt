@@ -1,0 +1,89 @@
+# Unpinned on purpose: a small research project, and pinning creates upgrade chores
+# that will not get done. Pin when there is a deploy target that must reproduce.
+
+# EXCEPTION, and it is a distribution blocker, not a chore. EVERY published
+# macOS arm64 wheel of this package - 4.8.1.78 through 5.0.0.93, headless and
+# not - bundles an FFmpeg built --enable-gpl, linking libx264/libx265 (GPL-2.0)
+# and self-reporting "GPL version 3 or later". A closed-source app cannot be
+# distributed against it, and upstream's README claim that "all wheels ship
+# with FFmpeg licensed under the LGPLv2.1" is verifiably false for macOS.
+# Nothing we ship even calls those encoders - x264/x265 are encode-only and the
+# only avc1 caller (model/engine/overlay.py) is not in the frozen bundle - so this is
+# purely about what sits in the DMG. Do NOT delete the dylibs: they are eager
+# load commands and cv2 will not import. The fix is a source build against an
+# LGPL FFmpeg, and this line must be pinned to that wheel once it exists.
+# Full evidence, route and effort: ffmpeg-lgpl (not published). Guard: app/desktop/check-gpl.py.
+#
+# THAT WHEEL NOW EXISTS, and it is not on PyPI - build it:
+#     app/desktop/scripts/build-lgpl-opencv.sh   # -> app/desktop/build/wheels/
+#     .venv/bin/pip install --force-reinstall --no-deps \
+#         app/desktop/build/wheels/opencv_python_headless-*.whl
+# Pinned to the version that build reproduces; a plain `pip install -r` gets the
+# PyPI wheel at the same version, which is the GPL one. Check with:
+#     strings -a .venv/lib/python3.14/site-packages/cv2/.dylibs/libavcodec.*.dylib | grep license
+# and never keep `opencv-python` (the non-headless one) installed beside it: it
+# carries its own GPL FFmpeg into the bundle.
+opencv-python-headless==5.0.0.93
+numpy
+fastapi
+uvicorn
+python-multipart
+# Promoted from optional 2026-08-04: stats.formation_windows needs
+# linear_sum_assignment and build_match calls it on every match, so a missing
+# scipy would now fail a job rather than disable a side path. Still lazy-imported
+# at the call site so stats.py's other self-checks run without it.
+scipy
+
+# Promoted 2026-09-01: tracking.BEST is "cbiou", which lives here, and
+# best_available() falls back to the built-in bytetrack when it is missing -
+# quietly shipping IDF1 0.211 instead of 0.263 and 31.3 fragments per player
+# instead of 17.5. It was in neither list, which reads as an omission rather
+# than the deliberate exclusions below. Apache-2.0.
+# Pinned 2026-09-28: track.run passes no kwargs, so the library's defaults ARE
+# the shipped tracker config; an upgrade would change it silently.
+trackers==2.6.0
+# Both arrive today only through trackers' own dependency closure, which is a
+# thin reason to rely on them: supervision is imported bare at tracking.py:357
+# (one line after the careful ImportError handler for trackers itself) and runs
+# on every job, and Pillow backs the player-photo feature in app/server/headshots.py
+# plus the CoreML and NVIDIA crop paths. Declared so they survive trackers ever
+# dropping them.
+supervision
+Pillow
+
+# Deliberately NOT here - all lazy-imported behind optional code paths, so the
+# core pipeline and every self-check run without them, and they fail loudly with
+# a real message if someone opts into a path that needs them:
+#   rfdetr              real detection (the stub detector needs no weights)
+#   paddleocr / doctr   jersey OCR backends
+#   transformers        teamembed.py, SigLIP team assignment. Apache-2.0, and
+#                       the google/siglip-base-patch16-224 weights are too.
+#                       torch already arrives with rfdetr (BSD-3-Clause).
+#   umap-learn          teamembed.py clustering. BSD-3-Clause, and so is every
+#                       thing it pulls (numba, llvmlite, pynndescent,
+#                       scikit-learn). NOTE it pins numpy back: installing it
+#                       moved this venv 2.5.1 -> 2.4.6. Every module self-check
+#                       still passes, but that is why it is not a core dep.
+#   kloppy              VALIDATION ONLY, never the shipped bundle. It is the
+#                       vendor-independent domain model (15 providers) we read
+#                       other people's tracking and event data through, and
+#                       write our own tracks out to - model/validation/kloppy_export.py
+#                       and model/validation/sportec_*.py. Not a core dep because no
+#                       product code path imports it: the engine reads our own
+#                       JSON and nothing in app/server/ or app/desktop/ touches an
+#                       external provider's file. BSD-3-Clause, and its whole
+#                       closure is light and permissive (lxml BSD-3-Clause,
+#                       sortedcontainers Apache-2.0, pytz MIT, and fsspec /
+#                       python-dateutil were already here). NOTE, against the
+#                       umap-learn precedent above: installing it moved numpy,
+#                       scipy and cv2 by nothing - 2.3.5 / 1.18.0 / 5.0.0 before
+#                       and after, checked because three other agents shared
+#                       this venv at the time.
+#   torch_geometric     PathCRF, i.e. model/engine/possession.py. NOT in upstream's
+#                       own requirements.txt, which lists neither it nor torch,
+#                       so a fresh venv hits a module-level ImportError at
+#                       vendor/pathcrf/models/utils.py:8 before any inference
+#                       runs. It is imported for `collate_window_batch`, a
+#                       TRAINING dataloader collate the inference path never
+#                       calls - so this is dependency-only, not a real need.
+#                       MIT. Installing it also pulls xxhash (BSD-2-Clause).

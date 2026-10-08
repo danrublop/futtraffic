@@ -1,0 +1,19 @@
+{
+ "id": "5ynthet1cdem0000000000000000000d",
+ "status": "done",
+ "error": null,
+ "created": 1789591469.32591,
+ "updated": 1789591469.32591,
+ "pid": null,
+ "attempts": 0,
+ "video": null,
+ "fotmob_id": null,
+ "display_name": "Northside United v Riverside Athletic (demo)",
+ "team": "Northside United",
+ "venue": "",
+ "bytes": 1,
+ "total_bytes": 1,
+ "upload_complete": true,
+ "operator_seconds": 0.0,
+ "corrections": 0
+}

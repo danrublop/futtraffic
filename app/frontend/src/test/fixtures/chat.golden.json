@@ -1,0 +1,50 @@
+{
+  "id": "0123456789abcdef0123456789abcdef",
+  "team_id": "northbridge-fc",
+  "match_id": "786827bf0cb540079e7ae350a99124c2",
+  "title": "how did the striker do?",
+  "created": 1789300000.0,
+  "updated": 1789300004.5,
+  "messages": [
+    {
+      "role": "user",
+      "content": "how did the striker do?",
+      "ts": 1789300000.1,
+      "match_id": "786827bf0cb540079e7ae350a99124c2"
+    },
+    {
+      "role": "assistant",
+      "content": "He covered the most ground of the front three — provisional, read the rank not the value.",
+      "ts": 1789300004.4,
+      "events": [
+        {
+          "id": "toolu_01",
+          "name": "player_stats",
+          "input": {
+            "match_id": "786827bf0cb540079e7ae350a99124c2"
+          },
+          "result": {
+            "match_id": "786827bf0cb540079e7ae350a99124c2",
+            "n": 22,
+            "players": []
+          },
+          "ok": true,
+          "summary": "22 players",
+          "duration_ms": 41
+        },
+        {
+          "id": "fake-0",
+          "name": "get_report",
+          "input": {
+            "match_id": ""
+          },
+          "result": {
+            "error": "ValueError: bad job id: ''"
+          },
+          "ok": false
+        }
+      ],
+      "model": "claude-sonnet-5"
+    }
+  ]
+}

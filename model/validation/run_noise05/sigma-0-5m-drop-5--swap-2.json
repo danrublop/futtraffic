@@ -1,0 +1,182 @@
+{
+  "status": "UNDERPOWERED: n=22 player-matches, below the n>=60 the design doc requires before any figure is published.",
+  "source": "SoccerTrack v2 GSR (per-frame pitch metres, CC BY 4.0)",
+  "reference_error_pct": 1.5,
+  "n_player_matches": 22,
+  "n_required": 60,
+  "held_out_matches": [
+    "118575_1st"
+  ],
+  "train_matches": [
+    "117092_1st",
+    "117092_2nd",
+    "117093_1st"
+  ],
+  "headline": {
+    "distance_m": {
+      "metric": "distance_m",
+      "target": 5.0,
+      "gates": true,
+      "n": 22,
+      "mae_pct": 54.51750699018473,
+      "bias_pct": 41.001559105657115,
+      "loa_lower": 10.838462594042408,
+      "loa_upper": 71.16465561727182,
+      "verdict": "FAIL",
+      "skipped_zero_gt": 0,
+      "fitted": false
+    },
+    "minutes": {
+      "metric": "minutes",
+      "target": 5.0,
+      "gates": true,
+      "n": 22,
+      "mae_pct": 6.304375235413881e-05,
+      "bias_pct": -6.304418955378891e-05,
+      "loa_lower": -0.0006426229716406277,
+      "loa_upper": 0.0005165345925330498,
+      "verdict": "PASS",
+      "skipped_zero_gt": 0,
+      "fitted": false
+    },
+    "hsr_m": {
+      "metric": "hsr_m",
+      "target": 15.0,
+      "gates": false,
+      "n": 22,
+      "mae_pct": 195.65927117147183,
+      "bias_pct": 91.19505215805293,
+      "loa_lower": 46.233173601158235,
+      "loa_upper": 136.15693071494763,
+      "verdict": "MISSED",
+      "skipped_zero_gt": 0,
+      "fitted": false
+    },
+    "sprints": {
+      "metric": "sprints",
+      "target": 20.0,
+      "gates": false,
+      "n": 21,
+      "mae_pct": 94.75931697298053,
+      "bias_pct": -180.91920794386638,
+      "loa_lower": -216.43859316055728,
+      "loa_upper": -145.3998227271755,
+      "verdict": "MISSED",
+      "skipped_zero_gt": 1,
+      "fitted": false
+    },
+    "peak_speed_ms": {
+      "metric": "peak_speed_ms",
+      "target": 10.0,
+      "gates": false,
+      "n": 22,
+      "mae_pct": 3.4879203812326,
+      "bias_pct": 3.3301966515623005,
+      "loa_lower": -5.395034252355817,
+      "loa_upper": 12.055427555480417,
+      "verdict": "MET",
+      "skipped_zero_gt": 0,
+      "fitted": false
+    },
+    "id_switches": {
+      "metric": "id_switches",
+      "target": 2.0,
+      "gates": true,
+      "n": 22,
+      "mae_pct": 0.0,
+      "bias_pct": 0.0,
+      "loa_lower": 0.0,
+      "loa_upper": 0.0,
+      "verdict": "PASS",
+      "skipped_zero_gt": 0,
+      "fitted": false
+    }
+  },
+  "fitted_train_split": {
+    "distance_m": {
+      "metric": "distance_m",
+      "target": 5.0,
+      "gates": true,
+      "n": 79,
+      "mae_pct": 45.53333310199436,
+      "bias_pct": 36.01971748419054,
+      "loa_lower": 12.482763851679099,
+      "loa_upper": 59.55667111670198,
+      "verdict": "FAIL",
+      "skipped_zero_gt": 0,
+      "fitted": true
+    },
+    "minutes": {
+      "metric": "minutes",
+      "target": 5.0,
+      "gates": true,
+      "n": 79,
+      "mae_pct": 0.00019785881128107203,
+      "bias_pct": -0.00019786039640696588,
+      "loa_lower": -0.001237661398130328,
+      "loa_upper": 0.0008419406053163962,
+      "verdict": "PASS",
+      "skipped_zero_gt": 0,
+      "fitted": true
+    },
+    "hsr_m": {
+      "metric": "hsr_m",
+      "target": 15.0,
+      "gates": false,
+      "n": 79,
+      "mae_pct": 170.73695614961812,
+      "bias_pct": 83.1019363986786,
+      "loa_lower": 36.90683327796288,
+      "loa_upper": 129.29703951939433,
+      "verdict": "MISSED",
+      "skipped_zero_gt": 0,
+      "fitted": true
+    },
+    "sprints": {
+      "metric": "sprints",
+      "target": 20.0,
+      "gates": false,
+      "n": 74,
+      "mae_pct": 92.16164754670831,
+      "bias_pct": -173.43506141565726,
+      "loa_lower": -230.57123730749362,
+      "loa_upper": -116.29888552382091,
+      "verdict": "MISSED",
+      "skipped_zero_gt": 5,
+      "fitted": true
+    },
+    "peak_speed_ms": {
+      "metric": "peak_speed_ms",
+      "target": 10.0,
+      "gates": false,
+      "n": 79,
+      "mae_pct": 3.544682350255912,
+      "bias_pct": 3.3590917347245646,
+      "loa_lower": -6.213566317209825,
+      "loa_upper": 12.931749786658955,
+      "verdict": "MET",
+      "skipped_zero_gt": 0,
+      "fitted": true
+    },
+    "id_switches": {
+      "metric": "id_switches",
+      "target": 2.0,
+      "gates": true,
+      "n": 79,
+      "mae_pct": 0.05063291139240506,
+      "bias_pct": 0.05063291139240506,
+      "loa_lower": -0.644016552231199,
+      "loa_upper": 0.7452823750160092,
+      "verdict": "PASS",
+      "skipped_zero_gt": 0,
+      "fitted": true
+    }
+  },
+  "gate": "FAIL",
+  "caveats": [
+    "**Measured side is synthetic** (noise=0.5,drop=0.05,swap=0.02): ground truth degraded with a known error budget. This is a sensitivity study of the stats layer, NOT a measurement of the tracking pipeline, which has never been run on real footage.",
+    "SoccerTrack v2 is 4K panoramic footage; the product camera is 1080p perspective. The domain gap is real and unquantified.",
+    "Both sides run through the same metric estimator (stats.py smoothing, speed clamp, gap rules), so the estimator's own bias cancels. These figures are a lower bound on error. The published claim needs GPS-vest reference data, where nothing cancels.",
+    "Player pairing is by track id (or an explicit --map). Identity is unbuilt in the pipeline, so a real run needs the mapping supplied."
+  ]
+}

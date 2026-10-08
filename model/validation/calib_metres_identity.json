@@ -1,0 +1,33 @@
+{
+  "projection_type": "perspective",
+  "pitch": {
+    "length": 105.0,
+    "width": 68.0,
+    "penalty_depth": 16.5,
+    "penalty_width": 40.32,
+    "goal_box_depth": 5.5,
+    "goal_box_width": 18.32,
+    "centre_circle_r": 9.15
+  },
+  "H": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "points": {},
+  "rms_error_m": 0.0,
+  "outliers": [],
+  "_note": "Identity homography: the SoccerTrack ground-truth halves under model/validation/soccertrack/ are ALREADY in pitch metres, so there is nothing to project. This is validate.METRE_CAL on disk, so build_match can be run against a real 45-minute half without a venue calibration. rms_error_m is 0.0 because the projection is exact by construction - that is a property of the fixture, NOT evidence that any real calibration is this good."
+}

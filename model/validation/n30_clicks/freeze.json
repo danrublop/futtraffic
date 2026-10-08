@@ -1,0 +1,53 @@
+{
+ "clips": {
+  "117092": {
+   "ui_fit_rms_m": 9.459225478720724,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789620542.4070764
+  },
+  "117093": {
+   "ui_fit_rms_m": 7.664419062530619,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789620351.5369747
+  },
+  "118575": {
+   "ui_fit_rms_m": 7.534652884259652,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789620192.1743817
+  },
+  "118576": {
+   "ui_fit_rms_m": 8.064558629419531,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789620070.9751937
+  },
+  "118577": {
+   "ui_fit_rms_m": 7.296633698710038,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789619933.509558
+  },
+  "118578": {
+   "ui_fit_rms_m": 7.428903526141055,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789619682.632646
+  },
+  "128057": {
+   "ui_fit_rms_m": 7.608946311312588,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789620457.2207906
+  },
+  "128058": {
+   "ui_fit_rms_m": 7.182929816356986,
+   "clicked": 21,
+   "outliers": [],
+   "clicked_at_mtime": 1789619514.1508546
+  }
+ },
+ "not_calibrated": []
+}

@@ -1,0 +1,35 @@
+{
+  "projection_type": "remap",
+  "pitch": {
+    "length": 105.0,
+    "width": 68.0,
+    "penalty_depth": 16.5,
+    "penalty_width": 40.32,
+    "goal_box_depth": 5.5,
+    "goal_box_width": 18.32,
+    "centre_circle_r": 9.15
+  },
+  "H": [
+    [
+      -0.02138446187448958,
+      -0.1253562440521972,
+      90.53489969209393
+    ],
+    [
+      -0.002374919790859164,
+      -0.21094273854995702,
+      96.2623911636857
+    ],
+    [
+      -2.5734648970384472e-05,
+      -0.0024560513289576718,
+      1.0
+    ]
+  ],
+  "points": {},
+  "rms_error_m": 2.845268728138035,
+  "outliers": [],
+  "maps": "data/footage/soccertrack_calib_118575",
+  "maps_yscale": 1.0,
+  "note": "points are in REMAPPED space; apply undistort_frame first"
+}

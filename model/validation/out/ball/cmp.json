@@ -1,0 +1,152 @@
+{
+ "A": {
+  "pooled": {
+   "shipped": {
+    "correct": 570,
+    "rate": 0.3167
+   },
+   "conf": {
+    "correct": 434,
+    "rate": 0.2411
+   },
+   "oracle": {
+    "correct": 691,
+    "rate": 0.3839
+   },
+   "any": {
+    "correct": 693,
+    "rate": 0.385
+   },
+   "centre": {
+    "correct": 0,
+    "rate": 0.0
+   }
+  },
+  "gt_present": 1800,
+  "frames_scored": 1800,
+  "no_cand": 0,
+  "cand_per_frame": 22.5
+ },
+ "C": {
+  "pooled": {
+   "shipped": {
+    "correct": 664,
+    "rate": 0.3689
+   },
+   "conf": {
+    "correct": 571,
+    "rate": 0.3172
+   },
+   "oracle": {
+    "correct": 932,
+    "rate": 0.5178
+   },
+   "any": {
+    "correct": 936,
+    "rate": 0.52
+   },
+   "centre": {
+    "correct": 0,
+    "rate": 0.0
+   }
+  },
+  "gt_present": 1800,
+  "frames_scored": 1800,
+  "no_cand": 0,
+  "cand_per_frame": 34.5
+ },
+ "B": {
+  "pooled": {
+   "shipped": {
+    "correct": 730,
+    "rate": 0.4056
+   },
+   "conf": {
+    "correct": 483,
+    "rate": 0.2683
+   },
+   "oracle": {
+    "correct": 1287,
+    "rate": 0.715
+   },
+   "any": {
+    "correct": 1290,
+    "rate": 0.7167
+   },
+   "centre": {
+    "correct": 0,
+    "rate": 0.0
+   }
+  },
+  "gt_present": 1800,
+  "frames_scored": 1800,
+  "no_cand": 0,
+  "cand_per_frame": 36.6
+ },
+ "D": {
+  "pooled": {
+   "shipped": {
+    "correct": 847,
+    "rate": 0.4706
+   },
+   "conf": {
+    "correct": 930,
+    "rate": 0.5167
+   },
+   "oracle": {
+    "correct": 1588,
+    "rate": 0.8822
+   },
+   "any": {
+    "correct": 1588,
+    "rate": 0.8822
+   },
+   "centre": {
+    "correct": 0,
+    "rate": 0.0
+   }
+  },
+  "gt_present": 1800,
+  "frames_scored": 1800,
+  "no_cand": 0,
+  "cand_per_frame": 86.2
+ },
+ "E1": {
+  "pooled": {
+   "shipped": {
+    "correct": 940,
+    "rate": 0.5222
+   },
+   "conf": {
+    "correct": 863,
+    "rate": 0.4794
+   },
+   "oracle": {
+    "correct": 1702,
+    "rate": 0.9456
+   },
+   "any": {
+    "correct": 1702,
+    "rate": 0.9456
+   },
+   "centre": {
+    "correct": 0,
+    "rate": 0.0
+   }
+  },
+  "gt_present": 1800,
+  "frames_scored": 1800,
+  "no_cand": 0,
+  "cand_per_frame": 105.8
+ },
+ "delta_oracle": 0.3311,
+ "void_centre": false,
+ "delta_tiling_only": 0.1339,
+ "delta_oracle_vs_control": 0.1972,
+ "n52_delta_vs_C": 0.3644,
+ "n52_verdict": "SUPPORTED",
+ "delta_clean_vs_dfl": 0.1672,
+ "delta_clean_vs_dfl_shipped": 0.065,
+ "ruled_on": "B - C (fine-tune at fixed tile size)",
+ "verdict": "SUPPORTED"
+}

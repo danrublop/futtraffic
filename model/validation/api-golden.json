@@ -1,0 +1,1625 @@
+{
+ "commit": "8b8c20c",
+ "history": [
+  {
+   "at": "2026-09-10T11:20:26Z",
+   "commit": "de3f3ee",
+   "reason": "baseline after the 2026-09-10 audits: two harness P0s fixed (one-sided sign test, variant-scoped staging), every verdict re-run"
+  },
+  {
+   "at": "2026-09-10T11:37:32Z",
+   "commit": "de3f3ee",
+   "reason": "post-audit rebuild: cache key now includes producing code, every measurement declares inputs, n moved onto Spec, demo no longer pollutes the cache; st2_ab now reports UNDERPOWERED where no result could have shipped"
+  },
+  {
+   "at": "2026-09-10T14:38:59Z",
+   "commit": "326e121",
+   "reason": "registry at 35: product measurements, role-classifier spreads, and two gaps frozen AS gaps with their blockers"
+  },
+  {
+   "at": "2026-09-10T14:47:22Z",
+   "commit": "326e121",
+   "reason": "registry at 35 with two gaps frozen AS gaps: possession-through-our-tracker and the unbuilt event model, each carrying its live blocker"
+  },
+  {
+   "at": "2026-09-11T04:29:06Z",
+   "commit": "21f1e14",
+   "ids": [
+    "calib.oracle.control.ceiling",
+    "calib.oracle.control.neutrality",
+    "calib.oracle.distance.coverage",
+    "calib.oracle.distance.ratio_raw",
+    "calib.oracle.map_error.oracle",
+    "calib.oracle.map_error.shipped",
+    "calib.oracle.recall_m.oracle",
+    "calib.oracle.recall_m.shipped",
+    "calib.oracle.recall_px.ceiling"
+   ],
+   "reason": "First acceptance of the oracle-substitution family. These are the HULL-GATED values from b9a2106: its retraction was of the reading ('the shipped map compresses path length by 23%'), not of these measurements; the descriptions now say which rows are gated. Oracle rows are counterfactual and fenced as calib.oracle.*, never product.*.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-11T04:29:33Z",
+   "commit": "21f1e14",
+   "ids": [
+    "product.possession.metronome.contact",
+    "product.possession.metronome.recall.pass"
+   ],
+   "reason": "New floor: the same count of possession changes spaced evenly. It scores above PathCRF on every row, so product.possession.f1.contact and product.possession.recall.pass are not results until something clears it (model-map (not published) 0.4).",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-11T04:34:55Z",
+   "commit": "21f1e14",
+   "ids": [
+    "ab.offpitch.assa",
+    "ab.offpitch.hota",
+    "ab.stitch.assa",
+    "calib.metres.118575.far",
+    "calib.metres.118575.overall",
+    "product.ball.correct",
+    "product.ball.oracle",
+    "product.detect.recall_m",
+    "product.detect.recall_px",
+    "tracker.assa.c03s.all10",
+    "tracker.deta.c03s.all10",
+    "tracker.hota.c03s.all10",
+    "tracker.hota.c03s.heldout",
+    "tracker.hota.c03s.tuned"
+   ],
+   "reason": "Scope strings corrected to say what actually ran, values unchanged: .c03s/A-B ids name the research config (conf 0.3, stride 1, --roles, no calibration) and that the off-pitch A-B scores a track-level gate the product does not run; calib.metres names ST2's own homography+mapx, not the operator's map; detect names PyTorch r768 vs the product's 576; ball says no product job detects the ball (model-map (not published) 5 N4).",
+   "replaced": {
+    "ab.offpitch.assa": {
+     "error": "",
+     "n": 10,
+     "scope": "all 10, AssA primary",
+     "status": "OK",
+     "value": {
+      "k": 4,
+      "mean": 0.000369687557828241,
+      "n": 4,
+      "p": 0.0625,
+      "verdict": "DOES NOT SHIP"
+     }
+    },
+    "ab.offpitch.hota": {
+     "error": "",
+     "n": 10,
+     "scope": "all 10, HOTA",
+     "status": "OK",
+     "value": {
+      "k": 7,
+      "mean": 0.012179416562299891,
+      "n": 7,
+      "p": 0.0078125,
+      "verdict": "SHIPS"
+     }
+    },
+    "ab.stitch.assa": {
+     "error": "",
+     "n": 10,
+     "scope": "all 10, AssA primary",
+     "status": "OK",
+     "value": {
+      "k": 8,
+      "mean": 0.018430478739013545,
+      "n": 10,
+      "p": 0.0546875,
+      "verdict": "DOES NOT SHIP"
+     }
+    },
+    "calib.metres.118575.far": {
+     "error": "",
+     "n": 110,
+     "scope": "118575, farthest quartile",
+     "status": "OK",
+     "value": 2.15
+    },
+    "calib.metres.118575.overall": {
+     "error": "",
+     "n": 440,
+     "scope": "118575, 20 frames, 440 instants",
+     "status": "OK",
+     "value": 1.4
+    },
+    "product.ball.correct": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips, candidates cached at coreml CONF 0.05 - the product ships conf 0.5, where this collapses",
+     "status": "OK",
+     "value": 0.23637076742057786
+    },
+    "product.ball.oracle": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips, candidates cached at coreml conf 0.05",
+     "status": "OK",
+     "value": 0.2867041443325925
+    },
+    "product.detect.recall_m": {
+     "error": "",
+     "n": 880,
+     "scope": "118575, base r768 t1024 conf 0.5 +prior, 40 frames from 3000 every 1500",
+     "status": "OK",
+     "value": 0.6329545454545454
+    },
+    "product.detect.recall_px": {
+     "error": "",
+     "n": 880,
+     "scope": "118575, base r768 t1024 conf 0.5 +prior, 40 frames from 3000 every 1500",
+     "status": "OK",
+     "value": 0.8454545454545455
+    },
+    "tracker.assa.c03s.all10": {
+     "error": "",
+     "n": 10,
+     "scope": "all 10 sequences",
+     "status": "OK",
+     "value": 0.23874245009333164
+    },
+    "tracker.deta.c03s.all10": {
+     "error": "",
+     "n": 10,
+     "scope": "all 10 sequences",
+     "status": "OK",
+     "value": 0.5658844717744025
+    },
+    "tracker.hota.c03s.all10": {
+     "error": "",
+     "n": 10,
+     "scope": "all 10 sequences",
+     "status": "OK",
+     "value": 0.36335270372458395
+    },
+    "tracker.hota.c03s.heldout": {
+     "error": "",
+     "n": 8,
+     "scope": "HELD OUT, 8 sequences",
+     "status": "OK",
+     "value": 0.3558981301606944
+    },
+    "tracker.hota.c03s.tuned": {
+     "error": "",
+     "n": 2,
+     "scope": "TUNED 128057+132831",
+     "status": "OK",
+     "value": 0.3931709979801423
+    }
+   }
+  },
+  {
+   "at": "2026-09-11T12:10:54Z",
+   "commit": "70771f6",
+   "ids": [
+    "tracker.deta.p05.common7",
+    "tracker.deta.p05m.common7",
+    "tracker.hota.c03s_e2.common7",
+    "tracker.hota.p05.common7",
+    "tracker.hota.p05m.common7"
+   ],
+   "reason": "First acceptance of N6 (model/validation/st2_product.py, protocol fixed in its docstring before the first run): the product's own tracker config scored on 7 held-out ST2 sequences, stride-2 frames, under the product's calibration (perfect simulated clicks, UI solver) and under ST2's own map as remap, with the research config on the same frames as comparator. 132831 and 117092 excluded before any score, with reasons. n=1 configuration.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-11T18:16:11Z",
+   "commit": "202254e",
+   "ids": [
+    "tracker.assa.p05.common7",
+    "tracker.assa.p05m.common7"
+   ],
+   "reason": "First acceptance of N6's AssA pair: the second review found the clicked calibration's cost lands on association as well as detection, and a sentence saying so was not a measurement. Same protocol, files and 7 sequences as the N6 HOTA/DetA ids.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-11T18:33:11Z",
+   "commit": "773a50d",
+   "ids": [
+    "product.detect.recall_m",
+    "product.detect.recall_px"
+   ],
+   "reason": "N5: detection re-registered at the SHIPPED config - coreml r576 t1024 built by detectors.get_detector('coreml'), on the 118575 band canvas the job's remap calibration produces - in place of PyTorch r768, which no job runs and which this 16 GB machine could not finish under memory pressure. recall_m is unchanged by coincidence (557/880 both); recall_px moves 0.8455 -> 0.8295. The r768 values stay in this history.",
+   "replaced": {
+    "product.detect.recall_m": {
+     "error": "",
+     "n": 880,
+     "scope": "118575, base r768 t1024 conf 0.5 +prior, 40 frames from 3000 every 1500; PyTorch at 768 px - the product runs 576 (CoreML, or its PyTorch fallback)",
+     "status": "OK",
+     "value": 0.6329545454545454
+    },
+    "product.detect.recall_px": {
+     "error": "",
+     "n": 880,
+     "scope": "118575, base r768 t1024 conf 0.5 +prior, 40 frames from 3000 every 1500; PyTorch at 768 px - the product runs 576 (CoreML, or its PyTorch fallback)",
+     "status": "OK",
+     "value": 0.8454545454545455
+    }
+   }
+  },
+  {
+   "at": "2026-09-11T18:33:22Z",
+   "commit": "773a50d",
+   "ids": [
+    "tracker.assa.p05r.common7",
+    "tracker.deta.p05r.common7",
+    "tracker.hota.p05r.common7"
+   ],
+   "reason": "First acceptance of N18 (model/validation/st2_product.py --replay, protocol in its docstring before running): B's post-prior detections mapped to clip pixels (0 dropped) and replayed through track.run with the product's clicked calibration and no A prior, on N6's 7 sequences, stride-2 frames, n=1. It scores level with B, so the ~6 m homography costs the tracker about nothing and A's loss is the scene prior.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-11T19:04:11Z",
+   "commit": "4ada85c",
+   "ids": [
+    "tracker.assa.p05r.common7",
+    "tracker.deta.p05r.common7",
+    "tracker.hota.p05r.common7"
+   ],
+   "reason": "CORRECTION to the previous N18 reason, values unchanged: it said 'the ~6 m homography costs the tracker about nothing and A's loss is the scene prior'. A review found N18 alone does not attribute A's loss (its detections are B's, filtered by a good prior on a different canvas), and the association interval (AssA -0.003, 95% CI about +-0.022, n=7) is as wide as the stitch's whole measured worth: no cost is DETECTABLE, which is weaker. N19 is the attribution.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-12T02:16:29Z",
+   "commit": "166c1f5",
+   "ids": [
+    "tracker.detpr.p19v0.common7",
+    "tracker.detpr.p19v1.common7",
+    "tracker.detpr.p19v2.common7",
+    "tracker.detpr.p19v3.common7",
+    "tracker.detre.p19v0.common7",
+    "tracker.detre.p19v1.common7",
+    "tracker.detre.p19v2.common7",
+    "tracker.detre.p19v3.common7",
+    "tracker.hota.p19v0.common7",
+    "tracker.hota.p19v1.common7",
+    "tracker.hota.p19v2.common7",
+    "tracker.hota.p19v3.common7"
+   ],
+   "reason": "First acceptance of N19 (model/validation/st2_product.py --n19; protocol and PASS RULE written into model-map (not published) \u00a73 N19 before any arm ran). One no-prior detection pass per sequence, then the scene prior applied offline through track.make_prior(gates=...) from the product's clicked calibration, four pre-registered arms (n=4), replayed: v0 both gates (the shipped prior - it reproduces tracker.*.p05.common7 exactly, which is the consistency check), v1 none, v2 pitch polygon only, v3 height gate only. Under the rule, v2 is BETTER (HOTA up on 7 of 7, and precision UP not down); v1 fails it on precision; v3 is indistinguishable from v0, so the height gate is doing all of the damage and the polygon is buying the precision.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-12T19:37:18Z",
+   "commit": "24734f8",
+   "ids": [
+    "product.detect.recall_m",
+    "product.detect.recall_px"
+   ],
+   "reason": "INTENDED: the shipped scene prior lost its height gate (N19/N20), and product.detect.* score WITH the prior, so both rise - recall_m 0.6330 -> 0.6341, recall_px 0.8295 -> 0.8318. Small because this is the 118575 job's 65-point vendor remap, a GOOD calibration, where N20 measures the gate as removing little; on the operator's ~6 m clicked map N19 measures it removing a third of the boxes. detsweep.score now calls track.make_prior instead of a hand-copied gate list, so this number follows the product by construction.",
+   "replaced": {
+    "product.detect.recall_m": {
+     "error": "",
+     "n": 880,
+     "scope": "118575 band canvas (the job's remap calibration), coreml r576 t1024 - the SHIPPED detector, built by detectors.get_detector('coreml') - conf 0.5 +prior, 40 frames from 3000 every 1500",
+     "status": "OK",
+     "value": 0.6329545454545454
+    },
+    "product.detect.recall_px": {
+     "error": "",
+     "n": 880,
+     "scope": "118575 band canvas (the job's remap calibration), coreml r576 t1024 - the SHIPPED detector - conf 0.5 +prior, 40 frames from 3000 every 1500",
+     "status": "OK",
+     "value": 0.8295454545454546
+    }
+   }
+  },
+  {
+   "at": "2026-09-12T19:37:59Z",
+   "commit": "24734f8",
+   "ids": [
+    "tracker.detpr.p20v0.common7",
+    "tracker.detpr.p20v1.common7",
+    "tracker.detpr.p20v2.common7",
+    "tracker.detpr.p20v3.common7",
+    "tracker.detre.p20v0.common7",
+    "tracker.detre.p20v1.common7",
+    "tracker.detre.p20v2.common7",
+    "tracker.detre.p20v3.common7",
+    "tracker.hota.p20v0.common7",
+    "tracker.hota.p20v1.common7",
+    "tracker.hota.p20v2.common7",
+    "tracker.hota.p20v3.common7"
+   ],
+   "reason": "First acceptance of N20 (model/validation/st2_product.py --n20; protocol and PASS RULE in its docstring and model-map (not published) \u00a73 N20 before any arm ran). N19's four arms again on the GOOD calibration - B's remap, on B's canvas, one no-gate detection pass then the same offline gates - to answer what N19 could not: does the height gate earn its keep when the camera is recovered from a fit that is RIGHT? Rule: it does iff v0 beats v2 on HOTA on >=6 of 7. It won on 1 of 7. So the gate loses on a bad calibration (largely) and on a good one (slightly), there is no threshold to find, and it is off by default as of this commit. v0 reproduces tracker.*.p05m.common7 exactly, which is the consistency check.",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-13T01:20:08Z",
+   "commit": "52d9626",
+   "ids": [
+    "product.player.distance.spread",
+    "product.speed.peak_ms"
+   ],
+   "reason": "N10/N11 re-measured both on the PRODUCT config (9 STC2025 clips, coreml r576 conf 0.5 stride 2, metric stitch) instead of one job directory whose tracks predate the current tracker. Held out of the golden since N1 precisely so these two shipped fields would not be justified by a research-config number; that condition is now met. Values move because the population moved: 22 GT players on 118575 -> 198 players over nine clips. n8-n11-downstream (not published)",
+   "replaced": {}
+  },
+  {
+   "at": "2026-09-13T02:16:53Z",
+   "commit": "c6b8fb8",
+   "ids": [
+    "product.detect.recall_m",
+    "product.detect.recall_px"
+   ],
+   "reason": "8472cef reverted the tile overlap 0.10 -> 0.25 on a pre-declared rule over 96 frames and 2,112 GT player-frames (band 1 +0.0756, ci95 clears zero), and c6b8fb8 made track.run defer to make_prior so the product finally applies the pitch polygon alone. detsweep has measured polygon-only since 0a5a7cd, so these two ids describe the shipped detector for the first time since then rather than in spite of it. recall_m 0.6341 -> 0.6364, recall_px 0.8318 -> 0.8534. tile-overlap (not published), n17-conf (not published) 5",
+   "replaced": {
+    "product.detect.recall_m": {
+     "error": "",
+     "n": 880,
+     "scope": "118575 band canvas (the job's remap calibration), coreml r576 t1024 - the SHIPPED detector, built by detectors.get_detector('coreml') - conf 0.5 +prior, 40 frames from 3000 every 1500",
+     "status": "OK",
+     "value": 0.634090909090909
+    },
+    "product.detect.recall_px": {
+     "error": "",
+     "n": 880,
+     "scope": "118575 band canvas (the job's remap calibration), coreml r576 t1024 - the SHIPPED detector - conf 0.5 +prior, 40 frames from 3000 every 1500",
+     "status": "OK",
+     "value": 0.8318181818181818
+    }
+   }
+  },
+  {
+   "at": "2026-09-13T02:37:27Z",
+   "commit": "0d701ff",
+   "ids": [
+    "tracker.assa.p05.common7",
+    "tracker.assa.p05m.common7",
+    "tracker.assa.p05r.common7",
+    "tracker.deta.p05.common7",
+    "tracker.deta.p05m.common7",
+    "tracker.deta.p05r.common7",
+    "tracker.detpr.p19v0.common7",
+    "tracker.detpr.p19v1.common7",
+    "tracker.detpr.p19v2.common7",
+    "tracker.detpr.p19v3.common7",
+    "tracker.detpr.p20v0.common7",
+    "tracker.detpr.p20v1.common7",
+    "tracker.detpr.p20v2.common7",
+    "tracker.detpr.p20v3.common7",
+    "tracker.detre.p19v0.common7",
+    "tracker.detre.p19v1.common7",
+    "tracker.detre.p19v2.common7",
+    "tracker.detre.p19v3.common7",
+    "tracker.detre.p20v0.common7",
+    "tracker.detre.p20v1.common7",
+    "tracker.detre.p20v2.common7",
+    "tracker.detre.p20v3.common7",
+    "tracker.hota.p05.common7",
+    "tracker.hota.p05m.common7",
+    "tracker.hota.p05r.common7",
+    "tracker.hota.p19v0.common7",
+    "tracker.hota.p19v1.common7",
+    "tracker.hota.p19v2.common7",
+    "tracker.hota.p19v3.common7",
+    "tracker.hota.p20v0.common7",
+    "tracker.hota.p20v1.common7",
+    "tracker.hota.p20v2.common7",
+    "tracker.hota.p20v3.common7"
+   ],
+   "reason": "SCOPE ONLY - no value moved on any of these 33 ids, and api.py --verify re-ran them after c6b8fb8 touched model/engine/track.py to prove it: 33 differences, all scope, zero values. The shared N6 constant said 'PRODUCT config per app/server/jobs.py' without naming which scene prior, and the prior moved under it twice in two days - 0a5a7cd retired the height gate in make_prior while track.run kept passing its own copy, c6b8fb8 made the seam defer. N6 is now dated: it says BOTH GATES and names c6b8fb8 as the cut. tracker.*.p19v2.common7 says it is the shipped prior, with N19's v0-reproduces-the-inline-path-to-0.000 check as the reason an offline-gated arm may stand in for it. Snapshotted by name rather than blanket, per model-map sec 1 fix 4.",
+   "replaced": {
+    "tracker.assa.p05.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration SIMULATED CLICKS",
+     "status": "OK",
+     "value": 0.140502330552779
+    },
+    "tracker.assa.p05m.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration ST2's homography+mapx as remap",
+     "status": "OK",
+     "value": 0.2669385227105518
+    },
+    "tracker.assa.p05r.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; B's post-prior boxes in clip px, A's calibration, no A prior",
+     "status": "OK",
+     "value": 0.26390652634986445
+    },
+    "tracker.deta.p05.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration SIMULATED CLICKS",
+     "status": "OK",
+     "value": 0.403729174525045
+    },
+    "tracker.deta.p05m.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration ST2's homography+mapx as remap",
+     "status": "OK",
+     "value": 0.599295849983786
+    },
+    "tracker.deta.p05r.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; B's post-prior boxes in clip px, A's calibration, no A prior",
+     "status": "OK",
+     "value": 0.6071319897682051
+    },
+    "tracker.detpr.p19v0.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v0 (both gates - the SHIPPED prior; must reproduce tracker.*.p05.common7); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7567257047626484
+    },
+    "tracker.detpr.p19v1.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v1 (no prior at all); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7051279513233071
+    },
+    "tracker.detpr.p19v2.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v2 (pitch polygon only, height gate OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7728166437940479
+    },
+    "tracker.detpr.p19v3.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v3 (height gate only, polygon OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6845215419299053
+    },
+    "tracker.detpr.p20v0.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v0 (both gates - the shipped prior on a GOOD calibration; must reproduce tracker.*.p05m.common7); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7523056283510143
+    },
+    "tracker.detpr.p20v1.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v1 (no prior at all); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7149350080421237
+    },
+    "tracker.detpr.p20v2.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v2 (pitch polygon only, height gate OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7448563366993682
+    },
+    "tracker.detpr.p20v3.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v3 (height gate only, polygon OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.7408627273242707
+    },
+    "tracker.detre.p19v0.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v0 (both gates - the SHIPPED prior; must reproduce tracker.*.p05.common7); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.4387890917153873
+    },
+    "tracker.detre.p19v1.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v1 (no prior at all); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6700146086388749
+    },
+    "tracker.detre.p19v2.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v2 (pitch polygon only, height gate OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6689792680837082
+    },
+    "tracker.detre.p19v3.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v3 (height gate only, polygon OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.4387554012391485
+    },
+    "tracker.detre.p20v0.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v0 (both gates - the shipped prior on a GOOD calibration; must reproduce tracker.*.p05m.common7); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6750116283680583
+    },
+    "tracker.detre.p20v1.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v1 (no prior at all); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6815989277139748
+    },
+    "tracker.detre.p20v2.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v2 (pitch polygon only, height gate OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6807666450114646
+    },
+    "tracker.detre.p20v3.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v3 (height gate only, polygon OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.6752848610687747
+    },
+    "tracker.hota.p05.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration SIMULATED CLICKS",
+     "status": "OK",
+     "value": 0.2355949104218069
+    },
+    "tracker.hota.p05m.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration ST2's homography+mapx as remap",
+     "status": "OK",
+     "value": 0.3943787366933387
+    },
+    "tracker.hota.p05r.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; B's post-prior boxes in clip px, A's calibration, no A prior",
+     "status": "OK",
+     "value": 0.3961773648372203
+    },
+    "tracker.hota.p19v0.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v0 (both gates - the SHIPPED prior; must reproduce tracker.*.p05.common7); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.2355949104218069
+    },
+    "tracker.hota.p19v1.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v1 (no prior at all); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.35752126867253003
+    },
+    "tracker.hota.p19v2.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v2 (pitch polygon only, height gate OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.37113122916654284
+    },
+    "tracker.hota.p19v3.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v3 (height gate only, polygon OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.2291759092601751
+    },
+    "tracker.hota.p20v0.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v0 (both gates - the shipped prior on a GOOD calibration; must reproduce tracker.*.p05m.common7); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.3943787366933387
+    },
+    "tracker.hota.p20v1.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v1 (no prior at all); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.3956614206660059
+    },
+    "tracker.hota.p20v2.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v2 (pitch polygon only, height gate OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.4017758483400041
+    },
+    "tracker.hota.p20v3.common7": {
+     "error": "",
+     "n": 7,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch); 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v3 (height gate only, polygon OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+     "status": "OK",
+     "value": 0.3931771864226593
+    }
+   }
+  },
+  {
+   "at": "2026-09-13T06:41:16Z",
+   "commit": "5891b90",
+   "ids": [
+    "product.player.distance.spread",
+    "product.speed.peak_ms"
+   ],
+   "reason": "STC9_SCOPE rescoped, scope only: it said PRODUCT config, but _dist_stc scores the .p05 tracks written 2026-09-11 with BOTH prior gates, the configuration c6b8fb8 retired. Re-run on the same artefacts, not re-measured; a polygon-only re-measure is owed (117092 has no no-prior detection cache)",
+   "replaced": {
+    "product.player.distance.spread": {
+     "error": "",
+     "n": 198,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml r576, conf 0.5, stride 2, scene prior, metric stitch); 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration",
+     "status": "OK",
+     "value": {
+      "player_ratio_corr_m_per_px": -0.0252,
+      "player_ratio_cv": 0.2363,
+      "player_ratio_max": 3.182,
+      "player_ratio_median": 1.1646,
+      "player_ratio_min": 0.4427,
+      "player_ratio_n": 198
+     }
+    },
+    "product.speed.peak_ms": {
+     "error": "",
+     "n": 198,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml r576, conf 0.5, stride 2, scene prior, metric stitch); 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration; each player's peak over that player's fragments, so ours is a max across id switches and GT's is not",
+     "status": "OK",
+     "value": {
+      "gt_peak_max_ms": 15.321284333623225,
+      "our_peak_max_ms": 33.05870264093036,
+      "player_gt_peak_median_ms": 7.3144,
+      "player_peak_median_ms": 12.2997
+     }
+    }
+   }
+  },
+  {
+   "at": "2026-09-13T18:41:50Z",
+   "commit": "d41e409",
+   "ids": [
+    "product.player.distance.spread",
+    "product.speed.peak_ms"
+   ],
+   "reason": "N21 (n21-product-now (not published)): both ids now read the .p21 tracks - the product as it ships since c6b8fb8 and 8472cef, detected fresh and stamped ON before scoring - instead of the .p05 tracks written behind both prior gates. The values move because the product moved: on eight clips of nine the height gate is the only change. Calibration held fixed (N6's, reused).",
+   "replaced": {
+    "product.player.distance.spread": {
+     "error": "",
+     "n": 198,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml r576, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates, from .p05 tracks written 2026-09-11. From c6b8fb8 the product applies the pitch polygon ALONE, and no registered id scores distance or speed on polygon-only tracks yet; 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration",
+     "status": "OK",
+     "value": {
+      "player_ratio_corr_m_per_px": -0.0252,
+      "player_ratio_cv": 0.2363,
+      "player_ratio_max": 3.182,
+      "player_ratio_median": 1.1646,
+      "player_ratio_min": 0.4427,
+      "player_ratio_n": 198
+     }
+    },
+    "product.speed.peak_ms": {
+     "error": "",
+     "n": 198,
+     "scope": "PRODUCT config per app/server/jobs.py (coreml r576, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates, from .p05 tracks written 2026-09-11. From c6b8fb8 the product applies the pitch polygon ALONE, and no registered id scores distance or speed on polygon-only tracks yet; 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration; each player's peak over that player's fragments, so ours is a max across id switches and GT's is not",
+     "status": "OK",
+     "value": {
+      "gt_peak_max_ms": 15.321284333623225,
+      "our_peak_max_ms": 33.05870264093036,
+      "player_gt_peak_median_ms": 7.3144,
+      "player_peak_median_ms": 12.2997
+     }
+    }
+   }
+  },
+  {
+   "at": "2026-09-14T01:43:57Z",
+   "commit": "aeed20a",
+   "ids": [
+    "product.player.distance.spread",
+    "product.speed.peak_ms"
+   ],
+   "reason": "Review, 2026-09-13 (n21-product-now (not published)): both ids now read N21's .p21id tracks - after the identity stage, the file app/server/jobs.py builds match.json from - instead of .p21, the tracker output before it, which differs on 117092 where the stage merged a pair. n corrected to 197, the players the value is actually built from; the scope says who drops out.",
+   "replaced": {
+    "product.player.distance.spread": {
+     "error": "",
+     "n": 198,
+     "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPS since c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch): N21's .p21 tracks, written 2026-09-13 and stamped ON; N6's calibration reused; 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration",
+     "status": "OK",
+     "value": {
+      "player_ratio_corr_m_per_px": -0.1152,
+      "player_ratio_cv": 0.2407,
+      "player_ratio_max": 2.8372,
+      "player_ratio_median": 1.2333,
+      "player_ratio_min": 0.7584,
+      "player_ratio_n": 197
+     }
+    },
+    "product.speed.peak_ms": {
+     "error": "",
+     "n": 198,
+     "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPS since c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch): N21's .p21 tracks, written 2026-09-13 and stamped ON; N6's calibration reused; 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration; each player's peak over that player's fragments, so ours is a max across id switches and GT's is not",
+     "status": "OK",
+     "value": {
+      "gt_peak_max_ms": 15.321284333623225,
+      "our_peak_max_ms": 23.848951809208035,
+      "player_gt_peak_median_ms": 7.3144,
+      "player_peak_median_ms": 10.5794
+     }
+    }
+   }
+  },
+  {
+   "at": "2026-09-20T15:32:37Z",
+   "commit": "1e8af8f",
+   "ids": [
+    "events.ceiling.shiftcopy.drive.ap",
+    "events.floor.chance.drive.ap",
+    "events.floor.chance.pass.ap",
+    "events.floor.metronome.drive.ap",
+    "events.floor.metronome.pass.ap"
+   ],
+   "reason": "the 2026-09-19 LABEL OFFSET rule (st2_index PROTOCOL, st2-p1-step6 (not published)) moved every event floor onto the corrected label clock: BAS labels ran ~1 s early against the tracking feed in 10 of 16 train+val periods and st2_cache now shifts a period's labels +25 frames. Floors and model are counted over the same rows for the first time. Moves are small (+0.0033, -0.0108, -0.0002, +0.0066, +0.0089) because chance and metronome are blind to a uniform shift and shift-copy is fed the same shifted passes - the fix was necessary for correctness, not because it changed the bar",
+   "replaced": {
+    "events.ceiling.shiftcopy.drive.ap": {
+     "error": "",
+     "n": 1775,
+     "scope": "ST2 val split (117093+132877), GT-fed, mean of 5 seeds",
+     "status": "OK",
+     "value": 0.5686908220352437
+    },
+    "events.floor.chance.drive.ap": {
+     "error": "",
+     "n": 1775,
+     "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+     "status": "OK",
+     "value": 0.11755768949456673
+    },
+    "events.floor.chance.pass.ap": {
+     "error": "",
+     "n": 2029,
+     "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+     "status": "OK",
+     "value": 0.12212930315123519
+    },
+    "events.floor.metronome.drive.ap": {
+     "error": "",
+     "n": 1775,
+     "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+     "status": "OK",
+     "value": 0.13484464549326927
+    },
+    "events.floor.metronome.pass.ap": {
+     "error": "",
+     "n": 2029,
+     "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+     "status": "OK",
+     "value": 0.16964681419945474
+    }
+   }
+  },
+  {
+   "at": "2026-09-23T21:53:09Z",
+   "commit": "363e88a",
+   "ids": [
+    "product.ball.correct",
+    "product.ball.oracle"
+   ],
+   "reason": "held_fixed corrected in e047e9c: the product DOES detect a ball since 66fba82 (ball=True in jobs.py). Values unchanged - 0.23637076742057786 and 0.2867041443325925 in both golden and live - only the scope text moved, and it moved because the old text was false.",
+   "replaced": {
+    "product.ball.correct": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips from 2 matches, candidates cached at coreml conf 0.05 = detectors.BALL_CONF; NO product job detects the ball - app/server/jobs.py never passes ball=True",
+     "status": "OK",
+     "value": 0.23637076742057786
+    },
+    "product.ball.oracle": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips from 2 matches, candidates cached at coreml conf 0.05; NO product job detects the ball",
+     "status": "OK",
+     "value": 0.2867041443325925
+    }
+   }
+  },
+  {
+   "at": "2026-09-29T13:47:39Z",
+   "commit": "256a60f",
+   "ids": [
+    "product.ball.correct",
+    "product.ball.correct.s2",
+    "product.ball.oracle"
+   ],
+   "reason": "product.ball re-measured at the shipped settings (N70 M0 merge; the old caches ran every class at conf 0.05); stride-2 id added",
+   "replaced": {
+    "product.ball.correct": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips from 2 matches, candidates cached at coreml conf 0.05 = detectors.BALL_CONF; the product detects a ball since 66fba82 (2026-09-23, ball=True in app/server/jobs.py) and this is the arm it runs - the STOCK detector, no fine-tuned checkpoint wired",
+     "status": "OK",
+     "value": 0.23637076742057786
+    },
+    "product.ball.oracle": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips from 2 matches, candidates cached at coreml conf 0.05; the product detects a ball since 66fba82 with these same stock weights",
+     "status": "OK",
+     "value": 0.2867041443325925
+    }
+   }
+  },
+  {
+   "at": "2026-09-29T13:59:22Z",
+   "commit": "256a60f",
+   "ids": [
+    "product.ball.correct",
+    "product.ball.correct.s2",
+    "product.ball.oracle"
+   ],
+   "reason": "product.ball re-measured at the shipped settings (N70 M0 merge; the old caches ran every class at conf 0.05); stride-2 id added",
+   "replaced": {
+    "product.ball.correct": {
+     "error": "",
+     "n": 7649,
+     "scope": "9 SoccerTrack clips from 2 matches, the SHIPPED settings: coreml rfdetr-medium 576, tile 1024, overlap 0.25, player conf 0.5, ball conf 0.05 (detectors.BALL_CONF), the shipped class-agnostic merge detectors._merge 0.55 (N70 M0), BallPicker marking gate off, each clip's calib_<clip>.json where one exists; STOCK weights, no fine-tuned checkpoint wired. Candidates: model/validation/fixtures/ball/m0_cands.json.gz",
+     "status": "OK",
+     "value": 0.27899071774088113
+    },
+    "product.ball.correct.s2": {
+     "error": "",
+     "n": 3824,
+     "scope": "same 9 clips, detector, merge, thresholds and calibrations as product.ball.correct; even frames only (stride 2); the denominator is the ball-truth frames among them",
+     "status": "OK",
+     "value": 0.2622907949790795
+    },
+    "product.ball.oracle": {
+     "error": "",
+     "n": 7649,
+     "scope": "same 9 clips, detector, merge and thresholds as product.ball.correct, stride 1; the oracle uses the shape gates only (no calibration)",
+     "status": "OK",
+     "value": 0.46816577330369985
+    }
+   }
+  },
+  {
+   "at": "2026-09-29T22:18:54Z",
+   "commit": "8b8c20c",
+   "ids": [
+    "calib.oracle.map_error.shipped",
+    "calib.oracle.recall_m.shipped",
+    "product.distance.ratio_raw.p21id",
+    "product.player.distance.spread",
+    "product.possession.chance.contact",
+    "product.possession.f1.contact",
+    "product.possession.metronome.contact",
+    "product.possession.metronome.recall.pass",
+    "product.possession.recall.pass",
+    "product.speed.peak_ms"
+   ],
+   "reason": "dropped 132877 from the live distance population: its joined position feed is mirrored, per the repo's own dist_eval.stc_gt rule (owner decision 2026-09-29); pre-registered 1.2333->1.2278, n 197->175, observed exactly. New product.distance.ratio_raw.p21id (squad-pooled raw ratio on the same 8 clips, stride-2 .p21id tracks) to justify stats.teams.distance_m. Scope-only: possession.* say GT-fed ceiling, not the product; calib.oracle.*.shipped say the job's ST2 remap, not a client map",
+   "replaced": {
+    "calib.oracle.map_error.shipped": {
+     "error": "",
+     "n": 13200,
+     "scope": "118575, 13,200 GT feet held out in time, raw-panorama MOT feet",
+     "status": "OK",
+     "value": {
+      "median_m": 1.188861914265443,
+      "p90_m": 3.4789270324227,
+      "within_2m": 0.6993181818181818
+     }
+    },
+    "calib.oracle.recall_m.shipped": {
+     "error": "",
+     "n": 5280,
+     "scope": "118575, 5,280 GT player-instants, every 25th clip frame, 2 m gate",
+     "status": "OK",
+     "value": 0.5748106060606061
+    },
+    "product.player.distance.spread": {
+     "error": "",
+     "n": 197,
+     "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPS since c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch, then the identity stage): N21's .p21id tracks, written 2026-09-13 and stamped ON; N6's calibration reused; 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration; 197 of the 198 GT players form a ratio - the one with no covered metres drops out, which n says",
+     "status": "OK",
+     "value": {
+      "player_ratio_corr_m_per_px": -0.1161,
+      "player_ratio_cv": 0.2402,
+      "player_ratio_max": 2.8372,
+      "player_ratio_median": 1.2333,
+      "player_ratio_min": 0.7584,
+      "player_ratio_n": 197
+     }
+    },
+    "product.possession.chance.contact": {
+     "error": "",
+     "n": 529,
+     "scope": "118575 half 1, 300-1800 s, 300 random trials",
+     "status": "OK",
+     "value": 0.45758445440956647
+    },
+    "product.possession.f1.contact": {
+     "error": "",
+     "n": 529,
+     "scope": "118575 half 1, 300-1800 s, GROUND-TRUTH tracks, trial 140",
+     "status": "OK",
+     "value": 0.5775784753363228
+    },
+    "product.possession.metronome.contact": {
+     "error": "",
+     "n": 529,
+     "scope": "118575 half 1, 300-1800 s, CONTACT, tol 1.0 s, 20 phases",
+     "status": "OK",
+     "value": 0.59847533632287
+    },
+    "product.possession.metronome.recall.pass": {
+     "error": "",
+     "n": 283,
+     "scope": "118575 half 1, 300-1800 s, PASS family, tol 2.5 s, 20 phases",
+     "status": "OK",
+     "value": 0.9602473498233216
+    },
+    "product.possession.recall.pass": {
+     "error": "",
+     "n": 283,
+     "scope": "118575 half 1, 300-1800 s, GROUND-TRUTH tracks, tol 2.5 s",
+     "status": "OK",
+     "value": 0.9045936395759717
+    },
+    "product.speed.peak_ms": {
+     "error": "",
+     "n": 197,
+     "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPS since c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch, then the identity stage): N21's .p21id tracks, written 2026-09-13 and stamped ON; N6's calibration reused; 9 STC2025 clips, 132831 excluded by the benchmark; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); PER PLAYER not pooled; n=1 configuration; each player's peak over that player's fragments, so ours is a max across id switches and GT's is not; ours over the 197 players holding a fragment, GT's over all 198",
+     "status": "OK",
+     "value": {
+      "gt_peak_max_ms": 15.321284333623225,
+      "our_peak_max_ms": 23.848951809208035,
+      "player_gt_peak_median_ms": 7.3144,
+      "player_peak_median_ms": 10.5794
+     }
+    }
+   }
+  }
+ ],
+ "reason": "dropped 132877 from the live distance population: its joined position feed is mirrored, per the repo's own dist_eval.stc_gt rule (owner decision 2026-09-29); pre-registered 1.2333->1.2278, n 197->175, observed exactly. New product.distance.ratio_raw.p21id (squad-pooled raw ratio on the same 8 clips, stride-2 .p21id tracks) to justify stats.teams.distance_m. Scope-only: possession.* say GT-fed ceiling, not the product; calib.oracle.*.shipped say the job's ST2 remap, not a client map",
+ "updated": "2026-09-29T22:18:54Z",
+ "values": {
+  "ab.offpitch.assa": {
+   "error": "",
+   "n": 10,
+   "scope": "all 10 incl. the 2 tuned, AssA primary; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files; this TRACK-level gate is not in the product (its scene prior gates boxes)",
+   "status": "OK",
+   "value": {
+    "k": 4,
+    "mean": 0.000369687557828241,
+    "n": 4,
+    "p": 0.0625,
+    "verdict": "DOES NOT SHIP"
+   }
+  },
+  "ab.offpitch.hota": {
+   "error": "",
+   "n": 10,
+   "scope": "all 10 incl. the 2 tuned, HOTA; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files; this TRACK-level gate is not in the product (its scene prior gates boxes)",
+   "status": "OK",
+   "value": {
+    "k": 7,
+    "mean": 0.012179416562299891,
+    "n": 7,
+    "p": 0.0078125,
+    "verdict": "SHIPS"
+   }
+  },
+  "ab.stitch.assa": {
+   "error": "",
+   "n": 10,
+   "scope": "all 10 incl. the 2 tuned, AssA primary; .c03 vs .c03s; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files",
+   "status": "OK",
+   "value": {
+    "k": 8,
+    "mean": 0.018430478739013545,
+    "n": 10,
+    "p": 0.0546875,
+    "verdict": "DOES NOT SHIP"
+   }
+  },
+  "calib.metres.118575.far": {
+   "error": "",
+   "n": 110,
+   "scope": "118575, farthest quartile; ST2's own homography+mapx, NOT the operator-clicked map the product uses",
+   "status": "OK",
+   "value": 2.15
+  },
+  "calib.metres.118575.overall": {
+   "error": "",
+   "n": 440,
+   "scope": "118575, 20 frames, 440 instants; ST2's own homography+mapx, NOT the operator-clicked map the product uses",
+   "status": "OK",
+   "value": 1.4
+  },
+  "calib.oracle.control.ceiling": {
+   "error": "",
+   "n": 22,
+   "scope": "118575 1st half, GT as prediction, 22 GT players, 2 m gate",
+   "status": "OK",
+   "value": {
+    "coverage": 1.0,
+    "ratio_matched": 1.0,
+    "ratio_raw": 1.0
+   }
+  },
+  "calib.oracle.control.neutrality": {
+   "error": "",
+   "n": 22,
+   "scope": "118575, 22 GT players, GT feet through the oracle",
+   "status": "OK",
+   "value": 0.9899953347344802
+  },
+  "calib.oracle.distance.coverage": {
+   "error": "",
+   "n": 22,
+   "scope": "118575 1st half, tracks.split.json, 22 GT players, 2 m gate, ORACLE MAP - not shippable",
+   "status": "OK",
+   "value": 0.6907013217690833
+  },
+  "calib.oracle.distance.ratio_raw": {
+   "error": "",
+   "n": 22,
+   "scope": "118575 1st half, tracks.split.json, 22 GT players, 2 m gate, ORACLE MAP - not shippable",
+   "status": "OK",
+   "value": 0.811201224525324
+  },
+  "calib.oracle.map_error.oracle": {
+   "error": "",
+   "n": 13200,
+   "scope": "118575, 13,200 GT feet held out in time, ORACLE MAP - not shippable",
+   "status": "OK",
+   "value": {
+    "median_m": 0.5492429751358823,
+    "p90_m": 1.1860698108436918,
+    "within_2m": 0.9619696969696969
+   }
+  },
+  "calib.oracle.map_error.shipped": {
+   "error": "",
+   "n": 13200,
+   "scope": "118575, 13,200 GT feet held out in time, raw-panorama MOT feet; 'shipped' map = the job's calibration.json, a REMAP built from ST2's own homography+mapx chain - not an operator-clicked client map",
+   "status": "OK",
+   "value": {
+    "median_m": 1.188861914265443,
+    "p90_m": 3.4789270324227,
+    "within_2m": 0.6993181818181818
+   }
+  },
+  "calib.oracle.recall_m.oracle": {
+   "error": "",
+   "n": 5280,
+   "scope": "118575, 5,280 GT player-instants, ORACLE MAP - not shippable",
+   "status": "OK",
+   "value": 0.7532196969696969
+  },
+  "calib.oracle.recall_m.shipped": {
+   "error": "",
+   "n": 5280,
+   "scope": "118575, 5,280 GT player-instants, every 25th clip frame, 2 m gate; 'shipped' map = the job's calibration.json, a REMAP built from ST2's own homography+mapx chain - not an operator-clicked client map",
+   "status": "OK",
+   "value": 0.5748106060606061
+  },
+  "calib.oracle.recall_px.ceiling": {
+   "error": "",
+   "n": 5280,
+   "scope": "118575, 5,280 GT player-instants, IMAGE SPACE, 1.0 h gate",
+   "status": "OK",
+   "value": 0.7835227272727273
+  },
+  "events.ceiling.shiftcopy.drive.ap": {
+   "error": "",
+   "n": 1775,
+   "scope": "ST2 val split (117093+132877), GT-fed, mean of 5 seeds",
+   "status": "OK",
+   "value": 0.5775678188977998
+  },
+  "events.floor.chance.drive.ap": {
+   "error": "",
+   "n": 1775,
+   "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+   "status": "OK",
+   "value": 0.117387209980759
+  },
+  "events.floor.chance.pass.ap": {
+   "error": "",
+   "n": 2029,
+   "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+   "status": "OK",
+   "value": 0.12543859624165132
+  },
+  "events.floor.metronome.drive.ap": {
+   "error": "",
+   "n": 1775,
+   "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+   "status": "OK",
+   "value": 0.14142693409302245
+  },
+  "events.floor.metronome.pass.ap": {
+   "error": "",
+   "n": 2029,
+   "scope": "ST2 val split (117093+132877), 4 periods, mean of 5 seeds",
+   "status": "OK",
+   "value": 0.15881203754384007
+  },
+  "events.model.map.val": {
+   "error": "FileNotFoundError: no event model at model/models/event_model.pt: sprint P1 (geometry-only per-player classifier) is not trained, so nothing in this repo is scored against the val floors. The floors themselves resolve.",
+   "n": 4532,
+   "scope": "ST2 val split (117093+132877), tol 1.0 s - no model exists",
+   "status": "FAILED",
+   "value": null
+  },
+  "model.role.accuracy": {
+   "error": "",
+   "n": 3081,
+   "scope": "4 held-out clips, 3,081 crops, epoch chosen on val, test opened once per seed",
+   "status": "OK",
+   "value": {
+    "max": 0.889,
+    "median": 0.8747,
+    "min": 0.8277,
+    "n_seeds": 3
+   }
+  },
+  "model.role.goalkeeper_recall": {
+   "error": "",
+   "n": 119,
+   "scope": "4 held-out clips, 119 keeper crops",
+   "status": "OK",
+   "value": {
+    "max": 0.8908,
+    "median": 0.8403,
+    "min": 0.8151,
+    "n_seeds": 3
+   }
+  },
+  "model.role.referee_recall": {
+   "error": "",
+   "n": 312,
+   "scope": "4 held-out clips, 312 referee crops",
+   "status": "OK",
+   "value": {
+    "max": 0.8622,
+    "median": 0.8429,
+    "min": 0.8397,
+    "n_seeds": 3
+   }
+  },
+  "product.ball.correct": {
+   "error": "",
+   "n": 7649,
+   "scope": "9 SoccerTrack clips from 2 matches, stride 1 (every frame; the product runs stride 2, see .s2); otherwise the SHIPPED settings: coreml rfdetr-medium 576, tile 1024, overlap 0.25, player conf 0.5, ball conf 0.05 (detectors.BALL_CONF), the shipped class-agnostic merge detectors._merge 0.55 (N70 M0), BallPicker marking gate off, each clip's calib_<clip>.json where one exists (6 top clips, perspective; the 3 side clips have none); STOCK weights, no fine-tuned checkpoint wired. Candidates: model/validation/fixtures/ball/m0_cands.json.gz",
+   "status": "OK",
+   "value": 0.27899071774088113
+  },
+  "product.ball.correct.s2": {
+   "error": "",
+   "n": 3824,
+   "scope": "9 SoccerTrack clips from 2 matches at the SHIPPED settings: stride 2 (even frames), coreml rfdetr-medium 576, tile 1024, overlap 0.25, player conf 0.5, ball conf 0.05, merge detectors._merge 0.55 (N70 M0), marking gate off, calibrations as product.ball.correct; the denominator is the ball-truth frames among the even frames",
+   "status": "OK",
+   "value": 0.2622907949790795
+  },
+  "product.ball.oracle": {
+   "error": "",
+   "n": 7649,
+   "scope": "same 9 clips and candidates as product.ball.correct, stride 1: coreml 576, tile 1024, overlap 0.25, player conf 0.5, ball conf 0.05, merge detectors._merge 0.55 (N70 M0); the oracle applies the shape gates only (no calibration)",
+   "status": "OK",
+   "value": 0.46816577330369985
+  },
+  "product.detect.recall_m": {
+   "error": "",
+   "n": 880,
+   "scope": "118575 band canvas (the job's remap calibration), coreml r576 t1024 - the SHIPPED detector, built by detectors.get_detector('coreml') - conf 0.5, tile overlap 0.25 (reverted in 8472cef), prior = the PITCH POLYGON ALONE: detsweep calls make_prior with no gates and so has measured the polygon since 0a5a7cd, while the product only joined it at c6b8fb8. 40 frames from 3000 every 1500",
+   "status": "OK",
+   "value": 0.6363636363636364
+  },
+  "product.detect.recall_px": {
+   "error": "",
+   "n": 880,
+   "scope": "118575 band canvas (the job's remap calibration), coreml r576 t1024 - the SHIPPED detector - conf 0.5, tile overlap 0.25 (reverted in 8472cef), prior = the PITCH POLYGON ALONE (detsweep has measured the polygon since 0a5a7cd; the product joined it at c6b8fb8), 40 frames from 3000 every 1500",
+   "status": "OK",
+   "value": 0.8534090909090909
+  },
+  "product.distance.coverage": {
+   "error": "",
+   "n": 22,
+   "scope": "118575 1st half, tracks.split.json, 22 GT players",
+   "status": "OK",
+   "value": 0.7036625998276504
+  },
+  "product.distance.ratio_matched": {
+   "error": "",
+   "n": 22,
+   "scope": "118575 1st half, tracks.split.json, 22 GT players, coverage-matched",
+   "status": "OK",
+   "value": 1.1900843658767437
+  },
+  "product.distance.ratio_raw": {
+   "error": "",
+   "n": 22,
+   "scope": "118575 1st half, tracks.split.json, 22 GT players, 0.4 s window",
+   "status": "OK",
+   "value": 0.795065400664513
+  },
+  "product.distance.ratio_raw.p21id": {
+   "error": "",
+   "n": 176,
+   "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPPED at c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch, then the identity stage): N21's .p21id tracks, written 2026-09-13 - STORED, their stamp is whatever check.py status reads now, not a claim here; N6's calibration reused; 8 STC2025 clips: 132831 excluded by the benchmark and 132877 DROPPED for its mirrored ground-truth feed, per dist_eval.stc_gt's own rule; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); n=1 configuration; POOLED over all 176 GT players",
+   "status": "OK",
+   "value": 0.8728
+  },
+  "product.identity.contaminated": {
+   "error": "",
+   "n": 100114,
+   "scope": "118575 1st half, tracks.split.json, PER DETECTION (stride 10)",
+   "status": "OK",
+   "value": 33.2
+  },
+  "product.player.distance.spread": {
+   "error": "",
+   "n": 175,
+   "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPPED at c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch, then the identity stage): N21's .p21id tracks, written 2026-09-13 - STORED, their stamp is whatever check.py status reads now, not a claim here; N6's calibration reused; 8 STC2025 clips: 132831 excluded by the benchmark and 132877 DROPPED for its mirrored ground-truth feed, per dist_eval.stc_gt's own rule; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); n=1 configuration; PER PLAYER not pooled; 175 of the 176 GT players form a ratio - the one with no covered metres drops out, which n says",
+   "status": "OK",
+   "value": {
+    "player_ratio_corr_m_per_px": -0.121,
+    "player_ratio_cv": 0.2406,
+    "player_ratio_max": 2.8372,
+    "player_ratio_median": 1.2278,
+    "player_ratio_min": 0.7584,
+    "player_ratio_n": 175
+   }
+  },
+  "product.possession.chance.contact": {
+   "error": "",
+   "n": 529,
+   "scope": "118575 half 1, 300-1800 s, 300 random trials; GT-fed ceiling, not the product",
+   "status": "OK",
+   "value": 0.45758445440956647
+  },
+  "product.possession.f1.contact": {
+   "error": "",
+   "n": 529,
+   "scope": "118575 half 1, 300-1800 s, GROUND-TRUTH tracks, trial 140; GT-fed ceiling, not the product",
+   "status": "OK",
+   "value": 0.5775784753363228
+  },
+  "product.possession.f1.contact.pipeline": {
+   "error": "RuntimeError: possession cannot run on pipeline tracks: PathCRF needs exactly 22 tracks, tracks.split.json has 413; calibration rms 2.85 m > possession.MAX_RMS_M 1.5 m",
+   "n": 529,
+   "scope": "118575 half 1, tracks.split.json - sprint P2, not yet runnable",
+   "status": "FAILED",
+   "value": null
+  },
+  "product.possession.metronome.contact": {
+   "error": "",
+   "n": 529,
+   "scope": "118575 half 1, 300-1800 s, CONTACT, tol 1.0 s, 20 phases; GT-fed ceiling, not the product",
+   "status": "OK",
+   "value": 0.59847533632287
+  },
+  "product.possession.metronome.recall.pass": {
+   "error": "",
+   "n": 283,
+   "scope": "118575 half 1, 300-1800 s, PASS family, tol 2.5 s, 20 phases; GT-fed ceiling, not the product",
+   "status": "OK",
+   "value": 0.9602473498233216
+  },
+  "product.possession.recall.pass": {
+   "error": "",
+   "n": 283,
+   "scope": "118575 half 1, 300-1800 s, GROUND-TRUTH tracks, tol 2.5 s; GT-fed ceiling, not the product",
+   "status": "OK",
+   "value": 0.9045936395759717
+  },
+  "product.speed.clamped_frac": {
+   "error": "",
+   "n": 384,
+   "scope": "118575 1st half, tracks.split.json, per FRAGMENT",
+   "status": "OK",
+   "value": 0.4661458333333333
+  },
+  "product.speed.peak_ms": {
+   "error": "",
+   "n": 175,
+   "scope": "PRODUCT config per app/server/jobs.py AS IT SHIPPED at c6b8fb8 and 8472cef (coreml r576, conf 0.5, stride 2, pitch polygon only, tile overlap 0.25, metric stitch, then the identity stage): N21's .p21id tracks, written 2026-09-13 - STORED, their stamp is whatever check.py status reads now, not a claim here; N6's calibration reused; 8 STC2025 clips: 132831 excluded by the benchmark and 132877 DROPPED for its mirrored ground-truth feed, per dist_eval.stc_gt's own rule; attribution in PIXELS because a 2 m metre gate under an 8.27 m map measures the map (n12-calibration (not published)); n=1 configuration; PER PLAYER not pooled; each player's peak over that player's fragments, so ours is a max across id switches and GT's is not; ours over the 175 players holding a fragment, GT's over all 176",
+   "status": "OK",
+   "value": {
+    "gt_peak_max_ms": 15.321284333623225,
+    "our_peak_max_ms": 23.848951809208035,
+    "player_gt_peak_median_ms": 7.358,
+    "player_peak_median_ms": 10.6605
+   }
+  },
+  "product.touch.f1.contact.gtball": {
+   "error": "",
+   "n": 1020,
+   "scope": "118575 half 1 entire, GT ball + GT tracks, near_m 1.5 CHOSEN FROM A 5-POINT SWEEP on this same half - tuned, not held out",
+   "status": "OK",
+   "value": 0.6308926780341023
+  },
+  "team.accuracy.detection": {
+   "error": "",
+   "n": 4101,
+   "scope": "118575 1st half, 300 frames",
+   "status": "OK",
+   "value": 0.6967
+  },
+  "team.accuracy.track": {
+   "error": "",
+   "n": 30,
+   "scope": "118575 1st half, 300 frames",
+   "status": "OK",
+   "value": 0.93
+  },
+  "tracker.assa.c03s.all10": {
+   "error": "",
+   "n": 10,
+   "scope": "all 10 sequences; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files",
+   "status": "OK",
+   "value": 0.23874245009333164
+  },
+  "tracker.assa.p05.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration SIMULATED CLICKS",
+   "status": "OK",
+   "value": 0.140502330552779
+  },
+  "tracker.assa.p05m.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration ST2's homography+mapx as remap",
+   "status": "OK",
+   "value": 0.2669385227105518
+  },
+  "tracker.assa.p05r.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; B's post-prior boxes in clip px, A's calibration, no A prior",
+   "status": "OK",
+   "value": 0.26390652634986445
+  },
+  "tracker.deta.c03s.all10": {
+   "error": "",
+   "n": 10,
+   "scope": "all 10 sequences; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files",
+   "status": "OK",
+   "value": 0.5658844717744025
+  },
+  "tracker.deta.p05.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration SIMULATED CLICKS",
+   "status": "OK",
+   "value": 0.403729174525045
+  },
+  "tracker.deta.p05m.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration ST2's homography+mapx as remap",
+   "status": "OK",
+   "value": 0.599295849983786
+  },
+  "tracker.deta.p05r.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; B's post-prior boxes in clip px, A's calibration, no A prior",
+   "status": "OK",
+   "value": 0.6071319897682051
+  },
+  "tracker.detpr.p19v0.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v0 (both gates - the SHIPPED prior; must reproduce tracker.*.p05.common7); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.7567257047626484
+  },
+  "tracker.detpr.p19v1.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v1 (no prior at all); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.7051279513233071
+  },
+  "tracker.detpr.p19v2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v2 (pitch polygon only, height gate OFF) - THIS IS THE SHIPPED PRIOR from c6b8fb8 on; one no-prior detection pass, gates applied offline, which N19's v0 arm licenses by reproducing the inline path to 0.000; n=4 arms",
+   "status": "OK",
+   "value": 0.7728166437940479
+  },
+  "tracker.detpr.p19v3.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v3 (height gate only, polygon OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.6845215419299053
+  },
+  "tracker.detpr.p20v0.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v0 (both gates - the shipped prior on a GOOD calibration; must reproduce tracker.*.p05m.common7); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.7523056283510143
+  },
+  "tracker.detpr.p20v1.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v1 (no prior at all); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.7149350080421237
+  },
+  "tracker.detpr.p20v2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v2 (pitch polygon only, height gate OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.7448563366993682
+  },
+  "tracker.detpr.p20v3.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v3 (height gate only, polygon OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.7408627273242707
+  },
+  "tracker.detre.p19v0.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v0 (both gates - the SHIPPED prior; must reproduce tracker.*.p05.common7); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.4387890917153873
+  },
+  "tracker.detre.p19v1.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v1 (no prior at all); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.6700146086388749
+  },
+  "tracker.detre.p19v2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v2 (pitch polygon only, height gate OFF) - THIS IS THE SHIPPED PRIOR from c6b8fb8 on; one no-prior detection pass, gates applied offline, which N19's v0 arm licenses by reproducing the inline path to 0.000; n=4 arms",
+   "status": "OK",
+   "value": 0.6689792680837082
+  },
+  "tracker.detre.p19v3.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v3 (height gate only, polygon OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.4387554012391485
+  },
+  "tracker.detre.p20v0.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v0 (both gates - the shipped prior on a GOOD calibration; must reproduce tracker.*.p05m.common7); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.6750116283680583
+  },
+  "tracker.detre.p20v1.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v1 (no prior at all); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.6815989277139748
+  },
+  "tracker.detre.p20v2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v2 (pitch polygon only, height gate OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.6807666450114646
+  },
+  "tracker.detre.p20v3.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v3 (height gate only, polygon OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.6752848610687747
+  },
+  "tracker.hota.c03s.all10": {
+   "error": "",
+   "n": 10,
+   "scope": "all 10 sequences; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files",
+   "status": "OK",
+   "value": 0.36335270372458395
+  },
+  "tracker.hota.c03s.heldout": {
+   "error": "",
+   "n": 8,
+   "scope": "HELD OUT, 8 sequences; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files",
+   "status": "OK",
+   "value": 0.3558981301606944
+  },
+  "tracker.hota.c03s.tuned": {
+   "error": "",
+   "n": 2,
+   "scope": "TUNED 128057+132831; RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files",
+   "status": "OK",
+   "value": 0.3931709979801423
+  },
+  "tracker.hota.c03s_e2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "RESEARCH CONFIG per st2_run.py: coreml, conf 0.3, stride 1, --roles, no calibration, HeightScale stitch - not the product path; recorded in 5 of the 10 files; the same 7 sequences, GT every 2nd frame",
+   "status": "OK",
+   "value": 0.3737551123010715
+  },
+  "tracker.hota.p05.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration SIMULATED CLICKS",
+   "status": "OK",
+   "value": 0.2355949104218069
+  },
+  "tracker.hota.p05m.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; calibration ST2's homography+mapx as remap",
+   "status": "OK",
+   "value": 0.3943787366933387
+  },
+  "tracker.hota.p05r.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; B's post-prior boxes in clip px, A's calibration, no A prior",
+   "status": "OK",
+   "value": 0.3961773648372203
+  },
+  "tracker.hota.p19v0.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v0 (both gates - the SHIPPED prior; must reproduce tracker.*.p05.common7); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.2355949104218069
+  },
+  "tracker.hota.p19v1.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v1 (no prior at all); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.35752126867253003
+  },
+  "tracker.hota.p19v2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v2 (pitch polygon only, height gate OFF) - THIS IS THE SHIPPED PRIOR from c6b8fb8 on; one no-prior detection pass, gates applied offline, which N19's v0 arm licenses by reproducing the inline path to 0.000; n=4 arms",
+   "status": "OK",
+   "value": 0.37113122916654284
+  },
+  "tracker.hota.p19v3.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N19 arm v3 (height gate only, polygon OFF); one no-prior detection pass, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.2291759092601751
+  },
+  "tracker.hota.p20v0.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v0 (both gates - the shipped prior on a GOOD calibration; must reproduce tracker.*.p05m.common7); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.3943787366933387
+  },
+  "tracker.hota.p20v1.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v1 (no prior at all); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.3956614206660059
+  },
+  "tracker.hota.p20v2.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v2 (pitch polygon only, height gate OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.4017758483400041
+  },
+  "tracker.hota.p20v3.common7": {
+   "error": "",
+   "n": 7,
+   "scope": "PRODUCT config per app/server/jobs.py (coreml, conf 0.5, stride 2, scene prior, metric stitch) AS IT SHIPPED UNTIL c6b8fb8 - i.e. with BOTH prior gates. From c6b8fb8 the product applies the pitch polygon ALONE, and the tracker.*.p19v2.common7 family is that configuration measured; these rows are the superseded one, kept because N19/N20 are what judged it. 7 held-out ST2 sequences; GT every 2nd frame; n=1 configuration; N20 arm v3 (height gate only, polygon OFF); GOOD calibration (ST2 remap), one no-gate detection pass on its canvas, gates applied offline, n=4 arms",
+   "status": "OK",
+   "value": 0.3931771864226593
+  }
+ }
+}

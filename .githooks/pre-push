@@ -1,0 +1,201 @@
+#!/bin/sh
+# Two gates, and the second one is the current system.
+#
+# verify_claims re-runs every @M command and blocks if a recorded number no
+# longer prints. It is the older, paste-the-number mechanism and it still
+# catches real drift, so it stays.
+#
+# api.py --verify was NOT enforced here until 2026-09-10, which docs/audits/api-adequacy.md
+# found and named: the registry, the golden, the reasons and the whole change-
+# control story were advisory while the hook enforced the thing they replaced.
+# A ratchet nothing turns is a ratchet.
+#
+# WHICH GATES RUN depends on what the push changes, because the two re-run gates
+# and mutate.py take over an hour and a push of UI code or prose cannot move a
+# measured number. They run when the push touches model/engine/, model/validation/, the
+# vendored fixtures, the footage READMEs, app/server/jobs.py (the shipped config),
+# the requirements, or adds/removes any line carrying an @M tag. Anything else
+# gets the fast relational gates below only. A delete-only push runs nothing:
+# it sends no content. FUTTRAFFIC_FULL_GATE=1 forces every gate.
+#
+# AND A GATE THAT WAS KILLED IS NOT A GATE THAT FAILED. run_gate tells the two
+# apart - see .githooks/gate.sh. On 2026-09-19 this hook printed "push blocked:
+# a claim drifted" twice over a verify_claims that had been SIGTERMed because
+# the push was running as a background task. Nothing had drifted; the run had
+# not finished. One of four blocks that night was a real finding, and a gate
+# that cries drift is a gate that gets bypassed.
+. "$(dirname "$0")/gate.sh"
+# 10 ms, and blocking: if the killed-vs-failed classifier is broken, every
+# message below it is suspect. A guard with no runnable check is decoration.
+sh "$(dirname "$0")/gate.sh" --selfcheck >/dev/null || {
+  echo "push blocked: .githooks/gate.sh cannot tell a killed gate from a failed one."
+  exit 1
+}
+ZERO=0000000000000000000000000000000000000000
+HEAVY=${FUTTRAFFIC_FULL_GATE:-0}
+# One flag per check.py section: its --fast runs only when the push touches a
+# file in that section's import closure, its fixtures or check.py itself (or
+# FULL_GATE, or an unknown base) - model/validation/triggers.py derives the set.
+# calib --fast was ~25 s on EVERY push before 2026-09-28.
+ALL_SECTIONS='CALIB=1; TRACK=1; DETECT=1; IDENTITY=1; MEASURE=1; BALL=1'
+CALIB=$HEAVY
+TRACK=$HEAVY
+DETECT=$HEAVY
+IDENTITY=$HEAVY
+MEASURE=$HEAVY
+BALL=$HEAVY
+PUSHED=0
+while read -r _lref lsha _rref rsha; do
+  [ "$lsha" = "$ZERO" ] && continue
+  PUSHED=1
+  base=$rsha
+  [ "$rsha" = "$ZERO" ] && base=$(git merge-base "$lsha" origin/main 2>/dev/null)
+  if [ -z "$base" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+    HEAVY=1   # cannot tell what changed, so assume everything did
+    eval "$ALL_SECTIONS"
+    continue
+  fi
+  git diff --name-only "$base" "$lsha" |
+    grep -qE '^(model/engine/|model/validation/|data/vendor/|data/footage/|app/server/jobs\.py$|app/server/requirements)' && HEAVY=1
+  # THE HOOK ITSELF: a change to any gate is a change to what every push is
+  # checked against, so it runs everything the gates run.
+  git diff --name-only "$base" "$lsha" | grep -q '^\.githooks/' && HEAVY=1
+  # WHICH check.py SECTIONS: derived from each section's import closure by
+  # model/validation/triggers.py, not typed in. Six hand regexes used to stand
+  # here, and pitch.py, rolenet.py, paths.py and assoc_eval.py reached sections
+  # none of them named. FAIL-CLOSED like the tag check below: anything but a
+  # list of known section names (a traceback, an empty line) runs all six.
+  secs=$(git diff --name-only "$base" "$lsha" |
+         .venv/bin/python model/validation/triggers.py --sections 2>&1)
+  case $secs in
+    NONE) ;;
+    "") eval "$ALL_SECTIONS" ;;
+    *) for s in $secs; do
+         case $s in
+           calib|track|detect|identity|measure|ball) eval "$(echo "$s" | tr a-z A-Z)=1" ;;
+           *) eval "$ALL_SECTIONS" ;;
+         esac
+       done ;;
+  esac
+  # A TAG IS TWO PARTS, and the grep that used to stand here saw only the first.
+  # `^[-+].*@M` fires on a changed tag LINE and is blind to its indented
+  # continuation - the clip, the split, the conf, the n=. Rewriting `conf 0.05`
+  # to `conf 0.5` under an unchanged tag changes no line carrying a sigil, so
+  # the push was classified as prose and skipped every heavy gate. That exact
+  # confusion is this repo's headline failure, named in CLAUDE.md.
+  #
+  # FAIL-CLOSED: the check prints a WORD, and anything that is not LIGHT runs
+  # the gates - including a traceback, which exits 1 exactly like "no tag was
+  # touched" and would otherwise disarm the trigger in silence.
+  case $(git diff --unified=25 "$base" "$lsha" |
+         .venv/bin/python model/validation/verify_claims.py --touches-tag 2>&1) in
+    LIGHT) ;;
+    *) HEAVY=1 ;;
+  esac
+done
+[ "$PUSHED" = 0 ] && exit 0
+if [ "$HEAVY" = 1 ]; then
+# 600 s, not the 300 default: dist_eval.py --n25 took 5.0 min and then 6:51 on
+# 2026-09-16 and printed its values both times; 300 s failed it as a TIMEOUT.
+# --jobs is verify_claims' own default (4) written out, not a change to it: the
+# point is FUTTRAFFIC_GATE_JOBS, which lets a timing run take the serial and the
+# parallel arm AT THE SAME SCOPE - this whole hook, not verify_claims alone.
+# Two numbers that differ in scope and sit within 3 min of each other are the
+# easiest confound in this repo to publish by accident.
+run_gate "verify_claims --all" \
+    .venv/bin/python model/validation/verify_claims.py --all --timeout 600 \
+    --jobs "${FUTTRAFFIC_GATE_JOBS:-4}" || {
+  # run_gate: 1 = it finished and refused, 2 = it was killed and measured nothing.
+  if [ $? = 1 ]; then
+    echo "push blocked: a claim did not verify. The FAILED line above says which"
+    echo "kind - only DRIFT is a number that moved; TIMEOUT, ERROR and KILLED are not."
+    echo "Fix the number or the tag, or --no-verify if you know why."
+  fi
+  exit 1
+}
+run_gate "api.py --verify" .venv/bin/python model/validation/api.py --verify || {
+  [ $? = 2 ] && exit 1
+  echo "push blocked: a measurement moved against model/validation/api-golden.json."
+  echo "Either it was intended - then re-snapshot THOSE IDS, WITH A REASON:"
+  echo "    .venv/bin/python model/validation/api.py --snapshot \"why it moved\" --only <id>..."
+  echo "(never a blanket snapshot: it re-freezes every id, wrong ones included)"
+  echo "or it is a bug. --no-verify if you know why."
+  exit 1
+}
+# The shipped panorama calibration re-run on committed real frames: the synthetic
+# self-checks cannot see a real camera move or every real panorama get refused.
+if [ "$CALIB" = 1 ]; then
+run_gate "check.py calib --real" .venv/bin/python model/validation/check.py calib --real || {
+  [ $? = 2 ] && exit 1
+  echo "push blocked: real-footage calibration vs model/validation/fixtures/calib/golden.json - the"
+  echo "REGRESSION or COULD NOT RUN line above says which. A bug, or intended - then: .venv/bin/python model/validation/check.py calib --rebless \"why it moved\""
+  exit 1
+}
+fi
+else
+  echo "pre-push: no engine, validation, fixture, shipped-config or @M change - skipping verify_claims, api --verify and mutate"
+fi
+# 2026-09-12. Two more, both RELATIONAL, because the failures that got through
+# both gates above that day were between places rather than in one. Every check
+# above inspects a single number, command or id; the height gate shipped for a
+# day because make_prior and track.run each passed their own checks and only
+# the pair was wrong.
+#
+# shipped_config: the product config resolved from app/server/jobs.py outward, and
+# every harness and constant that claims to mirror it, checked against it.
+.venv/bin/python model/validation/shipped_config.py || {
+  echo "push blocked: a harness or a copied constant disagrees with what ships."
+  echo "One of the two places is wrong. Fix the copy, not the check."
+  exit 1
+}
+# check.py <section> --fast, each only when the push touched that section (flags above).
+# calib: self-checks plus the golden camera read back through from_dict. track: the stored
+# 118575 detection cache replayed through track.run, sha vs golden. detect: the shipped
+# detector on a 20-frame excerpt, boxes vs golden. identity: that replay through
+# jobs.apply_identity on committed crop/OCR lookups, plus a merge-heavy tracks window,
+# exact sha vs golden. measure: that stage's output (+ one merge, one split) through
+# _derive_tracks and stats.build_match, exact match.json sha vs golden, plus stats/frames/
+# roles/test_golden. ball: the shipped merge's ball candidates (two committed excerpts) and the
+# detect fixture's frames on the spherical TCAL through track.track, ball rows + counts vs golden.
+# Exit 2 (could not run) blocks too.
+for s in calib track detect identity measure ball; do
+  eval "on=\$$(echo $s | tr a-z A-Z)"
+  [ "$on" = 1 ] || continue
+  run_gate "check.py $s --fast" .venv/bin/python model/validation/check.py $s --fast || {
+    echo "push blocked: check.py $s --fast - the REGRESSION or COULD NOT RUN line above says which."
+    echo "A bug, or intended - then: .venv/bin/python model/validation/check.py $s --rebless \"why it moved\""
+    exit 1
+  }
+done
+# derived: every @D actually evaluated, and every untagged `a ≈ expr` in a doc
+# evaluated too. verify_claims calls @D 'not machine-checkable by construction';
+# the arithmetic is written in literal form, so it is, and on 2026-09-12 an
+# untagged one was twenty percent wrong on a shipped surface.
+.venv/bin/python model/validation/derived.py || {
+  echo "push blocked: a derived number does not follow from its own arithmetic."
+  exit 1
+}
+# The rest of docs/decisions/harness-design.md, blocking. Each was shown to fail on its own
+# planted defect before being put here - model/validation/mutate.py is the proof, and
+# it runs last so a check that has quietly stopped being able to fail stops the push.
+.venv/bin/python model/validation/bare_markers.py || {
+  echo "push blocked: a file gained bare sigils - claims dressed as evidence with nothing behind them."
+  exit 1
+}
+.venv/bin/python model/validation/protocol.py || {
+  echo "push blocked: a pass rule was committed AFTER the result it judges, or the registry names text that is gone."
+  exit 1
+}
+# Every docs/ path and markdown link in the repo resolves (allowlist:
+# model/validation/doclinks_allow.txt). Self-check first: it plants a move without
+# the rewrite and a split without the anchor map, and must see both.
+{ .venv/bin/python model/validation/doclinks.py --selfcheck && .venv/bin/python model/validation/doclinks.py --check; } || {
+  echo "push blocked: a reference to a docs/ path is dead - the lines above say which. Moving docs: doclinks.py --rewrite MAP.tsv."
+  exit 1
+}
+if [ "$HEAVY" = 1 ]; then
+.venv/bin/python model/validation/mutate.py || {
+  echo "push blocked: a check no longer fails on the defect it exists to catch."
+  exit 1
+}
+fi

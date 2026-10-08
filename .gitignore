@@ -1,0 +1,261 @@
+# Environments. BOTH spellings of each, and that is not redundant: a trailing
+# slash matches a DIRECTORY and never a symlink standing at the same path, so
+# `.venv/` alone lets `git add -A` take the `.venv -> ../fut traffic/.venv`
+# link every worktree needs. That is exactly how model/models,
+# model/validation/out and model/validation/role_data were committed as
+# absolute-path symlinks twice (see model/validation/lint_truth.py check 8,
+# which now refuses a tracked symlink outright).
+.venv
+.venv/
+venv
+venv/
+env
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Tool state
+.gstack/
+
+# Runtime state written by the dev launcher: pids and tailed logs for the two
+# processes. Ephemeral by definition, and a stale pid in git is worse than no
+# pid because jobs.py's liveness check reads one.
+/.run/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Pipeline outputs written at the repo root. Leading slash on purpose: these
+# match ONLY the root copies, never a committed fixture with the same name.
+# tracks.json is ~57 MB for one half-match and is reproducible from the video,
+# so it must never enter git history - you cannot remove it later without
+# rewriting every commit that follows.
+/tracks.json
+/tracks.json.tmp
+/calibration.json
+/web/match.json
+/season.json
+
+# Job store. jobs.py creates this on first run and writes UPLOADED USER
+# VIDEO into data/jobs/<id>/. Committing that is a disclosure incident, not a
+# repo-size problem. Ignored before it exists rather than after.
+#
+# `/data/*`, not `/data/`: the footage READMEs and two vendored fixtures live
+# under data/ too, and git cannot re-include anything under an excluded
+# DIRECTORY. Everything else in data/ stays ignored, jobs included.
+/data/*
+
+# Source footage never belongs in git.
+*.mp4
+*.mov
+*.mkv
+*.avi
+# ...except the 20-frame excerpt check.py detect runs on (1.4 MB, an h264 stream
+# copy of 118575's first 20 frames - author decision 2026-09-28).
+!model/validation/fixtures/detect/*.mp4
+
+# Ground-truth caches, ~4.6 MB each, derived by `validate.py --cache` from raw
+# SoccerTrack halves that are ~2.7 GB apiece. Ignore them EXCEPT the one fixture
+# test_golden.py needs: without it that test hits its SKIP path and exits 0,
+# reporting success while testing nothing on every fresh clone.
+model/validation/soccertrack/*.gz
+!model/validation/soccertrack/118575_1st.tracks.json.gz
+
+# DELIBERATELY COMMITTED, do not add these:
+#   golden.json          - 1.7 KB, and it is the entire regression contract
+#   model/validation/*.md      - measured results behind the README's claims
+#   model/validation/run_*/    - 24 KB of accuracy reports, i.e. the evidence
+#   web/*.html           - the zero-build front end IS the source
+
+# ---------------------------------------------------------------------------
+# Footage and its derived artifacts. All of it is downloadable from the sources
+# recorded in the READMEs, so it is a cache, not source. Excluded WHOLESALE
+# rather than by extension: an earlier version of this file only listed video
+# extensions and would have committed 54 MB of remap tables (25 MB), evidence
+# PNGs (15 MB) and annotation CSVs. Keep the READMEs - the provenance and
+# licence of every clip is the part that actually matters and cannot be
+# re-derived.
+!/data/footage/
+/data/footage/*
+!/data/footage/README.md
+!/data/footage/soccertrack/
+/data/footage/soccertrack/*
+!/data/footage/soccertrack/README.md
+
+# Scratch outputs. model/validation/run*/ is deliberately NOT here: those reports are
+# ~24 KB and they are the evidence behind (and now the retraction of) the numbers
+# in NOISE_TOLERANCE.md. Keeping them is what makes the retraction checkable.
+/web/tracks_demo.json
+/web/match_demo.json
+/web/calibration_demo.json
+/serve_selfcheck.bin
+.serve_selfcheck.bin
+
+# Claude Code worktrees and local session state — never committed.
+.claude/*
+!.claude/CLAUDE.md
+# Project skills are shared tooling, not session state.
+!.claude/skills/
+
+# Third-party checkouts studied but not vendored into the package. The glob is
+# `/data/vendor/*` rather than `/data/vendor/` so a directory can be excepted
+# below: re-including a path under an excluded DIRECTORY is impossible in git.
+!/data/vendor/
+/data/vendor/*
+
+# EXCEPTION, and the reason is the same one the sigils exist for: ssac26 IS
+# vendored - 12 KB of BSD-3 code and the 245 KB fixture that
+# model/validation/vision_eval.py's @M numbers are measured on. A measurement whose
+# inputs are not in the repo cannot be re-run from a fresh checkout, and at this
+# size there is no reason it should not be. data/vendor/ssac26/PROVENANCE.md records
+# the upstream commit and every local edit.
+!/data/vendor/ssac26/
+
+# Same exception, same reason: SkillCorner's published body-pose SAMPLE (1.8 MB,
+# MIT) is the fixture model/validation/bodypose_eval.py's @M numbers are measured on.
+# The FULL matches are not here - they are a 97 MB LFS file per match and live
+# at ~/Downloads/skillcorner-opendata, the same way ~/Downloads/st2 does.
+!/data/vendor/skillcorner/
+
+# A trailing slash matches a DIRECTORY, not a SYMLINK at the same path - and these
+# three have been committed as absolute-path symlinks twice now by `git add -A` in a
+# worktree where they were linked to a checkout elsewhere. role_data's target is the
+# deleted DFL export, so the pointer outlived the data it names. Both forms, on purpose.
+/model/models
+# `/model/validation/out` used to stand here, and it excluded the DIRECTORY.
+# Since 2026-09-20 nine small result files under it are cited evidence and must
+# be tracked, and git cannot re-include a file whose parent directory is
+# excluded - so this excludes the CONTENTS instead. `/*` still matches a symlink
+# standing at a child path; what it no longer does is block descent.
+#
+# THE SYMLINK DEFENCE FOR THIS ONE PATH MOVED, it was not dropped, and it moved
+# to two things that run rather than a pattern that has to be read correctly:
+# model/validation/lint_truth.py check 8 refuses ANY tracked symlink from the
+# index, and verify_claims.py's preflight refuses to run a single claim if
+# model/validation/out is a symlink (api.py's self-check breaks on one anyway).
+# A pattern cannot tell a symlink from a directory it must descend into; those
+# two checks can, and they fail loudly.
+/model/validation/out/*
+/model/validation/role_data
+# CoreML model bundles: 58 MB, rebuilt with model/engine/coreml_worker.py --export
+/model/models/
+
+# model/validation/tune.py --selfcheck writes its sweep here; generated, not source
+/model/validation/tune_runs/
+
+# Crops + downloaded dataset for model/validation/train_roles.py: 80 MB and 372 JPEGs,
+# both rebuilt by `--fetch`. The source of truth is the CC BY 4.0 dataset it
+# names, not a copy of it in git.
+/model/validation/role_crops.npz
+/model/validation/role_data/
+
+# Benchmark and eval artefacts: 335 MB of tracks JSON, contact sheets and
+# TrackEval staging. All regenerated by model/validation/st2_*.py.
+#
+# EXCEPT THE RESULT FILES A CITED TAG READS. Until 2026-09-20 those nine numbers
+# were re-derived by their producer on every push, so the evidence was the
+# COMMAND and the file was scratch. The conversions that day made the evidence
+# the FILE - and a file under an ignored directory is evidence that exists on one
+# machine's disk. 96 KB against a repo whose whole premise is that a number must
+# be checkable is not a trade worth making.
+#
+# THE FORM MATTERS, twice over:
+#  * `model/validation/out/` excluded the DIRECTORY, and git cannot re-include a
+#    file whose parent directory is excluded. So the contents are excluded with
+#    `/*` and each level re-included on the way down. `/*` also matches a symlink;
+#    a bare `dir/` does not, which is how three symlinks were committed twice.
+#  * the re-includes for directories keep their trailing slash ON PURPOSE. That
+#    form matches a real directory and never a symlink, so if one of these ever
+#    becomes a link into another checkout, the negation quietly stops applying
+#    and nothing is committed - it fails closed rather than committing a link.
+model/validation/out/*
+
+# The four-arm ball result, 1.7 KB. A cited tag that reads a file nobody else has
+# is not re-runnable (same rule as the nine stc2025 artefacts below).
+!model/validation/out/ball/
+model/validation/out/ball/*
+!model/validation/out/ball/cmp.json
+
+!model/validation/out/stc2025/
+model/validation/out/stc2025/*
+!model/validation/out/stc2025/n22_results.json
+!model/validation/out/stc2025/n23_results.json
+!model/validation/out/stc2025/n24_results.json
+!model/validation/out/stc2025/n25_results.json
+!model/validation/out/stc2025/n26_results.json
+!model/validation/out/stc2025/n27_results.json
+
+!model/validation/out/st2_events/
+model/validation/out/st2_events/*
+!model/validation/out/st2_events/G2-e150.json
+!model/validation/out/st2_events/G2-e40.json
+!model/validation/out/st2_events/G3.json
+
+# Rendered evidence and overlays: large, regenerable from model/validation/ scripts
+data/renders/
+
+# Obsidian per-user UI state. The vault config in .obsidian/app.json IS
+# committed (it carries the node_modules ignore filters, without which the
+# graph indexes 1714 package READMEs); the pane layout and cache are not.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# A lane manifest exists only while several agents share this tree. It arms the
+# ownership check in .githooks/pre-commit; committed, it would arm it forever.
+/.lanes.json
+
+# The scraped feed data. /data/* already covers the store, but data/jobs and
+# data/bios were force-added onto this branch as a demo fixture, and an ignore
+# rule does not untrack what is already in the index - they were removed from it
+# explicitly. They are a third party's match reports and player profiles, held
+# with no licence to redistribute them, so they stay out of git and out of the
+# app bundle. Local copies under data/ are fine: that is development against a
+# feed, not distribution of it.
+#
+# app/desktop/resources/demo-job is NOT ignored - that copy is synthetic, generated
+# by model/engine/demo.py, and is ours to ship.
+model/validation/ball_cands_*.json.gz
+# ...except the three A/B arms N48 rules on: 888 KB total, and a @M that reads a
+# cache nobody else has is not re-runnable (docs/experiments/n48-ball-detector-ab.md).
+!model/validation/ball_cands_*.cmpA.json.gz
+!model/validation/ball_cands_*.cmpB.json.gz
+!model/validation/ball_cands_*.cmpC.json.gz
+# ...and N52's clean arm D, 1.7 MB. Without these six the SUPPORTED verdict at
+# D-C +0.3644 exists only in a commit message and on one machine, which is the
+# failure this repo was built to refuse.
+!model/validation/ball_cands_*.cmpD.json.gz
+# ...and the 640-era caches, 5.1 MB, by the SAME argument as the comment above - which
+# applied to them the moment N65 found every number above was measured at the RFDETRNano
+# default of 384 instead of the 640 the checkpoint was trained at. docs/experiments/n65-every-ball-number-was-measured-at-384.md and docs/experiments/n67-fewer-candidates-does-not-help-the-picker.md's
+# PUBLISHED numbers are read from these four and from nothing else, so gitignoring them left
+# the current results on one machine while the withdrawn ones were committed.
+!model/validation/ball_cands_*.cmpDr.json.gz
+!model/validation/ball_cands_*.cmpE1r.json.gz
+!model/validation/ball_cands_*.cmpD1P.json.gz
+!model/validation/ball_cands_*.cmpE2.json.gz
+
+# The two compatibility paths left by the root restructure: `models` is a symlink
+# to model/models and `validation/` is a REAL directory of symlinked children
+# (api.py --verify breaks if it is a symlink). Both are machine-local pointers and
+# have been committed by accident twice; an absolute symlink in git is one
+# machine's layout published as source. lint_truth check 8 refuses the tracked form.
+/models
+/validation/
+
+# Not published: personal data, internal notes, third-party feeds
+data/photos/
+data/rosters/
+data/org.json
+data/vendor/skillcorner/
+/docs/memory/
+.claude/
+.obsidian/
+model/validation/claims.log

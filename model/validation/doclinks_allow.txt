@@ -1,0 +1,13 @@
+# doclinks.py allowlist: references to docs/ paths that are meant NOT to resolve here.
+# file<TAB>target<TAB>reason. An entry that matches nothing is reported by --check.
+#
+data/footage/README.md	docs/assets/demo-tracking.mp4	external: SoccerTrack v2 repo's own docs/ tree (footage provenance)
+data/footage/README.md	docs/assets/demo-minimap.mp4	external: SoccerTrack v2 repo's own docs/ tree (footage provenance)
+data/footage/README.md	docs/assets/panorama-day.jpg	external: SoccerTrack v2 repo's own docs/ tree (footage provenance)
+data/footage/README.md	docs/assets/panorama-night.jpg	external: SoccerTrack v2 repo's own docs/ tree (footage provenance)
+data/footage/README.md	docs/calibration.md	external: SoccerTrack v2 repo's docs/calibration.md
+model/validation/st2_index.py	docs/format-bas.md	external: SoccerTrack v2 repo's docs/format-bas.md
+model/validation/verify_claims.py	docs/x.md	specimen: planted paths in verify_claims.py's own self-check
+model/validation/protocol.py	docs/n1-x.md	specimen: planted paths in protocol.py demo() (a temp repo)
+model/validation/protocol.py	docs/memory/n2-note.md	specimen: planted paths in protocol.py demo() (a temp repo)
+model/validation/protocol.py	docs/experiments/n1-x.md	specimen: planted paths in protocol.py demo() (a temp repo)

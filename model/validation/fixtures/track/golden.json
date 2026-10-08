@@ -1,0 +1,68 @@
+{
+ "reason": "first track golden: the 2026-09-17 .p35 CoreML cache replayed at the shipped call shape, ball=False",
+ "date": "2026-09-28",
+ "git_head": "eedb1acc7e3a102101b49a1342a5fa8dbab7a15d",
+ "uncommitted_engine_files": [
+  "app/server/jobs.py",
+  "model/engine/autocal.py",
+  "model/engine/calibrators.py",
+  "model/engine/pitch.py",
+  "model/engine/possession.py",
+  "model/engine/sceneprior.py",
+  "model/engine/track.py"
+ ],
+ "config": {
+  "stride": 2,
+  "conf": 0.5,
+  "prior_gates": [
+   "pitch"
+  ],
+  "stitch": true,
+  "tracker": "best",
+  "tracker_resolved": "cbiou",
+  "ball": false,
+  "ball_note": "NOT COVERED: the cache is ball=False"
+ },
+ "clip": {
+  "path": "$ST2_DIR/mot/clips/118575.mp4",
+  "size": 287015664,
+  "sha256": "ebe265c968e3ae31957e067b433969d6a2dd753a722e6a4230cdcd6f0c095e36",
+  "identity": "size + full-file sha256; path = st2_mot.CLIPS/118575.mp4"
+ },
+ "fixtures": {
+  "118575.p35.dets.cache.json.gz": "5345b51bbfcb02327699590f643b79bc4c97109a1ea6c99d0201a22ab3246e33",
+  "118575.p35.calibration.json": "8de4e4a68b3640ffee4564937c56996ffc8de76c48d5adc4fbbff70c5909f2db"
+ },
+ "made_by": "gzip -9 of model/validation/out/stc2025/118575.p35.dets.cache.json (2026-09-17)",
+ "result": {
+  "sha256": "674f16856f4a057bc77f2c44eb6595ebcb93114c8c9b051efb498aa267c3c24f",
+  "rows": 54658,
+  "ids": 44,
+  "teams": {
+   "away": {
+    "rows": 20312,
+    "ids": 13
+   },
+   "home": {
+    "rows": 24986,
+    "ids": 22
+   },
+   "official": {
+    "rows": 9360,
+    "ids": 9
+   }
+  },
+  "stamp": {
+   "prior_gates": [
+    "pitch"
+   ],
+   "conf": 0.5,
+   "detector": "coreml",
+   "ball": false,
+   "overlap": 0.25,
+   "tile": 1024,
+   "stride": 2,
+   "stitch": true
+  }
+ }
+}

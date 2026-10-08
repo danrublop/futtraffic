@@ -1,0 +1,240 @@
+{
+ "reason": "size gate fixed: BallPicker._expected_px reads the calibration's own jacobian (spherical/TPS/fisheye) instead of inv(H); TCAL replay 4 -> 10 ball rows of 10 frames; s5_size TCAL expected/true median 12.86 -> 1.00; top/side excerpts and all 9 --real clips unchanged (perspective/uncalibrated)",
+ "date": "2026-09-29",
+ "git_head": "4628472cfb0de8798057c3984ca7b29d81219786",
+ "uncommitted_engine_files": [
+  "model/engine/ball.py"
+ ],
+ "config": {
+  "stride": 2,
+  "tracker": "best",
+  "ball_markings": false,
+  "BALL_CONF": 0.05,
+  "SIZE_RATIO": [
+   0.4,
+   3.0
+  ],
+  "MARGIN_M": 3.0,
+  "scenery": {
+   "radius": 8.0,
+   "window": 60,
+   "share": 0.9,
+   "min_frames": 25
+  }
+ },
+ "fixtures": {
+  "soccer_top__test__videos__D_20220220_1_1710_1740.m0.s2f0-598.json.gz": "16b8633d935257957b49bef8a2562398d3335ac92eba66fcd9fdd2b6741a99bb",
+  "soccer_side__train__videos__F_20200220_1_0000_0030.m0.s2f0-598.json.gz": "0bf6b6ba86a5d23025396ba9ec8ceb66123a4f7c77bcbbbf8bd057e0f2126e4a",
+  "118575.p35.calibration.json": "8de4e4a68b3640ffee4564937c56996ffc8de76c48d5adc4fbbff70c5909f2db"
+ },
+ "real_input": {
+  "m0_cands.json.gz": "e1c4a29339b0a48e592fb2f929fac9bd565aa647fd043dbd5023f36ff101786b"
+ },
+ "made_by": ".venv/bin/python model/validation/n70_class_merge.py --export   # M0 of the N70 raw caches (gitignored)",
+ "fast": {
+  "top": {
+   "sha256": "ccb3a290a020e252c16e599ceea10868b68feb6f2afdb5504e385ebcc4ce6662",
+   "rows": 254,
+   "correct": 77,
+   "wrong": 177,
+   "silent": 45,
+   "gt_present": 299
+  },
+  "side": {
+   "sha256": "4b731b00df5672c680ec98a9980f0171ac390fa8f7ddee94189cdfa9e4055cc7",
+   "rows": 300,
+   "correct": 50,
+   "wrong": 250,
+   "silent": 0,
+   "gt_present": 300
+  },
+  "tcal": {
+   "sha256": "0b4b7eef9e9e9c42b3dae7af4eccfeb9e49f19579bee25b76cfec50950ccde99",
+   "rows": 10,
+   "input_sha256": "b3730826b83c4d54e29bc5cf9344df8294808cf90bc1c9b2108043fe4964597e",
+   "candidates": 370
+  }
+ },
+ "real": {
+  "soccer_top__train__videos__D_20220220_1_0000_0030": {
+   "shipped/s1": {
+    "correct": 239,
+    "wrong": 539,
+    "silent": 122,
+    "gt_present": 900
+   },
+   "oracle/s1": {
+    "correct": 475,
+    "wrong": 425,
+    "silent": 0,
+    "gt_present": 900
+   },
+   "shipped/s2": {
+    "correct": 85,
+    "wrong": 309,
+    "silent": 56,
+    "gt_present": 450
+   }
+  },
+  "soccer_top__train__videos__D_20220220_1_0030_0060": {
+   "shipped/s1": {
+    "correct": 328,
+    "wrong": 532,
+    "silent": 40,
+    "gt_present": 900
+   },
+   "oracle/s1": {
+    "correct": 535,
+    "wrong": 365,
+    "silent": 0,
+    "gt_present": 900
+   },
+   "shipped/s2": {
+    "correct": 136,
+    "wrong": 292,
+    "silent": 22,
+    "gt_present": 450
+   }
+  },
+  "soccer_top__test__videos__D_20220220_1_1680_1710": {
+   "shipped/s1": {
+    "correct": 21,
+    "wrong": 796,
+    "silent": 83,
+    "gt_present": 900
+   },
+   "oracle/s1": {
+    "correct": 248,
+    "wrong": 652,
+    "silent": 0,
+    "gt_present": 900
+   },
+   "shipped/s2": {
+    "correct": 6,
+    "wrong": 411,
+    "silent": 33,
+    "gt_present": 450
+   }
+  },
+  "soccer_top__test__videos__D_20220220_1_1710_1740": {
+   "shipped/s1": {
+    "correct": 104,
+    "wrong": 583,
+    "silent": 212,
+    "gt_present": 899
+   },
+   "oracle/s1": {
+    "correct": 364,
+    "wrong": 535,
+    "silent": 0,
+    "gt_present": 899
+   },
+   "shipped/s2": {
+    "correct": 82,
+    "wrong": 288,
+    "silent": 79,
+    "gt_present": 449
+   }
+  },
+  "soccer_top__test__videos__D_20220220_1_1740_1770": {
+   "shipped/s1": {
+    "correct": 229,
+    "wrong": 645,
+    "silent": 26,
+    "gt_present": 900
+   },
+   "oracle/s1": {
+    "correct": 449,
+    "wrong": 451,
+    "silent": 0,
+    "gt_present": 900
+   },
+   "shipped/s2": {
+    "correct": 115,
+    "wrong": 335,
+    "silent": 0,
+    "gt_present": 450
+   }
+  },
+  "soccer_top__test__videos__D_20220220_1_1770_1800": {
+   "shipped/s1": {
+    "correct": 513,
+    "wrong": 377,
+    "silent": 10,
+    "gt_present": 900
+   },
+   "oracle/s1": {
+    "correct": 657,
+    "wrong": 243,
+    "silent": 0,
+    "gt_present": 900
+   },
+   "shipped/s2": {
+    "correct": 239,
+    "wrong": 211,
+    "silent": 0,
+    "gt_present": 450
+   }
+  },
+  "soccer_side__train__videos__F_20200220_1_0000_0030": {
+   "shipped/s1": {
+    "correct": 181,
+    "wrong": 569,
+    "silent": 0,
+    "gt_present": 750
+   },
+   "oracle/s1": {
+    "correct": 253,
+    "wrong": 497,
+    "silent": 0,
+    "gt_present": 750
+   },
+   "shipped/s2": {
+    "correct": 92,
+    "wrong": 283,
+    "silent": 0,
+    "gt_present": 375
+   }
+  },
+  "soccer_side__train__videos__F_20200220_1_0030_0060": {
+   "shipped/s1": {
+    "correct": 243,
+    "wrong": 506,
+    "silent": 1,
+    "gt_present": 750
+   },
+   "oracle/s1": {
+    "correct": 306,
+    "wrong": 444,
+    "silent": 0,
+    "gt_present": 750
+   },
+   "shipped/s2": {
+    "correct": 114,
+    "wrong": 261,
+    "silent": 0,
+    "gt_present": 375
+   }
+  },
+  "soccer_side__train__videos__F_20200220_1_0060_0090": {
+   "shipped/s1": {
+    "correct": 276,
+    "wrong": 471,
+    "silent": 3,
+    "gt_present": 750
+   },
+   "oracle/s1": {
+    "correct": 294,
+    "wrong": 456,
+    "silent": 0,
+    "gt_present": 750
+   },
+   "shipped/s2": {
+    "correct": 134,
+    "wrong": 241,
+    "silent": 0,
+    "gt_present": 375
+   }
+  }
+ }
+}

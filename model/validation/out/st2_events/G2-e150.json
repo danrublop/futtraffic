@@ -1,0 +1,182 @@
+{
+ "commit": "ac79cfc",
+ "labels_sha": "50781f127b3e",
+ "seed": 0,
+ "device": "cpu",
+ "n_configs": 2,
+ "epochs": 150,
+ "match": "117093",
+ "period": 0,
+ "cache_sha": "106ec00892cc",
+ "stride": 5,
+ "tol_s": 1.0,
+ "labels": {
+  "n_labels": 1138,
+  "n_landed": 1134,
+  "drop": 0.0035,
+  "centres": 13530,
+  "no_ball": 1
+ },
+ "map": 0.97,
+ "pass_map": 0.8,
+ "passes": true,
+ "classes": {
+  "BALL PLAYER BLOCK": {
+   "n_gt": 14,
+   "n_spot": 20,
+   "ap": 0.909
+  },
+  "CROSS": {
+   "n_gt": 24,
+   "n_spot": 48,
+   "ap": 1.0
+  },
+  "DRIVE": {
+   "n_gt": 442,
+   "n_spot": 1019,
+   "ap": 0.909
+  },
+  "FREE KICK": {
+   "n_gt": 6,
+   "n_spot": 6,
+   "ap": 1.0
+  },
+  "GOAL": {
+   "n_gt": 2,
+   "n_spot": 2,
+   "ap": 1.0
+  },
+  "HEADER": {
+   "n_gt": 2,
+   "n_spot": 2,
+   "ap": 1.0
+  },
+  "HIGH PASS": {
+   "n_gt": 77,
+   "n_spot": 162,
+   "ap": 1.0
+  },
+  "OUT": {
+   "n_gt": 48,
+   "n_spot": 98,
+   "ap": 1.0
+  },
+  "PASS": {
+   "n_gt": 469,
+   "n_spot": 1000,
+   "ap": 0.909
+  },
+  "PLAYER SUCCESSFUL TACKLE": {
+   "n_gt": 8,
+   "n_spot": 11,
+   "ap": 1.0
+  },
+  "SHOT": {
+   "n_gt": 15,
+   "n_spot": 25,
+   "ap": 1.0
+  },
+  "THROW IN": {
+   "n_gt": 27,
+   "n_spot": 59,
+   "ap": 0.909
+  }
+ },
+ "absent": [],
+ "attribution": {
+  "PASS": {
+   "matched": 468,
+   "n_gt": 469,
+   "model": 1.0,
+   "nearest": 0.899,
+   "chance": 0.045
+  },
+  "HIGH PASS": {
+   "matched": 77,
+   "n_gt": 77,
+   "model": 1.0,
+   "nearest": 0.909,
+   "chance": 0.045
+  },
+  "OUT": {
+   "matched": 48,
+   "n_gt": 48,
+   "model": 1.0,
+   "nearest": 0.208,
+   "chance": 0.045
+  },
+  "THROW IN": {
+   "matched": 26,
+   "n_gt": 27,
+   "model": 1.0,
+   "nearest": 0.923,
+   "chance": 0.045
+  },
+  "DRIVE": {
+   "matched": 440,
+   "n_gt": 442,
+   "model": 0.995,
+   "nearest": 0.932,
+   "chance": 0.045
+  },
+  "SHOT": {
+   "matched": 15,
+   "n_gt": 15,
+   "model": 1.0,
+   "nearest": 0.667,
+   "chance": 0.045
+  },
+  "CROSS": {
+   "matched": 24,
+   "n_gt": 24,
+   "model": 1.0,
+   "nearest": 0.854,
+   "chance": 0.045
+  },
+  "HEADER": {
+   "matched": 2,
+   "n_gt": 2,
+   "model": 1.0,
+   "nearest": 1.0,
+   "chance": 0.045
+  },
+  "BALL PLAYER BLOCK": {
+   "matched": 13,
+   "n_gt": 14,
+   "model": 1.0,
+   "nearest": 0.846,
+   "chance": 0.045
+  },
+  "PLAYER SUCCESSFUL TACKLE": {
+   "matched": 8,
+   "n_gt": 8,
+   "model": 1.0,
+   "nearest": 0.688,
+   "chance": 0.045
+  },
+  "FREE KICK": {
+   "matched": 6,
+   "n_gt": 6,
+   "model": 1.0,
+   "nearest": 1.0,
+   "chance": 0.045
+  },
+  "GOAL": {
+   "matched": 2,
+   "n_gt": 2,
+   "model": 1.0,
+   "nearest": 1.0,
+   "chance": 0.045
+  },
+  "all": {
+   "matched": 1129,
+   "n_gt": 1134,
+   "model": 0.998,
+   "nearest": 0.878,
+   "chance": 0.045
+  }
+ },
+ "minutes": {
+  "total": 7.3
+ }
+}

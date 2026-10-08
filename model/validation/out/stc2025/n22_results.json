@@ -1,0 +1,72 @@
+{
+ "arms": {
+  "shipped": {
+   "pooled_ratio_matched": 1.3451,
+   "pooled_sprint_ratio": 4.4612,
+   "pooled_hsr_ratio": 3.6436,
+   "pooled_coverage": 0.6933,
+   "pooled_unattributed_frac": 0.0922,
+   "pooled_attribution_contaminated": 0.3506,
+   "pooled_ours_m": 92771.98369031766,
+   "pooled_gt_matched_m": 68968.61263466786
+  },
+  "drop": {
+   "pooled_ratio_matched": 1.3443,
+   "pooled_sprint_ratio": 4.5751,
+   "pooled_hsr_ratio": 3.6776,
+   "pooled_coverage": 0.6691,
+   "pooled_unattributed_frac": 0.0922,
+   "pooled_attribution_contaminated": 0.3506,
+   "pooled_ours_m": 88141.43218580952,
+   "pooled_gt_matched_m": 65565.67925542807
+  },
+  "identity": {
+   "pooled_ratio_matched": 1.1714,
+   "pooled_sprint_ratio": 3.6818,
+   "pooled_hsr_ratio": 3.2591,
+   "pooled_coverage": 0.7849,
+   "pooled_unattributed_frac": 0.0922,
+   "pooled_attribution_contaminated": 0.0,
+   "pooled_ours_m": 88733.15450120046,
+   "pooled_gt_matched_m": 75752.30521720067
+  },
+  "position": {
+   "pooled_ratio_matched": 1.2392,
+   "pooled_sprint_ratio": 1.9828,
+   "pooled_hsr_ratio": 1.6549,
+   "pooled_coverage": 0.6691,
+   "pooled_unattributed_frac": 0.0922,
+   "pooled_attribution_contaminated": 0.3506,
+   "pooled_ours_m": 81249.03165101273,
+   "pooled_gt_matched_m": 65565.67925542807
+  },
+  "both": {
+   "pooled_ratio_matched": 1.0554,
+   "pooled_sprint_ratio": 1.1023,
+   "pooled_hsr_ratio": 1.2439,
+   "pooled_coverage": 0.7849,
+   "pooled_unattributed_frac": 0.0922,
+   "pooled_attribution_contaminated": 0.0,
+   "pooled_ours_m": 79947.47042085804,
+   "pooled_gt_matched_m": 75752.30521720067
+  }
+ },
+ "verdict": {
+  "pooled_ratio_matched": {
+   "identity_share": 0.5022,
+   "position_share": 0.3053,
+   "driver": "IDENTITY"
+  },
+  "pooled_sprint_ratio": {
+   "identity_share": 0.2499,
+   "position_share": 0.7251,
+   "driver": "POSITION"
+  },
+  "pooled_hsr_ratio": {
+   "identity_share": 0.1563,
+   "position_share": 0.7554,
+   "driver": "POSITION"
+  }
+ },
+ "protocol": "model/validation/dist_eval.py docstring N22"
+}
