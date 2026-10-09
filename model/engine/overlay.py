@@ -331,15 +331,24 @@ def pitch_lines(cal, wh: tuple[int, int]) -> list[np.ndarray]:
     if (np.array([P.length / 2, W / 2, 1.0]) @ Hi.T)[2] < 0:
         Hi = -Hi
     w, h = wh
+    # A camera model (SphericalCamera) projects through itself; its `H` is only a
+    # flat fit to it and misses a stitched panorama's near touchline by ~30 px on
+    # 118575, which reads as a bad calibration and is not one.
+    to_image = getattr(cal, "to_image", None)
     out = []
     for poly in model:
         pts = np.asarray(densify(poly), np.float64)
-        q = np.c_[pts, np.ones(len(pts))] @ Hi.T
-        px = calcheck._project(Hi, pts)
+        if to_image is not None:
+            px = np.asarray(to_image(pts), np.float64).reshape(-1, 2)
+            front = np.isfinite(px).all(1)            # the model returns NaN behind the lens
+        else:
+            q = np.c_[pts, np.ones(len(pts))] @ Hi.T
+            px = calcheck._project(Hi, pts)
+            front = q[:, 2] > 1e-9
         # w <= 0 is behind the camera; the generous pixel bound then drops the
         # ones that are merely far outside the frame, while keeping vertices
         # just off-frame so the segment crossing the edge still gets drawn.
-        ok = (q[:, 2] > 1e-9) & np.isfinite(px).all(1) & \
+        ok = front & np.isfinite(px).all(1) & \
              (np.abs(px[:, 0]) < 20 * w) & (np.abs(px[:, 1]) < 20 * h)
         run: list = []
         for keep, xy in zip(ok, px):
