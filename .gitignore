@@ -15,6 +15,10 @@ __pycache__/
 # Runtime state written by the dev launcher (pids, tailed logs).
 /.run/
 
+# Secrets: API keys belong in the environment or the app settings, never in git.
+.env
+.env.*
+
 # OS / editor / local tools
 .DS_Store
 Thumbs.db
