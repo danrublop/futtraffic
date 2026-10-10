@@ -18,11 +18,31 @@ README, and the ledger of what was withdrawn.
 Pages mention other write-ups as "(not published)" or internal notes as "(internal note)". Those
 exist in the author's working repository and were left out of this one to keep it small.
 
+## Working rules
+
+Most of what has gone wrong here was not a coding error: it was a number stated without the run
+that produced it, or a real run under the wrong protocol. So:
+
+1. **Think before coding.** If something is ambiguous, say so instead of picking one reading
+   silently. A silent assumption is how most withdrawn results here started.
+2. **Simplicity first.** The minimum code that solves the problem.
+3. **Surgical changes.** Touch only what the change needs.
+4. **Define success before running.** Name the split, the threshold and the population first,
+   not after seeing the number.
+
+And three corollaries, each one earned:
+
+- Before claiming an improvement, state the split, the threshold and the population.
+- A filter that improves a metric is the most dangerous kind of change: deleting hard inputs and
+  solving them look identical downstream. Report the share of input dropped alongside it.
+- An argmax over a sweep is not a result until it says how many configurations were tried (`n=`).
+
 ## Numbers
 
-Every number carries a tag: `@M` measured, with the command that re-measures it; `@C` cited;
-`@D` derived, with the arithmetic. The convention is in `model/validation/verify_claims.py`.
-Do not quote a number from a page without its tag.
+Every number carries a tag: <code>&#64;M</code> measured, with the command that re-measures it;
+<code>&#64;C</code> cited; <code>&#64;D</code> derived, with the arithmetic. The convention is in `model/validation/verify_claims.py`.
+Older pages also use <code>&#64;RAN</code> (run when written), <code>&#64;REC</code> (recorded at a
+`file:line`) and <code>&#64;DER</code> (derived). Do not quote a number from a page without its tag.
 
     .venv/bin/python model/validation/verify_claims.py        # re-runs the measured tags (needs $ST2_DIR)
     .venv/bin/python model/validation/lint_truth.py           # mechanical checks

@@ -560,7 +560,7 @@ def touches_tag(diff: str) -> bool:
     it, and api --verify and mutate too.
 
     That is not a hypothetical shape. This repo's headline failure is `conf
-    0.05 quoted for a stack that ships at 0.5` - CLAUDE.md names it - and
+    0.05 quoted for a stack that ships at 0.5` - docs/README.md#working-rules names it - and
     rewriting `conf 0.05` to `conf 0.5` under an unchanged tag is exactly this
     edit. The VALUE never moves, so re-running the command would not catch it
     either; what has to change is that the push stops counting as prose.

@@ -132,6 +132,55 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="fut traffic", lifespan=lifespan)
 
 
+# ------------------------------------------------------------------ origin
+# The API has no auth: it trusts whoever can reach it, which by default is this
+# machine only. A browser breaks that - any page the user visits can POST to
+# localhost:8000 (a text/plain POST needs no preflight), and a DNS-rebound name
+# can read GET responses. So: a request that changes state must come from our
+# own UI (the Next dev/prod server on localhost, or the desktop shell's
+# futtraffic:// scheme) or from no browser at all (no Origin header: curl, the
+# note-api script); and while bound to loopback the Host must be loopback too.
+# A deploy that serves the UI from elsewhere lists its origins and hosts in
+# FUTTRAFFIC_ALLOWED_ORIGINS / FUTTRAFFIC_ALLOWED_HOSTS (comma-separated).
+_LOOPBACK = {"localhost", "127.0.0.1", "[::1]", "::1"}
+_EXTRA_ORIGINS = {o.strip().rstrip("/") for o in os.environ.get("FUTTRAFFIC_ALLOWED_ORIGINS", "").split(",") if o.strip()}
+_EXTRA_HOSTS = {h.strip().lower() for h in os.environ.get("FUTTRAFFIC_ALLOWED_HOSTS", "").split(",") if h.strip()}
+
+
+def _hostname(netloc: str) -> str:
+    """'127.0.0.1:8000' -> '127.0.0.1', '[::1]:3000' -> '[::1]'."""
+    netloc = netloc.lower()
+    if netloc.startswith("["):
+        return netloc.split("]")[0] + "]"
+    return netloc.rsplit(":", 1)[0] if netloc.count(":") == 1 else netloc
+
+
+def origin_allowed(origin: str | None) -> bool:
+    if not origin:                      # not a browser
+        return True
+    origin = origin.rstrip("/")
+    if origin in _EXTRA_ORIGINS or origin == "futtraffic://app":
+        return True
+    scheme, _, rest = origin.partition("://")
+    return scheme in ("http", "https") and _hostname(rest) in _LOOPBACK
+
+
+def host_allowed(host: str | None) -> bool:
+    if os.environ.get("HOST", "127.0.0.1") not in ("127.0.0.1", "localhost", "::1"):
+        return True                     # bound beyond loopback: a deploy decides its own hosts
+    return not host or _hostname(host) in _LOOPBACK or host.lower() in _EXTRA_HOSTS \
+        or _hostname(host) in _EXTRA_HOSTS
+
+
+@app.middleware("http")
+async def _same_origin_only(request: Request, call_next):
+    if not host_allowed(request.headers.get("host")):
+        return JSONResponse({"detail": "host not allowed"}, status_code=403)
+    if request.method not in ("GET", "HEAD", "OPTIONS") and not origin_allowed(request.headers.get("origin")):
+        return JSONResponse({"detail": "cross-origin request refused"}, status_code=403)
+    return await call_next(request)
+
+
 # ------------------------------------------------------------------- upload
 
 async def _write_stream(request: Request, path: Path, start: int, limit: int) -> int:

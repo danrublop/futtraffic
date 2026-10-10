@@ -1,6 +1,6 @@
 # Pitch mapping, explained
 
-**Branch:** `tracker-association`. **Written:** 2026-09-09.
+**Written:** 2026-09-09; a snapshot of the code at that date.
 **Audience:** an engineer who has to change this and needs to know what is load-bearing.
 
 ---
@@ -12,15 +12,14 @@ list). So every number here carries one of three tags:
 
 | tag | meaning |
 |---|---|
-| **`@RAN`** | I executed the command shown in this session and pasted its output. |
+| **`@RAN`** | The command shown was executed when this page was written, and its output pasted. |
 | **`@REC`** | Recorded in the repo at the `file:line` given. **Not** re-measured here. A docstring number is `@REC`, never measured. |
 | **`@DER`** | Arithmetic on `@RAN` values, with the arithmetic shown. |
 
-Everything untagged is an argument, not a fact. Section 6 is the list of things I
-could **not** verify.
+Everything untagged is an argument, not a fact. Section 6 is the list of things that
+could **not** be verified.
 
-All commands below assume `cd fut-traffic` and the repo venv
-(`.venv/bin/python` — there is no bare `python` on this box).
+All commands below run from the repository root with its venv (`.venv/bin/python`).
 
 ---
 
@@ -718,9 +717,9 @@ Listed so nobody quotes them as measured.
    but it is circular by its own admission (`model/engine/calcheck.py:318-323`).
 
 6. **Whether any operator has ever produced a calibration through the UI on real
-   footage.** Every calibration on disk that I inspected came from
-   `calibrators.py --write-calib`, not from clicks. `@RAN` the shipped
-   `data/jobs/118575_full_1st/calibration.json` is `projection_type: "remap"`
+   footage.** Every calibration the author inspected came from
+   `calibrators.py --write-calib`, not from clicks. `@RAN` the job store's
+   `data/jobs/118575_full_1st/calibration.json` was `projection_type: "remap"`
    with 65 points, `maps_crop: [390, 690]`, `maps_scale: 2.9`,
    `rms_error_m: 2.845` — i.e. the *dataset's* keypoints, not clicks. **The 21-
    landmark operator path's end-to-end accuracy on real footage has never been

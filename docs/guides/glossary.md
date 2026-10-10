@@ -378,7 +378,7 @@ Shorthand from the design doc, referenced throughout the code:
 
 | | |
 |---|---|
-| **Blocker 0** | No real footage. *Partly resolved* — real SoccerTrack panorama frames are on disk (`data/footage/README.md`). The full 48-min video that pairs with existing ground truth is still an incomplete download. |
+| **Blocker 0** | No real footage. *Resolved* — SoccerTrack v2 provides real panoramic footage with ground truth (`data/footage/README.md`). |
 | **Blocker 1** | Is the source camera perspective or panorama? *Answered: panorama* (`STACK (not published)`, `data/footage/README.md` §2). |
 | **Blocker 2** | The jersey **legible-frame rate** — reported by `identity.py :: scan_video` as `legible_frame_rate`. Note it is the *heuristic's acceptance rate*, not the true readable rate; only hand-labelling ~300 real frames answers that. The code's note moved to `identity-evidence.md` on 2026-09-28. |
 | **Blocker 4** | **Operator minutes per match** — how much hand correction a match needs. Instrumented as `operator_seconds` in `jobs.py :: apply_corrections` (an earlier estimate from a clusters-per-player script was withdrawn). |

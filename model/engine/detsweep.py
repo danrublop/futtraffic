@@ -790,7 +790,7 @@ def sweep(n_frames: int = 40, every: int = 1500, first: int = 3000,
             # scores is what box density alone buys, and a real number has to
             # beat it. At conf 0.15 the detector emits 55 boxes for 22 players,
             # and a metric that cannot tell that from finding them is the sixth
-            # metric this session that measured nothing.
+            # metric in an earlier run that measured nothing.
             print(_fmt("  null", score(out, gts[1:] + gts[:1], cal, cam, c), sec), flush=True)
             if c == confs[-1]:
                 # LABELLED, because it was not. This table is the +prior result

@@ -296,7 +296,7 @@ MUTATIONS = [
              "verify_claims", "touches_tag", _tagline_only, "_selfcheck", "killed"),
     Mutation("verify_claims: GIT_* reaches git again, so a scan reads another tree",
              "verify_claims", "git_env", _git_vars_through, "_selfcheck", "killed"),
-    # 2026-09-26, the three that SURVIVED a review of this session's own experiments.
+    # 2026-09-26, the three that SURVIVED a review of that day's experiments.
     # mutate.py covered the scanners and no experiment module at all, so "every VOID gets
     # an assertion that it fires" was enforced for the gate and for nothing being gated.
     # 2026-09-29, the checker holes a review confirmed. Each row re-plants the
@@ -461,12 +461,6 @@ MUTATIONS = [
              lambda o: (lambda path: None), "demo", "killed"),
     Mutation("protocol: every rule is proven pre-registered", "protocol", "preregistered",
              lambda o: (lambda *a, **k: ("PROVEN", "x", "y")), "demo", "killed"),
-    Mutation("evidence: every handle reproduces", "evidence", "verify",
-             lambda o: (lambda *a, **k: ("REPRODUCED", "")), "demo", "killed"),
-    Mutation("evidence: every finding is well-formed", "evidence", "validate_finding",
-             lambda o: (lambda *a, **k: []), "demo", "killed"),
-    Mutation("evidence: every commit is in its lane", "evidence", "ownership_violations",
-             lambda o: (lambda *a, **k: []), "demo", "killed"),
     Mutation("quality: an empty tracks file reads FAIL instead of incomplete", "quality", "check",
              _empty_reads_fail, "demo", "survives",
              why="R1, 2026-09-12: `assert empty['verdict'] in ('fail','incomplete')` "

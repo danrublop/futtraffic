@@ -5,7 +5,7 @@
 # longer prints. It is the older, paste-the-number mechanism and it still
 # catches real drift, so it stays.
 #
-# api.py --verify was NOT enforced here until 2026-09-10, which docs/audits/api-adequacy.md
+# api.py --verify was NOT enforced here until 2026-09-10, which api-adequacy (not published)
 # found and named: the registry, the golden, the reasons and the whole change-
 # control story were advisory while the hook enforced the thing they replaced.
 # A ratchet nothing turns is a ratchet.
@@ -82,7 +82,7 @@ while read -r _lref lsha _rref rsha; do
   # continuation - the clip, the split, the conf, the n=. Rewriting `conf 0.05`
   # to `conf 0.5` under an unchanged tag changes no line carrying a sigil, so
   # the push was classified as prose and skipped every heavy gate. That exact
-  # confusion is this repo's headline failure, named in CLAUDE.md.
+  # confusion is this repo's headline failure, named in docs/README.md#working-rules.
   #
   # FAIL-CLOSED: the check prints a WORD, and anything that is not LIGHT runs
   # the gates - including a traceback, which exits 1 exactly like "no tag was

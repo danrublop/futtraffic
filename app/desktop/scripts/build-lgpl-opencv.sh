@@ -3,12 +3,12 @@
 #
 # The PyPI macOS wheel bundles Homebrew's FFmpeg, which is built --enable-gpl
 # (x264, x265, rubberband, vidstab), and a closed-source app cannot ship that.
-# See docs/audits/ffmpeg-lgpl.md. This builds FFmpeg 7.1.1 - the version the PyPI
+# See ffmpeg-lgpl (not published). This builds FFmpeg 7.1.1 - the version the PyPI
 # wheel carries, so the sonames and the decoders match - with GPL off and no
 # external libraries but dav1d (BSD, for AV1), then OpenCV against it, then
 # vendors the dylibs into the wheel with delocate.
 #
-# Not the conda LGPL FFmpeg docs/audits/ffmpeg-lgpl.md §6 names: that one links 18
+# Not the conda LGPL FFmpeg ffmpeg-lgpl (not published) §6 names: that one links 18
 # further @rpath libraries (cairo, glib, rsvg...) that would all need vendoring.
 #
 # Verified 2026-09-19: decoded frames bit-identical to the PyPI wheel on mp4

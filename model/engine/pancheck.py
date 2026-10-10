@@ -14,7 +14,7 @@ WHY THIS EXISTS
     it), not as support for such footage.
 
     That question decides whether a format is supportable at all, so it should
-    be a measurement and not an assumption. Twice this session a claim about
+    be a measurement and not an assumption. Twice during development a claim about
     this pipeline turned out to rest on an unchecked belief about the footage.
 
 WHAT IT MEASURES, AND WHY IT IS NOT CIRCULAR

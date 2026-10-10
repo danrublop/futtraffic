@@ -124,7 +124,7 @@ THE RESULT, AND IT MOVES TWO THINGS IN `model/engine/possession.py`
        source; on an elite Bundesliga match it is **0.585**, and the two halves
        of that one match are 0.668 and 0.507. A 16 pp swing between halves means
        the mask is not a constant that can be assumed at all, in either
-       direction. The claim needs a tag or deletion (CLAUDE.md, Numbers), and
+       direction. The claim needs a tag or deletion (docs/README.md, Numbers), and
        whoever owns `model/engine/` should do that - this lane does not write there.
 
     2. **The gate's premise survives, measured somewhere else.** `share`'s

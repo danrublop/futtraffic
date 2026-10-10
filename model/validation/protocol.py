@@ -1,7 +1,7 @@
 """Pre-registration the repository can prove, instead of pre-registration it asserts.
 
 WHY
-    Rule 4 of CLAUDE.md is "define success criteria BEFORE running". Every
+    Rule 4 of docs/README.md#working-rules is "define success criteria BEFORE running". Every
     producer in this repo says it did: "PASS RULE, fixed before running". On
     2026-09-12 a reviewer checked, and git could prove it for exactly one of the
     day's measurements. Every other pass rule landed in the SAME commit as the
@@ -22,6 +22,12 @@ WHAT IT PROVES
                     nothing, and the state of almost everything today
       AFTER         the rule landed after the result: it was written to fit
       MISSING       a needle was not found, so nothing was checked
+      IMPORTED      rule and result both arrived in this repository's initial commit,
+                    which imported the research from its working repository. Their
+                    order was (or was not) proven there; a fresh history cannot re-prove
+                    it, so it is reported and does not fail the gate
+      NOT_HERE      the rule or result file is not in this repository (an experiment
+                    whose write-up was not published); reported, not checked
 
     SAME_COMMIT is not an accusation. It is the absence of proof, which is the
     whole distinction rule 4 needs and git can supply for free. It FAILS the gate
@@ -221,13 +227,21 @@ def experiment_pages(root=ROOT) -> list[Path]:
     return sorted(p for p in docs.rglob("n[0-9]*.md") if p.relative_to(docs).parts[0] != "memory")
 
 
-def preregistered(rule_path, rule_needle, result_path, result_needle, cwd=ROOT) -> tuple[str, str | None, str | None]:
+def import_commits(cwd=ROOT) -> frozenset[str]:
+    """The root commit(s): where this repository's history begins, i.e. the import."""
+    return frozenset(_git("rev-list", "--max-parents=0", "HEAD", cwd=cwd).stdout.split())
+
+
+def preregistered(rule_path, rule_needle, result_path, result_needle, cwd=ROOT,
+                  imported: frozenset[str] = frozenset()) -> tuple[str, str | None, str | None]:
+    if not (Path(cwd) / rule_path).exists() or not (Path(cwd) / result_path).exists():
+        return "NOT_HERE", None, None
     rule = first_commit(rule_path, rule_needle, cwd)
     result = first_commit(result_path, result_needle, cwd)
     if rule is None or result is None:
         return "MISSING", rule, result
     if rule == result:
-        return "SAME_COMMIT", rule, result
+        return ("IMPORTED" if rule in imported else "SAME_COMMIT"), rule, result
     if _git("merge-base", "--is-ancestor", rule, result, cwd=cwd).returncode == 0:
         if rule_text(rule, rule_path, rule_needle, cwd) != rule_text(result, rule_path, rule_needle, cwd):
             return "RULE_CHANGED", rule, result
@@ -340,6 +354,18 @@ def demo():
         assert recorded("X", "PROVEN", "aaaaaaa1", "bbbbbbb1", tab) == "STALE", "a record that rotted passed"
         assert recorded("X", "RULE_CHANGED", "ccccccc1", "bbbbbbb1", tab) == "STALE", "commits moved, record kept"
 
+        # the import baseline: a same-commit pair in a root (import) commit is IMPORTED,
+        # never PROVEN and never blocking; outside the import it stays SAME_COMMIT
+        root = import_commits(repo)
+        assert preregistered("rule.py", "ships iff", "rule.py", "ships iff", repo, imported=root)[0] == "IMPORTED"
+        assert preregistered("rule2.py", "keep iff", "doc2.md", "0.77", repo, imported=root)[0] == "SAME_COMMIT"
+        commit(repo, "rule3.py", "keep iff z\n", "r3")
+        commit(repo, "doc3.md", "z 9.9\n", "d3")
+        r3 = first_commit("rule3.py", "keep iff z", repo)
+        assert preregistered("rule3.py", "keep iff z", "doc3.md", "9.9", repo, imported=frozenset({r3}))[0] == "PROVEN"
+        assert preregistered("gone.py", "x", "doc.md", "1.42", repo)[0] == "NOT_HERE"
+        assert not blocks("IMPORTED", "doc.md", repo) and not blocks("NOT_HERE", "doc.md", repo)
+
         # a needle that is not there checks nothing, and says so
         assert preregistered("rule.py", "no such rule", "doc.md", "1.42", repo)[0] == "MISSING"
 
@@ -396,6 +422,8 @@ def unregistered() -> list[str]:
         born = added(rel)
         if not (born and born >= REGISTERED_FROM):
             continue
+        if added(rel, fmt="%H") in import_commits():
+            continue                    # arrived with the import: registered (or not) upstream
         # A PAGE WITH NO MEASURED TAG IS NOT AN EXPERIMENT. N55 is a reading of
         # other people's results and states plainly that it measures nothing; it
         # has no rule to pre-register and demanding one would teach people to
@@ -412,10 +440,12 @@ def main() -> int:
         demo()
         return 0
     counts, failed = {}, 0
+    imported = import_commits()
     for label, rp, rn, dp, dn in REGISTRY:
-        status, rule, result = preregistered(rp, rn, dp, dn)
+        status, rule, result = preregistered(rp, rn, dp, dn, imported=imported)
         counts[status] = counts.get(status, 0) + 1
-        rec = recorded(label, status, rule, result)
+        # the NOT_PROVABLE records name working-repository commits; they do not apply here
+        rec = None if status in ("IMPORTED", "NOT_HERE") else recorded(label, status, rule, result)
         bad = rec == "STALE" or (rec is None and blocks(status, dp))
         failed += bad
         short = lambda c: c[:7] if c else "-"  # noqa: E731

@@ -57,8 +57,8 @@ export function parseFigureRows(value: string | null): FigureRow[] {
         name: String(r.name ?? "").slice(0, 60),
         side: r.side === "home" || r.side === "away" ? r.side : "",
         // 80, not 24. The cap was set when every cell was a figure like
-        // "13.56 km"; a timeline cell is a sentence, and 24 cut "Oscar
-        // Verhoeven for Dagur Thorhallsson" to "...for Dagu" in the printed
+        // "13.56 km"; a timeline cell is a sentence, and 24 cut "Milan
+        // Westbrook for Joaquin Ellsworthy" to "...for Joaq" in the printed
         // document. Still bounded — a cell is not a paragraph.
         cells: Array.isArray(r.cells)
           ? r.cells.slice(0, 16).map((c) => String(c ?? "").slice(0, 80))

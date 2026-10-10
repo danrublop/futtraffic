@@ -7,10 +7,9 @@ the product's own tiles, then runs the product's tiled detector on the held-out 
 
 1. Update the NVIDIA driver (GeForce Experience or nvidia.com).
 2. Install **Python 3.12** from python.org (tick "Add python.exe to PATH").
-3. Download every `.zip` from the GitHub release **n46-kit-1**
-   (https://github.com/danrublop/Fut-Traffic/releases/tag/n46-kit-1 - sign in with the GitHub account that was given
-   access): `n46_kit.zip`, `n46_dataset_1.zip`, `n46_dataset_2.zip`, `n46_clips.zip`, about 3.8 GB in all, into your
-   Downloads folder (delete any older `n46_*.zip` there first - the line below unpacks every one it finds). Then open **Command Prompt** and paste this one line; it unpacks all of them into `C:\n46_pc`
+3. Build the kit on the machine that has the SoccerTrack v2 data (`n46_dataset.py --build`, then
+   `n46_dataset.py --pack` writes `n46_kit.zip`, `n46_dataset_<k>.zip` and `n46_clips.zip`, about 3.8 GB in all) and
+   copy every `.zip` into this PC's Downloads folder (delete any older `n46_*.zip` there first - the line below unpacks every one it finds). Then open **Command Prompt** and paste this one line; it unpacks all of them into `C:\n46_pc`
    (not Desktop or Documents: OneDrive syncs those and locks checkpoint files mid-save):
 
 ```

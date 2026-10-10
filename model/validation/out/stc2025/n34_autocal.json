@@ -1,0 +1,1014 @@
+{
+ "117092": {
+  "camera": null,
+  "width": 3840,
+  "accepted": false,
+  "why": "grass region is 0.01 of the frame: not a daylight green pitch",
+  "hits": 0,
+  "samples": 0
+ },
+ "117093": {
+  "camera": [
+   -1511.960051586181,
+   1512.384744919273,
+   2130.0684584564215,
+   510.38352449517436,
+   0.08809982050384532,
+   -2.5106585000881867,
+   1.7954589891056925,
+   57.589279493051066,
+   -18.88865281341393,
+   76.79963344495287
+  ],
+  "width": 4096,
+  "accepted": true,
+  "hits": 843,
+  "samples": 1351,
+  "line_rms_px": 0.630268575428208,
+  "camera_centre_m": [
+   51.22628874795734,
+   83.01043883259015,
+   7.524918660375903
+  ],
+  "f_px_per_rad": 1511.960051586181,
+  "hits_by_group": {
+   "circle": [
+    92,
+    115
+   ],
+   "goal_l": [
+    51,
+    136
+   ],
+   "goal_r": [
+    13,
+    136
+   ],
+   "halfway": [
+    128,
+    136
+   ],
+   "pen_l_far": [
+    28,
+    33
+   ],
+   "pen_l_front": [
+    80,
+    80
+   ],
+   "pen_l_near": [
+    32,
+    33
+   ],
+   "pen_r_far": [
+    32,
+    33
+   ],
+   "pen_r_front": [
+    79,
+    80
+   ],
+   "pen_r_near": [
+    15,
+    33
+   ],
+   "six_l_far": [
+    10,
+    11
+   ],
+   "six_l_front": [
+    31,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    9,
+    11
+   ],
+   "six_r_front": [
+    35,
+    36
+   ],
+   "six_r_near": [
+    10,
+    11
+   ],
+   "touch_far": [
+    56,
+    210
+   ],
+   "touch_near": [
+    131,
+    210
+   ]
+  },
+  "candidates": [
+   {
+    "coarse": 0.631,
+    "polished": 0.691,
+    "hits": 844,
+    "line_rms_px": 0.637,
+    "height_m": 7.53,
+    "accepted": true
+   },
+   {
+    "coarse": 0.644,
+    "polished": 0.692,
+    "hits": 843,
+    "line_rms_px": 0.633,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.643,
+    "polished": 0.692,
+    "hits": 844,
+    "line_rms_px": 0.632,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.625,
+    "polished": 0.692,
+    "hits": 845,
+    "line_rms_px": 0.633,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.59,
+    "polished": 0.696,
+    "hits": 842,
+    "line_rms_px": 0.633,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.598,
+    "polished": 0.697,
+    "hits": 843,
+    "line_rms_px": 0.63,
+    "height_m": 7.52,
+    "accepted": true
+   }
+  ],
+  "grid": 21875
+ },
+ "118575": {
+  "camera": [
+   -1514.2797324763267,
+   1514.7355668244343,
+   1982.3005965408747,
+   510.84585573148394,
+   0.00048775501045739264,
+   -2.5746654776785896,
+   1.8437298939033544,
+   49.85512130754911,
+   -18.852083709304452,
+   82.09580669435657
+  ],
+  "width": 4096,
+  "accepted": true,
+  "hits": 802,
+  "samples": 1351,
+  "line_rms_px": 0.6095069342720405,
+  "camera_centre_m": [
+   51.22225111403107,
+   83.06597379479508,
+   7.548552570114605
+  ],
+  "f_px_per_rad": 1514.2797324763267,
+  "hits_by_group": {
+   "circle": [
+    91,
+    115
+   ],
+   "goal_l": [
+    55,
+    136
+   ],
+   "goal_r": [
+    0,
+    136
+   ],
+   "halfway": [
+    126,
+    136
+   ],
+   "pen_l_far": [
+    28,
+    33
+   ],
+   "pen_l_front": [
+    78,
+    80
+   ],
+   "pen_l_near": [
+    29,
+    33
+   ],
+   "pen_r_far": [
+    31,
+    33
+   ],
+   "pen_r_front": [
+    80,
+    80
+   ],
+   "pen_r_near": [
+    16,
+    33
+   ],
+   "six_l_far": [
+    9,
+    11
+   ],
+   "six_l_front": [
+    34,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    10,
+    11
+   ],
+   "six_r_front": [
+    35,
+    36
+   ],
+   "six_r_near": [
+    11,
+    11
+   ],
+   "touch_far": [
+    52,
+    210
+   ],
+   "touch_near": [
+    106,
+    210
+   ]
+  },
+  "candidates": [
+   {
+    "coarse": 0.607,
+    "polished": 0.697,
+    "hits": 805,
+    "line_rms_px": 0.616,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.612,
+    "polished": 0.699,
+    "hits": 805,
+    "line_rms_px": 0.617,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.59,
+    "polished": 0.7,
+    "hits": 802,
+    "line_rms_px": 0.61,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.578,
+    "polished": 0.704,
+    "hits": 804,
+    "line_rms_px": 0.612,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.61,
+    "polished": 0.709,
+    "hits": 801,
+    "line_rms_px": 0.616,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.61,
+    "polished": 0.711,
+    "hits": 800,
+    "line_rms_px": 0.617,
+    "height_m": 7.55,
+    "accepted": true
+   }
+  ],
+  "grid": 21875
+ },
+ "118576": {
+  "camera": [
+   -1514.4489575587097,
+   1514.8016668981436,
+   2101.3028853895435,
+   510.91590255659725,
+   0.07184828928049386,
+   -2.522216044834195,
+   1.8052430088741833,
+   56.18106242734806,
+   -18.84403926830329,
+   77.88876766548479
+  ],
+  "width": 4096,
+  "accepted": true,
+  "hits": 828,
+  "samples": 1351,
+  "line_rms_px": 0.6049791835297308,
+  "camera_centre_m": [
+   51.225331720689454,
+   83.04915658200305,
+   7.541399139554392
+  ],
+  "f_px_per_rad": 1514.4489575587097,
+  "hits_by_group": {
+   "circle": [
+    92,
+    115
+   ],
+   "goal_l": [
+    52,
+    136
+   ],
+   "goal_r": [
+    2,
+    136
+   ],
+   "halfway": [
+    130,
+    136
+   ],
+   "pen_l_far": [
+    31,
+    33
+   ],
+   "pen_l_front": [
+    79,
+    80
+   ],
+   "pen_l_near": [
+    28,
+    33
+   ],
+   "pen_r_far": [
+    31,
+    33
+   ],
+   "pen_r_front": [
+    80,
+    80
+   ],
+   "pen_r_near": [
+    15,
+    33
+   ],
+   "six_l_far": [
+    10,
+    11
+   ],
+   "six_l_front": [
+    35,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    10,
+    11
+   ],
+   "six_r_front": [
+    36,
+    36
+   ],
+   "six_r_near": [
+    10,
+    11
+   ],
+   "touch_far": [
+    56,
+    210
+   ],
+   "touch_near": [
+    120,
+    210
+   ]
+  },
+  "candidates": [
+   {
+    "coarse": 0.602,
+    "polished": 0.625,
+    "hits": 826,
+    "line_rms_px": 0.605,
+    "height_m": 7.54,
+    "accepted": true
+   },
+   {
+    "coarse": 0.534,
+    "polished": 0.625,
+    "hits": 830,
+    "line_rms_px": 0.607,
+    "height_m": 7.54,
+    "accepted": true
+   },
+   {
+    "coarse": 0.578,
+    "polished": 0.626,
+    "hits": 829,
+    "line_rms_px": 0.607,
+    "height_m": 7.54,
+    "accepted": true
+   },
+   {
+    "coarse": 0.538,
+    "polished": 0.627,
+    "hits": 830,
+    "line_rms_px": 0.606,
+    "height_m": 7.54,
+    "accepted": true
+   },
+   {
+    "coarse": 0.615,
+    "polished": 0.63,
+    "hits": 828,
+    "line_rms_px": 0.605,
+    "height_m": 7.54,
+    "accepted": true
+   },
+   {
+    "coarse": 0.601,
+    "polished": 0.631,
+    "hits": 830,
+    "line_rms_px": 0.607,
+    "height_m": 7.54,
+    "accepted": true
+   }
+  ],
+  "grid": 21875
+ },
+ "118577": {
+  "camera": [
+   -1514.1140521309212,
+   1514.5205793334403,
+   1977.4161335553304,
+   509.78108021463703,
+   -0.002431657571669482,
+   -2.5768388519645993,
+   1.8455121089560207,
+   49.575320374562516,
+   -18.83786710340871,
+   82.25302098160454
+  ],
+  "width": 4096,
+  "accepted": true,
+  "hits": 815,
+  "samples": 1351,
+  "line_rms_px": 0.6466890257879095,
+  "camera_centre_m": [
+   51.21531356535234,
+   83.05541259007273,
+   7.54501051966823
+  ],
+  "f_px_per_rad": 1514.1140521309212,
+  "hits_by_group": {
+   "circle": [
+    92,
+    115
+   ],
+   "goal_l": [
+    58,
+    136
+   ],
+   "goal_r": [
+    1,
+    136
+   ],
+   "halfway": [
+    127,
+    136
+   ],
+   "pen_l_far": [
+    31,
+    33
+   ],
+   "pen_l_front": [
+    79,
+    80
+   ],
+   "pen_l_near": [
+    30,
+    33
+   ],
+   "pen_r_far": [
+    31,
+    33
+   ],
+   "pen_r_front": [
+    80,
+    80
+   ],
+   "pen_r_near": [
+    15,
+    33
+   ],
+   "six_l_far": [
+    10,
+    11
+   ],
+   "six_l_front": [
+    34,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    10,
+    11
+   ],
+   "six_r_front": [
+    36,
+    36
+   ],
+   "six_r_near": [
+    10,
+    11
+   ],
+   "touch_far": [
+    68,
+    210
+   ],
+   "touch_near": [
+    92,
+    210
+   ]
+  },
+  "candidates": [
+   {
+    "coarse": 0.588,
+    "polished": 0.671,
+    "hits": 813,
+    "line_rms_px": 0.648,
+    "height_m": 7.54,
+    "accepted": true
+   },
+   {
+    "coarse": 0.555,
+    "polished": 0.672,
+    "hits": 814,
+    "line_rms_px": 0.649,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.619,
+    "polished": 0.691,
+    "hits": 332,
+    "line_rms_px": 0.807,
+    "height_m": 4.35,
+    "accepted": false
+   },
+   {
+    "coarse": 0.629,
+    "polished": 0.694,
+    "hits": 296,
+    "line_rms_px": 0.857,
+    "height_m": 4.54,
+    "accepted": false
+   },
+   {
+    "coarse": 0.633,
+    "polished": 0.697,
+    "hits": 815,
+    "line_rms_px": 0.647,
+    "height_m": 7.55,
+    "accepted": true
+   },
+   {
+    "coarse": 0.628,
+    "polished": 0.704,
+    "hits": 817,
+    "line_rms_px": 0.652,
+    "height_m": 7.54,
+    "accepted": true
+   }
+  ],
+  "grid": 21875
+ },
+ "118578": {
+  "camera": [
+   -1513.1709270142485,
+   1513.7846614063983,
+   2064.5371544930326,
+   509.8732993224396,
+   0.049571295605923965,
+   -2.539463378891177,
+   1.817551228756513,
+   54.1861077439152,
+   -18.85404092156435,
+   79.24326450401107
+  ],
+  "width": 4096,
+  "accepted": true,
+  "hits": 822,
+  "samples": 1351,
+  "line_rms_px": 0.63836355205096,
+  "camera_centre_m": [
+   51.220051501492264,
+   83.01214212913004,
+   7.522943843833022
+  ],
+  "f_px_per_rad": 1513.1709270142485,
+  "hits_by_group": {
+   "circle": [
+    91,
+    115
+   ],
+   "goal_l": [
+    71,
+    136
+   ],
+   "goal_r": [
+    3,
+    136
+   ],
+   "halfway": [
+    126,
+    136
+   ],
+   "pen_l_far": [
+    31,
+    33
+   ],
+   "pen_l_front": [
+    79,
+    80
+   ],
+   "pen_l_near": [
+    33,
+    33
+   ],
+   "pen_r_far": [
+    31,
+    33
+   ],
+   "pen_r_front": [
+    80,
+    80
+   ],
+   "pen_r_near": [
+    16,
+    33
+   ],
+   "six_l_far": [
+    9,
+    11
+   ],
+   "six_l_front": [
+    35,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    10,
+    11
+   ],
+   "six_r_front": [
+    35,
+    36
+   ],
+   "six_r_near": [
+    10,
+    11
+   ],
+   "touch_far": [
+    44,
+    210
+   ],
+   "touch_near": [
+    107,
+    210
+   ]
+  },
+  "candidates": [
+   {
+    "coarse": 0.591,
+    "polished": 0.565,
+    "hits": 828,
+    "line_rms_px": 0.642,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.512,
+    "polished": 0.565,
+    "hits": 822,
+    "line_rms_px": 0.638,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.538,
+    "polished": 0.565,
+    "hits": 824,
+    "line_rms_px": 0.64,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.545,
+    "polished": 0.565,
+    "hits": 825,
+    "line_rms_px": 0.64,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.624,
+    "polished": 0.565,
+    "hits": 826,
+    "line_rms_px": 0.641,
+    "height_m": 7.52,
+    "accepted": true
+   },
+   {
+    "coarse": 0.6,
+    "polished": 0.566,
+    "hits": 811,
+    "line_rms_px": 0.65,
+    "height_m": 7.54,
+    "accepted": true
+   }
+  ],
+  "grid": 21875
+ },
+ "128057": {
+  "camera": [
+   -1513.5235395853417,
+   1514.0401710482395,
+   2167.5123385766706,
+   509.7230199714946,
+   0.1102246381272237,
+   -2.4931895013029797,
+   1.7847569478405676,
+   59.480392113020415,
+   -18.77927766090271,
+   75.38477243617498
+  ],
+  "width": 4096,
+  "first_pass": {
+   "hits": 292,
+   "line_rms_px": 0.7350171423415697
+  },
+  "accepted": true,
+  "via": "install",
+  "hits": 849,
+  "samples": 1351,
+  "line_rms_px": 0.6121963558004943,
+  "camera_centre_m": [
+   51.23146193113254,
+   83.01968092997568,
+   7.517454178229455
+  ],
+  "f_px_per_rad": 1513.5235395853417,
+  "hits_by_group": {
+   "circle": [
+    91,
+    115
+   ],
+   "goal_l": [
+    54,
+    136
+   ],
+   "goal_r": [
+    3,
+    136
+   ],
+   "halfway": [
+    129,
+    136
+   ],
+   "pen_l_far": [
+    31,
+    33
+   ],
+   "pen_l_front": [
+    79,
+    80
+   ],
+   "pen_l_near": [
+    31,
+    33
+   ],
+   "pen_r_far": [
+    31,
+    33
+   ],
+   "pen_r_front": [
+    80,
+    80
+   ],
+   "pen_r_near": [
+    16,
+    33
+   ],
+   "six_l_far": [
+    10,
+    11
+   ],
+   "six_l_front": [
+    35,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    10,
+    11
+   ],
+   "six_r_front": [
+    36,
+    36
+   ],
+   "six_r_near": [
+    10,
+    11
+   ],
+   "touch_far": [
+    55,
+    210
+   ],
+   "touch_near": [
+    137,
+    210
+   ]
+  }
+ },
+ "128058": {
+  "camera": [
+   -1512.3875973002896,
+   1512.9369204738477,
+   2069.5999444076883,
+   510.11785418418765,
+   0.052480880917633595,
+   -2.5373628178353864,
+   1.8163075434816662,
+   54.437102551255784,
+   -18.841975796548553,
+   79.05477078256341
+  ],
+  "width": 4096,
+  "accepted": true,
+  "hits": 870,
+  "samples": 1351,
+  "line_rms_px": 0.6046588758414575,
+  "camera_centre_m": [
+   51.228617451548956,
+   82.99010846516752,
+   7.50637199450456
+  ],
+  "f_px_per_rad": 1512.3875973002896,
+  "hits_by_group": {
+   "circle": [
+    92,
+    115
+   ],
+   "goal_l": [
+    67,
+    136
+   ],
+   "goal_r": [
+    3,
+    136
+   ],
+   "halfway": [
+    127,
+    136
+   ],
+   "pen_l_far": [
+    32,
+    33
+   ],
+   "pen_l_front": [
+    79,
+    80
+   ],
+   "pen_l_near": [
+    31,
+    33
+   ],
+   "pen_r_far": [
+    31,
+    33
+   ],
+   "pen_r_front": [
+    80,
+    80
+   ],
+   "pen_r_near": [
+    15,
+    33
+   ],
+   "six_l_far": [
+    10,
+    11
+   ],
+   "six_l_front": [
+    36,
+    36
+   ],
+   "six_l_near": [
+    11,
+    11
+   ],
+   "six_r_far": [
+    10,
+    11
+   ],
+   "six_r_front": [
+    35,
+    36
+   ],
+   "six_r_near": [
+    10,
+    11
+   ],
+   "touch_far": [
+    58,
+    210
+   ],
+   "touch_near": [
+    143,
+    210
+   ]
+  },
+  "candidates": [
+   {
+    "coarse": 0.56,
+    "polished": 0.607,
+    "hits": 601,
+    "line_rms_px": 0.527,
+    "height_m": 7.28,
+    "accepted": false
+   },
+   {
+    "coarse": 0.578,
+    "polished": 0.607,
+    "hits": 871,
+    "line_rms_px": 0.606,
+    "height_m": 7.5,
+    "accepted": true
+   },
+   {
+    "coarse": 0.493,
+    "polished": 0.609,
+    "hits": 871,
+    "line_rms_px": 0.606,
+    "height_m": 7.5,
+    "accepted": true
+   },
+   {
+    "coarse": 0.548,
+    "polished": 0.609,
+    "hits": 274,
+    "line_rms_px": 0.858,
+    "height_m": 4.76,
+    "accepted": false
+   },
+   {
+    "coarse": 0.572,
+    "polished": 0.614,
+    "hits": 870,
+    "line_rms_px": 0.605,
+    "height_m": 7.51,
+    "accepted": true
+   },
+   {
+    "coarse": 0.468,
+    "polished": 0.616,
+    "hits": 286,
+    "line_rms_px": 0.798,
+    "height_m": 4.44,
+    "accepted": false
+   }
+  ],
+  "grid": 21875
+ }
+}

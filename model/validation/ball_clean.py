@@ -394,7 +394,7 @@ def build_clip(clip: str, dest: Path, iid: int, aid: int, imgs: list, anns: list
     """Cut one clip into tiles. Frames are read SEQUENTIALLY - see ball_eval.build_cache.
 
     `drops` accumulates every wanted frame that did NOT become a tile, by reason. A
-    builder that silently skips is the filter CLAUDE.md warns about: deleting the hard
+    builder that silently skips is the filter docs/README.md#working-rules warns about: deleting the hard
     inputs and handling them look identical in the tile count.
     """
     import cv2  # noqa: PLC0415
@@ -670,7 +670,7 @@ def tiles(rebuild: bool = False) -> dict:
             "  Fetch the eligible ones first - they are MIT and free, by byte range, per\n"
             "  data/footage/soccertrack/README.md §6; `ball_clean.py plan` lists them.\n"
             "  Training on what is on disk would score the detector on its own training\n"
-            "  frames, which is the failure .claude/CLAUDE.md exists to stop.")
+            "  frames, which is the failure docs/README.md#working-rules exists to stop.")
     rep = {}
     for split, clips in todo.items():
         dest = OUT / "tiles" / split

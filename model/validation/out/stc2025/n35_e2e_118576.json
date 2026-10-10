@@ -1,0 +1,42 @@
+{
+ "SHIP": {
+  "rows": 54695,
+  "ids": 56,
+  "no_owner_share": 0.1048,
+  "pos_median_m": 7.75,
+  "pos_p90_m": 10.04,
+  "slope": {
+   "all": 1.0414,
+   "x": 0.9949,
+   "y": 1.1011,
+   "far": 1.0682,
+   "near": 1.0294
+  },
+  "distance_per_covered_m": 1.2261,
+  "distance_floor": 1.2896,
+  "hsr_ratio": 3.106,
+  "hsr_floor": 2.412,
+  "distance_over_floor": 0.9508,
+  "hsr_over_floor": 1.288
+ },
+ "AUTO": {
+  "rows": 54641,
+  "ids": 51,
+  "no_owner_share": 0.1046,
+  "pos_median_m": 2.04,
+  "pos_p90_m": 3.66,
+  "slope": {
+   "all": 0.9727,
+   "x": 0.9939,
+   "y": 0.9453,
+   "far": 0.9523,
+   "near": 0.9847
+  },
+  "distance_per_covered_m": 1.2212,
+  "distance_floor": 1.3005,
+  "hsr_ratio": 2.026,
+  "hsr_floor": 2.433,
+  "distance_over_floor": 0.939,
+  "hsr_over_floor": 0.833
+ }
+}

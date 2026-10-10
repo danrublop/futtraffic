@@ -1,0 +1,111 @@
+{
+ "T0": {
+  "occluded_far": 0.4285,
+  "occluded_mid": 0.5614,
+  "occluded_near": 0.7085,
+  "isolated_far": 0.8146,
+  "isolated_mid": 0.9621,
+  "isolated_near": 0.966,
+  "non_gt_per_frame": 2.651
+ },
+ "F12": {
+  "occluded_far": 0.7165,
+  "occluded_mid": 0.5701,
+  "occluded_near": 0.6972,
+  "isolated_far": 0.9814,
+  "isolated_mid": 0.9614,
+  "isolated_near": 0.9627,
+  "non_gt_per_frame": 8.125
+ },
+ "B1": {
+  "occluded_far": 0.7165,
+  "occluded_mid": 0.5701,
+  "occluded_near": 0.6972,
+  "isolated_far": 0.9809,
+  "isolated_mid": 0.9614,
+  "isolated_near": 0.9627,
+  "non_gt_per_frame": 5.519
+ },
+ "B2": {
+  "occluded_far": 0.7165,
+  "occluded_mid": 0.5701,
+  "occluded_near": 0.6972,
+  "isolated_far": 0.9814,
+  "isolated_mid": 0.9614,
+  "isolated_near": 0.9627,
+  "non_gt_per_frame": 5.679
+ },
+ "B12": {
+  "occluded_far": 0.7165,
+  "occluded_mid": 0.5701,
+  "occluded_near": 0.6972,
+  "isolated_far": 0.9809,
+  "isolated_mid": 0.9614,
+  "isolated_near": 0.9627,
+  "non_gt_per_frame": 4.433
+ },
+ "B1_per_clip": {
+  "118575": {
+   "dropped_per_frame": 0.359,
+   "gt_matched_share_dropped": 0.0002
+  },
+  "118576": {
+   "dropped_per_frame": 2.527,
+   "gt_matched_share_dropped": 0.0003
+  },
+  "117093": {
+   "dropped_per_frame": 4.948,
+   "gt_matched_share_dropped": 0.0
+  }
+ },
+ "B2_per_clip": {
+  "118575": {
+   "dropped_per_frame": 0.174,
+   "gt_matched_share_dropped": 0.0
+  },
+  "118576": {
+   "dropped_per_frame": 1.955,
+   "gt_matched_share_dropped": 0.0
+  },
+  "117093": {
+   "dropped_per_frame": 5.219,
+   "gt_matched_share_dropped": 0.0
+  }
+ },
+ "B12_per_clip": {
+  "118575": {
+   "dropped_per_frame": 0.496,
+   "gt_matched_share_dropped": 0.0002
+  },
+  "118576": {
+   "dropped_per_frame": 3.602,
+   "gt_matched_share_dropped": 0.0003
+  },
+  "117093": {
+   "dropped_per_frame": 7.0,
+   "gt_matched_share_dropped": 0.0
+  }
+ },
+ "B1_goes_on": false,
+ "B2_goes_on": false,
+ "B12_goes_on": false,
+ "tol": {
+  "tol_px": 2.374,
+  "gt_boxes_used": 41471,
+  "far_paint_width_cover": {
+   "118575": 0.297,
+   "118576": 0.385,
+   "117093": 0.424
+  }
+ },
+ "B3": {
+  "occluded_far": 0.7163,
+  "occluded_mid": 0.5701,
+  "occluded_near": 0.6972,
+  "isolated_far": 0.9809,
+  "isolated_mid": 0.9614,
+  "isolated_near": 0.9627,
+  "non_gt_per_frame": 3.524
+ },
+ "B3_goes_on": false
+}

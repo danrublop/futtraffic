@@ -1949,7 +1949,7 @@ def _demo() -> None:
     hit = np.flatnonzero(real & (v >= MAX_SPEED - 1e-9))
     gap_at = int(np.flatnonzero(~real)[0])
     assert len(hit) > 0, "the post-gap transient is gone - if that was deliberate, " \
-        "docs/experiments/speed-clamp.md §8 is the fix and this assert is what it flips"
+        "speed-clamp (not published) §8 is the fix and this assert is what it flips"
     # The defect must stay BOUNDED. Measured settling is 2.0-3.7 s and this
     # fixture rings for 1.48 s; if a tuning change doubles that, fail here.
     assert gap_at < hit[0] and (hit[-1] - gap_at) <= 2.0 * fps, (gap_at, hit[[0, -1]])

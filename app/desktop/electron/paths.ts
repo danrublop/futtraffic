@@ -48,7 +48,7 @@ export function getHFCacheDir(): string {
   return path.join(app.getPath("userData"), "hf-cache");
 }
 
-/** The demo match (Westport FC v Harbour City FC) that ships with the app, seeded
+/** The demo match (Northside United v Riverside Athletic, synthetic) that ships with the app, seeded
  *  into the data dir on first run so a fresh install is not an empty list. */
 export function getDemoSeedDir(): string {
   return app.isPackaged

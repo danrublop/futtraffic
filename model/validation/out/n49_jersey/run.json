@@ -1,0 +1,30 @@
+{
+  "build": {
+    "window": [
+      15000,
+      30000
+    ],
+    "dets_in_window": 322125,
+    "dets_without_a_box": 0,
+    "box_join_drop_share": 0.0,
+    "tracks": 893
+  },
+  "identity_report": {
+    "strategy": "assisted",
+    "tracklets_before": 893,
+    "tracklets_after": 681,
+    "tracklets_after_motion_only": 726,
+    "appearance_extra_merges": 45,
+    "crops_attempted": 33947,
+    "crops_legible": 10974,
+    "legible_frame_rate": 0.3233,
+    "ocr_backend": "present",
+    "ocr_reads": 2072,
+    "ocr_reads_facing_away": 1820,
+    "groups": 681,
+    "tracks_assigned": 23,
+    "tracks_needing_human": 870,
+    "groups_needing_human": 660
+  },
+  "seconds": 741.0
+}

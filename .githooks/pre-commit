@@ -1,16 +1,11 @@
 #!/bin/sh
-# Fast, advisory - except one check. The blocking gate is pre-push.
+# Fast and advisory. The blocking gate is pre-push.
 .venv/bin/python model/validation/index.py --check || true
 # A registered id missing from the golden renders not_evaluated in the product
 # and turns the push gate red; this says so at commit time, in seconds.
 .venv/bin/python model/validation/api.py --ids || true
 # 2026-09-12. Early warning for the ratchet pre-push enforces: a new bare sigil.
 .venv/bin/python model/validation/bare_markers.py || true
-# THE EXCEPTION, and it blocks: lane ownership. An advisory ownership check cannot
-# prevent the cross-lane commit it exists for - on 2026-09-12 a supervisor ran
-# git stash in a tree with two live agents, and nothing refused it. It is inert
-# unless .lanes.json exists, so an ordinary commit is never touched.
-.venv/bin/python model/validation/evidence.py --ownership || exit 1
 # Calibration touched: its self-checks and golden round-trip, advisory; pre-push blocks.
 git diff --cached --name-only | grep -qE '^(model/engine/(autocal|calibrators|pitch|sceneprior)\.py|app/server/jobs\.py)' &&
   { .venv/bin/python model/validation/check.py calib --fast || true; }

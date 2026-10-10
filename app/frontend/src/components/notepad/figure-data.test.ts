@@ -40,7 +40,7 @@ const fed = {
         { minute: "11'", side: "home", type: "goal", player: "Marco Ruiz", score: "1 - 0", assist: "Leo Brandt" },
         { minute: "30'", side: "away", type: "yellow_card", player: "Christopher McVey" },
         { minute: "HT", type: "period", score: "1 - 0" },
-        { minute: "46'", side: "away", type: "substitution", in: "Oscar Verhoeven", out: "Dagur Thorhallsson" },
+        { minute: "46'", side: "away", type: "substitution", in: "Milan Westbrook", out: "Joaquin Ellsworthy" },
       ],
     },
   },
@@ -205,7 +205,7 @@ describe("the timeline figure", () => {
       "11' Goal Marco Ruiz (1 - 0) assist Leo Brandt",
       "30' Yellow Christopher McVey booked",
       "HT Period 1 - 0",
-      "46' Sub Oscar Verhoeven for Dagur Thorhallsson",
+      "46' Sub Milan Westbrook for Joaquin Ellsworthy",
     ]);
   });
 
@@ -215,7 +215,7 @@ describe("the timeline figure", () => {
 
   it("filters to one kind of incident", () => {
     expect(tl("goal").rows).toHaveLength(1);
-    expect(tl("substitution").rows[0].cells[1]).toMatch(/^Oscar Verhoeven for/);
+    expect(tl("substitution").rows[0].cells[1]).toMatch(/^Milan Westbrook for/);
   });
 
   it("refuses naming the kind that was asked for when there is none of it", () => {
@@ -254,9 +254,9 @@ describe("switching figure kind", () => {
 describe("what a stored figure may carry", () => {
   it("keeps a sentence-length cell, because a timeline row is prose", () => {
     // The cap was 24 when every cell was a figure like "13.56 km", and it cut
-    // "Oscar Verhoeven for Dagur Thorhallsson" mid-word in the PRINTED
+    // "Milan Westbrook for Joaquin Ellsworthy" mid-word in the PRINTED
     // document, where nothing can be scrolled to reveal the rest.
-    const long = "Oscar Verhoeven for Dagur Thorhallsson";
+    const long = "Milan Westbrook for Joaquin Ellsworthy";
     const rows = parseFigureRows(JSON.stringify([{ name: "46'", side: "away", cells: ["Sub", long] }]));
     expect(rows[0].cells[1]).toBe(long);
   });

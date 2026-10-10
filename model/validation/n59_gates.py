@@ -27,7 +27,7 @@ WHAT THIS CAN AND CANNOT BE A BLIND TEST OF
 
     What is genuinely unknown, and what the rule below rules on: whether ANY gate
     subset survives leave-one-clip-out SELECTION with a per-population floor. A
-    sweep's argmax is not a result (CLAUDE.md), and 8 subsets over 6 clips is a
+    sweep's argmax is not a result (docs/README.md#working-rules), and 8 subsets over 6 clips is a
     sweep - so the winner is chosen on five clips and scored on the sixth, six
     times, and the reported number is the held-out one.
 

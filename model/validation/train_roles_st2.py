@@ -153,7 +153,7 @@ PRE-REGISTERED BEFORE ANY TRAINING RUN (commit 1 of this branch, nothing scored 
     drop      every box that `rolenet.crop` refuses, every undecodable frame, and the
               sampling stride, reported per match in the build manifest. A metric that
               rose because short boxes were filtered out is indistinguishable from a
-              real gain without it (CLAUDE.md).
+              real gain without it (docs/README.md#working-rules).
     n         this is ONE configuration, not an argmax over a sweep. If a sweep
               happens the number carries its `n=`.
 

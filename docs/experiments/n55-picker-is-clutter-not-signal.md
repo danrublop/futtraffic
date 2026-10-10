@@ -43,7 +43,7 @@ gate asks whether a neighbour was within 8 px on >=25 of the last 60 frames (N49
 §1) - a single rate, one horizon - and paint and a dead ball both pass it. This is
 the 295-frame population, and the repo already has a number pointing the same way:
 `path_nosc` scores 0.4856 against shipped's 0.4706 with the gate off (N49 §5b,
-EXPLORATORY, no bar). **It is a gate change**, so CLAUDE.md's filter rule applies:
+EXPLORATORY, no bar). **It is a gate change**, so [the working rules](../README.md#working-rules)' filter rule applies:
 the drop share and the non-GT box rate travel with any result, as they did in N43.
 
 **R2a — is confidence evidence at all?** The Viterbi's emission term was

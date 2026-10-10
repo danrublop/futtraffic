@@ -1,5 +1,12 @@
 # footage2/ — hunting a single fixed PERSPECTIVE camera
 
+> **Start here.** This folder holds TeamTrack clips (MIT), the ball detector's data.
+> `model/validation/ball_clean.py fetch` downloads them here one member at a time, using the
+> committed `teamtrack_zip_index.json` (§6). Nothing else is needed from this page.
+>
+> Below is the original search log, kept because other documents cite its sections. Perspective,
+> handball and stock-footage cameras were explored and are out of scope for this repository.
+
 Goal for this directory: real soccer video from **one fixed perspective camera** (a single
 planar homography is the correct model), because `stats.build_match` accepts a perspective
 calibration and rejects panoramic ones, and the only real match we had (`data/footage/`,

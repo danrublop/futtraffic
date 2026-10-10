@@ -57,7 +57,7 @@ class where the raw track (no stitching) changes id or has no detection.
   box there is nothing to associate. Occluded frames are 14% of player-frames and they are where tracks end: the id
   lapses on 46-63% of them against 5-7% of isolated frames in the middle and near thirds.
 - The far third is weaker even isolated (0.878, and a 24% lapse rate): small players, 20-40 px tall.
-- The unverified audit figure in the memory note (0.307 vs 0.904) was the right shape and the wrong numbers; these are
+- The unverified audit figure in an internal note (0.307 vs 0.904) was the right shape and the wrong numbers; these are
   the measured ones, on seven clips, with the command above.
 - **They are detected weakly, not missed** (one detector pass on 118575 cached down to conf 0.05, `--conf`):
 

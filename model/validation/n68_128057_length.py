@@ -6,12 +6,12 @@
     .venv/bin/python model/validation/n68_128057_length.py q4               # autocal of each commit on the same frame
 
 Inputs: the committed medians model/validation/out/stc2025/<clip>.median40.png, Pitch() (105 x 68), CPU. Runs go
-to a process pool, one process per run. Promoted from this session's scratch drivers (i128_run.py, i128_q3.py,
+to a process pool, one process per run. Promoted from earlier scratch drivers (i128_run.py, i128_q3.py,
 i128_old.py); the pre-registration below is the doc's section 0, copied, not rewritten.
 
 PRE-REGISTRATION (n68-128057-length (not published) section 0)
 
-The trigger, reported by the supervisor and not yet re-run here: on
+The trigger, reported in review and not yet re-run here: on
 `model/validation/out/stc2025/128057.median40.png`, `autocal.autocal(img, Pitch())` accepts with 681 hits,
 line RMS 0.862 px and length 109.14 m (sd 0.088). N34 refused this match from nothing (292 hits) and
 accepted it only via the install camera; seven same-install matches were said to read 105.0-105.25 m.

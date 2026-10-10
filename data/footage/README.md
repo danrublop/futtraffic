@@ -1,5 +1,15 @@
 # data/footage/ — real fixed-camera soccer video
 
+> **Start here.** No video ships with this repository. The footage is
+> [SoccerTrack v2](https://github.com/AtomScott/SoccerTrack-v2) (CC BY 4.0): download it and set
+> `ST2_DIR` (default `~/Downloads/st2`). A few scripts also read the 118575 first half and its
+> calibration bundle from this folder, as `118575_panorama_1st_half.mp4` and
+> `soccertrack_calib_118575/` (both from the SoccerTrack v2 Drive mirror below). Ball clips come
+> from TeamTrack (MIT) via `model/validation/ball_clean.py fetch`, into `soccertrack/`.
+>
+> Everything below is the original acquisition log, kept because other documents cite its
+> sections (§1–§4).
+
 Everything here was downloaded from a public, **commercially-usable** source.
 Licence was treated as a gate: anything non-commercial, NDA-gated, or of unclear
 provenance was rejected and is recorded below under "Rejected".
@@ -8,14 +18,6 @@ Nothing in this directory came from SoccerNet or any re-upload of it.
 
 ## TL;DR
 
-**Verified decoding, real fixed-camera panorama frames are on disk now:**
-
-| File | Frames | Res |
-|---|---|---|
-| `st2_demo-gsr_and_bas.mp4` | 750 @ 25 fps (30 s) | 4096x1080 |
-| `117093_calibrated_panorama_1st_half.mp4` | 47 @ 25 fps | 4096x1080 |
-| `st2_demo-tracking.mp4` / `st2_demo-minimap.mp4` | 750 each | 1280x338 / 874x546 |
-
 Three findings that change the pipeline:
 
 1. **It is a stitched panorama, not a perspective view.** One homography on the raw frame
@@ -23,11 +25,6 @@ Three findings that change the pipeline:
 2. **The fix ships with the dataset.** `soccertrack_calib_118575/` has OpenCV remap tables.
    Correct order is `cv2.remap(...)` **then** homography — verified, see §2.
 3. **Players are 8–115 px tall, not 20–50.** Our assumption was wrong by ~2x at both ends.
-
-~~One thing outstanding: the full 48-min `118575` video is 1.44/3.55 GB downloaded~~ —
-**DONE. The download completed.** 3,550,087,937 B on disk, decodes, 71,850 frames
-(verified 2026-08-25). §6's resume instructions are kept for provenance only;
-do not follow them, there is nothing left to resume.
 
 ---
 
@@ -42,7 +39,7 @@ do not follow them, there is nothing left to resume.
 - **Content:** University of Tsukuba amateur matches, fixed multi-camera array at the
   halfway line, stitched to a 4K panorama. 10 matches, both halves each.
 
-### Files on disk
+### Files used (from the SoccerTrack v2 Drive mirror)
 
 | File | Source URL | Res | fps | Duration | Projection |
 |---|---|---|---|---|---|
@@ -58,9 +55,9 @@ Drive mirror root: https://drive.google.com/drive/folders/1N2Qx2qkFgRtpbHitl2Vh6
 
 ### Why 118575 and 117093 matter
 
-`model/validation/soccertrack/` already holds ground-truth tracks for `118575_1st`,
-`117092_1st`, `117093_1st`. The two videos above are **the same matches**, so we now
-have video AND ground-truth pitch positions for the same footage.
+`model/validation/soccertrack/` holds the ground-truth tracks for `118575_1st` (the other
+halves are rebuilt from the dataset by `validate.py --cache`). The videos above are **the same
+matches**, so there is video AND ground-truth pitch positions for the same footage.
 
 `118575_1st.tracks.json.gz`: 72,101 frames @ 25.0 fps = **48.07 min**, 22 track IDs,
 positions in metres, x from -14.70 to 110.25, y from -8.84 to 74.80 (pitch plus
@@ -77,8 +74,8 @@ goal line, and staff on the touchline. So the calibration target rectangle is
 
 ## 2. Projection: it is a PANORAMA, not a perspective view
 
-**This is settled, not a guess.** See `st2_panorama-day.jpg` and
-`evidence_st2_panorama_centercrop.png`:
+**This is settled, not a guess.** See `st2_panorama-day.jpg`, one of the
+images in the SoccerTrack v2 repository's assets folder:
 
 - Touchlines bow into pronounced arcs — the near touchline sags at image centre and
   rises at both ends; the far touchline bows the opposite way.
@@ -97,8 +94,7 @@ will break at the panorama edges.
 ### The "calibrated" variant does not fully fix it
 
 Match 117093 also ships `117093_calibrated_panorama_*.mp4`. In it the pitch is far
-flatter, but the content band is **still visibly bowed** (see
-`evidence_117093_calibrated_panorama.png`). Non-black content occupies only
+flatter, but the content band is **still visibly bowed**. Non-black content occupies only
 **3963 x 406 px inside the 4096x1080 canvas** (~9.8:1) — the rest is black padding.
 So "calibrated" means per-camera lens undistortion + stitch, giving a cylindrical
 projection — **not** a plane-rectified image. A single homography is still not valid.
@@ -134,7 +130,7 @@ rectification — it ships with the match.
 
 **The remap tables load and work.** `cv2.remap` on a synthetic regular grid succeeds and
 turns the grid into a clean perspective fan — all lines stay **straight** and converge to a
-single vanishing point (`evidence_remap_grid.png`). That is the signature of a genuine
+single vanishing point. That is the signature of a genuine
 projective rectification, i.e. after the remap the image behaves like a pinhole camera and a
 single homography becomes the correct model. The maps sample source rows from -1210 to 2197,
 well outside the 1080-row frame, which is why rectified output has large black margins.
@@ -234,69 +230,9 @@ full range 7–83.
 
 | Source | Why rejected |
 |---|---|
-| `archive.org/details/snafuinfinitysoccer-boys_110424-vs-ludlow` (CC0) | Licence fine, **content wrong**: not a fixed wide camera. It is an operator-driven pan/zoom camera that follows the ball, including face close-ups. Whole pitch never in frame. See `evidence_archiveorg_ludlow_REJECTED.png`. |
-| `archive.org/details/soccer_boys_vsConcordCarlisle_110212` (Public Domain Mark 1.0) | Same: panning/zooming ball-following camera, spectators crossing frame. See `evidence_archiveorg_concord_REJECTED.png`. |
+| `archive.org/details/snafuinfinitysoccer-boys_110424-vs-ludlow` (CC0) | Licence fine, **content wrong**: not a fixed wide camera. It is an operator-driven pan/zoom camera that follows the ball, including face close-ups. Whole pitch never in frame. |
+| `archive.org/details/soccer_boys_vsConcordCarlisle_110212` (Public Domain Mark 1.0) | Same: panning/zooming ball-following camera, spectators crossing frame. |
 | Alfheim / Tromsø (`datasets.simula.no/alfheim/`) | Genuinely fixed panoramic array with 20 Hz ZXY ground truth, but terms state *"The data may only be used for non-commercial research purposes"*. **Fails the commercial gate.** Not downloaded. |
 | `huggingface.co/datasets/atomscott/soccertrack-v2` | Returns **HTTP 401** for the repo page, API, and all file paths. Not publicly readable. Not circumvented. |
 | TeamTrack (Kaggle) | Requires a Kaggle account. Not circumvented. |
 | `huggingface.co/datasets/tartotarto/soccernet-500-videos` | Unauthorised re-upload of NDA'd SoccerNet video. **Never touched.** |
-
-### Evidence images
-`evidence_st2_panorama_centercrop.png`, `evidence_117093_calibrated_panorama.png`,
-`evidence_archiveorg_ludlow_REJECTED.png`, `evidence_archiveorg_concord_REJECTED.png`.
-
----
-
-## 6. Known gaps / what a human may still want to do
-
-- **`117093_calibrated_panorama_1st_half.mp4` is only 47 frames (795 KB).** That is the
-  complete file as published on the Drive mirror — it looks like a truncated/partial upload
-  by the maintainers, not a download error (the sibling
-  `117093_calibrated_panorama_2nd_half.mp4` is a full 1.74 GB). Worth an upstream issue.
-  Note the 2nd-half video would not pair with our `117093_1st` ground truth anyway.
-### THE ONE THING A HUMAN SHOULD DO: finish the 118575 download
-
-`118575_panorama_1st_half.mp4` is the highest-value asset available — it is the *only*
-full-length clean video that pairs with ground truth we already hold
-(`model/validation/soccertrack/118575_1st.tracks.json.gz`) **and** with the calibration in
-`soccertrack_calib_118575/`. We got 1.44 GB of 3.55 GB before Google Drive began returning
-*"Too many users have viewed or downloaded this file recently"* to anonymous requests —
-first for whole-file GETs, then for ranged reads too. This is a **bandwidth quota, not a
-login wall**; it typically clears within hours (Google says up to 24).
-
-Easiest fix — **open it in a browser while signed in to any Google account**, which uses a
-separate per-user quota:
-https://drive.google.com/file/d/1-FZNCqVSx8YleM2E7UK90-SAdNAlTeSD/view
-(or "Add shortcut to My Drive" from the folder, then download). Save it into `data/footage/` as
-`118575_panorama_1st_half.mp4` and delete the `.PARTIAL-DOES-NOT-DECODE` file.
-
-To instead resume the partial from the shell once the quota clears:
-
-```bash
-cd "data/footage"
-mv 118575_panorama_1st_half.mp4.PARTIAL-DOES-NOT-DECODE 118575_panorama_1st_half.mp4
-URL="https://drive.usercontent.google.com/download?id=1-FZNCqVSx8YleM2E7UK90-SAdNAlTeSD&export=download&confirm=t"
-T=3550087937
-while [ "$(stat -f%z 118575_panorama_1st_half.mp4)" -lt $T ]; do
-  H=$(stat -f%z 118575_panorama_1st_half.mp4)
-  curl -s -r "$H-$((H+33554432-1))" "$URL" -o .part
-  # a 2009-byte .part is the quota page, not data - back off and retry
-  if [ "$(stat -f%z .part)" -gt 10000 ]; then cat .part >> 118575_panorama_1st_half.mp4; else sleep 300; fi
-done; rm -f .part
-```
-
-Then sanity-check it: `ffprobe` should report 4096x1080 @ 25 fps and ~72,100 frames,
-matching the 72,101 ground-truth frames.
-
-- **Other matches** (117092, the 118575 2nd half, the full 117093) are behind the same
-  quota. Folder: https://drive.google.com/drive/folders/1N2Qx2qkFgRtpbHitl2Vh6sLVYGgqkWwn
-- **`118575_tracker_box_data.xml`** (image-space bounding boxes — ground truth for
-  *detection*, not just pitch position) also hit the quota and is **not** on disk. It is the
-  one missing piece of `soccertrack_calib_118575/` and is worth grabbing in the same browser
-  session: https://drive.google.com/file/d/1N9E5tgf16bfcseOMsVIPljsXHcQa_t3k/view
-- **Hugging Face copy is 401.** If the maintainers make it public (or grant access),
-  `app/scripts/download.sh --match 118575` from the repo is the clean path and supports
-  per-match downloads.
-- `st2_demo-gsr_and_bas.mp4` has annotation overlays burned into the frame. Use it for
-  smoke-testing decode/detection, but not for accuracy measurement — prefer
-  `118575_panorama_1st_half.mp4`, which is clean.

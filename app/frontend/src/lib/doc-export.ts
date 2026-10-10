@@ -108,7 +108,7 @@ const page = (orient: "portrait" | "landscape", m = MARGIN_DEFAULT[orient]) => {
  *  radius and a shadow so it reads as a sheet inside the app; on paper that is
  *  a box drawn around the page. Same for the scroll containers: `overflow-x:
  *  auto` is a scrollbar on screen and a guillotine in print, which is what was
- *  cutting "Oscar Verhoeven for Dagu" in half. */
+ *  cutting "Milan Westbrook for Joaq" in half. */
 const OVERRIDES = `
 /* PAPER FURNITURE. The setup chip is an editing control and never prints; the
    break is the browser's own pagination doing the work, with the on-screen

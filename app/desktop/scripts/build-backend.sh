@@ -31,7 +31,7 @@ if [[ "$CVLICENCE" != *"license: LGPL"* ]]; then
   echo "  app/desktop/scripts/build-lgpl-opencv.sh" >&2
   echo "  $VENV/bin/pip install --force-reinstall --no-deps \\" >&2
   echo "      $DESKTOP/build/wheels/opencv_python_headless-*.whl" >&2
-  echo "  See docs/audits/ffmpeg-lgpl.md." >&2
+  echo "  See ffmpeg-lgpl (not published)." >&2
   exit 1
 fi
 

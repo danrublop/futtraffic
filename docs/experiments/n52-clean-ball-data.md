@@ -44,10 +44,11 @@ produce, including every score in N48–N51, is a **same-match** score.
 
 **What that costs, as a number rather than a warning:**
 
-@M 0.00987,0.48761,0.0198,0.18,1.0 :: .venv/bin/python model/validation/ball_clean.py variance
+@C 0.00987,0.48761,0.0198,0.18,1.0 :: `ball_clean.py variance` in the working repository (the `.cmpB` input is not distributed)
    between-match and within-match sums of squares, the between share, then the lowest
    and highest of N48's six per-clip arm-B `oracle` rates. One-way decomposition by
-   match over the committed `.cmpB` caches; a replay, nothing detects. n=1.
+   match over the `.cmpB` caches; a replay, nothing detects. n=1. Those caches are output of the
+   DFL-trained detector, whose data may not be redistributed, so they are not in this repository.
 
 Only @D 1.98% :: 0.00987 / (0.00987 + 0.48761) [the two sums of squares above] of the
 per-clip spread is between the two matches;
@@ -260,16 +261,16 @@ set, and half of the scored population, is a geometry the product will never see
 
 That already shows in N48's own arm B, which pools two quite different numbers:
 
-@M 0.6744,0.7556 :: .venv/bin/python model/validation/ball_clean.py variance
+@C 0.6744,0.7556 :: `ball_clean.py variance` in the working repository (the `.cmpB` input is not distributed)
    arm B's mean per-clip `oracle` for the three `soccer_top` clips and the three
    `soccer_side` clips. Equal frame counts, so these pool to N48's published 0.7150
-   (@D 0.7150 :: (0.6744 + 0.7556) / 2). Committed `.cmpB` caches, a replay.
+   (@D 0.7150 :: (0.6744 + 0.7556) / 2). The `.cmpB` caches, a replay; not distributed (see above).
 
 **Pre-registered, before the clean arm exists:** every clean-arm result reports the
 **side-only** figure beside the pooled one, because side is the product-relevant
 geometry. Beside it, never instead of it — dropping the top-down clips would move the
 headline from 0.7150 to 0.7556 on arm B alone, and a filter that raises a number is the
-change CLAUDE.md says to distrust most. The pooled number stays the ruled-on one; the
+change [the working rules](../README.md#working-rules) say to distrust most. The pooled number stays the ruled-on one; the
 side number is what anyone reasoning about the product should quote.
 
 ## 5. What would have to be true for the clean model to be comparable to the blocked one
@@ -294,7 +295,7 @@ without four things, and the fourth is not obtainable here:
    matches, the same cameras, minutes away from the scored windows. A clean win is
    therefore evidence of domain match first and data quality second, and the two are
    inseparable on this data. Say it on the page, or the comparison is the wrong-protocol
-   failure in CLAUDE.md's list, one more time.
+   failure in [the working rules](../README.md#working-rules)' list, one more time.
 
 **The honest framing of the clean run, decided now:** it is judged against **arm C**, not
 against arm B. The question is "does a shippable detector beat the shipped one at matched
@@ -356,7 +357,7 @@ checkpoint rfdetr keeps as best on VALID (`checkpoint_best_ema`). Valid is the s
 3,798 tiles for both arms, so checkpoint selection is not a third variable.
 
 D1 drops @D 0.931 :: 1 - 916/13227 of the train boxes on purpose. That is a filter, and
-CLAUDE.md's rule about filters applies: it is declared here as a matched-budget control,
+[The working rules](../README.md#working-rules)' rule about filters applies: it is declared here as a matched-budget control,
 its drop share is stated, and it is never quoted as the better number if it happens to
 win.
 
@@ -447,7 +448,7 @@ now the larger half, which it was not under arms A or B.
 1. ~~**Fetch.**~~ DONE — 101 clips, 2.10 GB, MIT, in `data/footage/soccertrack/`.
 2. ~~**Build the tiles.**~~ DONE — §4a. They live in the durable store at
    `validation/out/ball_clean/tiles/{train,valid}`, beside `out/ball/`, **not** in a
-   session scratchpad: that is how the 2026-08-29 ball checkpoint was lost
+   temporary scratch directory: that is how the 2026-08-29 ball checkpoint was lost
    (`ball-detector-trained-not-yet-scored` (internal note)).
    `ball_clean.py tiles` now re-prints that build instead of re-cutting it; `tiles
    rebuild` forces the ~35 minutes of 4K decode.

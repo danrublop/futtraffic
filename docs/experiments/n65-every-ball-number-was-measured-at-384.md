@@ -54,7 +54,7 @@ measured against, without training anything.
 **Every ball number in this repo is at the wrong input resolution.** That includes D1's
 0.4706 / 0.8822 / 86.2, E1's 0.5222 / 0.9456 / 105.8, N50's 0.3772, N51's 0.3344 and
 0.3856, N57's AUCs, N58's whole table and its 0.5466-vs-0.8893 comparison, N59's eight
-subsets, and the memory notes quoting any of them. None may be cited as a property of the
+subsets, and the internal notes quoting any of them. None may be cited as a property of the
 detector until re-measured at 640.
 
 **What survives — and this paragraph over-claimed when first written.** It said "every arm

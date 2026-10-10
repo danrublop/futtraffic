@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 /** ONE TRACK, UNDER REVIEW.
  *
  *  This is not a player profile and it deliberately stops looking like one.
- *  Measured this session: applying our identity error takes sender accuracy
+ *  In our measurements, applying our identity error takes sender accuracy
  *  from 100% to 9.1% against a 4.5% chance floor, and identity reaches chance
  *  roughly five minutes into a match. So every number below describes a
  *  TRAJECTORY the tracker held, and the question the page answers is whether
@@ -310,7 +310,7 @@ function Unverified() {
         </Badge>
       </TooltipTrigger>
       <TooltipContent className="max-w-xs text-pretty">
-        Identity is never verified against a person. Measured this session: injecting our identity
+        Identity is never verified against a person. In our measurements, injecting our identity
         error takes sender accuracy from 100% to 9.1% against a 4.5% chance floor, and identity
         reaches chance about five minutes into a match. Everything on this page describes the
         trajectory, not the player.

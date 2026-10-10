@@ -68,7 +68,7 @@ RULE, FIXED BEFORE THE SCORED RUN (committed with this file, nothing trained yet
     WHY THE ORACLE FLOOR IS THE LOAD-BEARING HALF
                 Training on negatives is a filter, and a filter that improves a metric
                 by deleting hard inputs is indistinguishable from one that solves them
-                (CLAUDE.md). Here the deleted input would be the BALL: teach the model
+                (docs/README.md#working-rules). Here the deleted input would be the BALL: teach the model
                 hard enough that white round things are not balls and the decoy count
                 falls, the picker's job gets easier, and `shipped` can rise while the
                 true ball stops being proposed at all. `oracle` is the share of frames
@@ -1095,7 +1095,7 @@ def demo():
     assert _lo2 <= 0.0 < _hi2, (_lo2, _hi2)
 
     # THE PREDICATE THAT REPLACED THE BROKEN VOID (e) MUST ITSELF FAIL WHEN BROKEN.
-    # A mutation review deleted `negatives()`'s no-ball filter - this session's exact
+    # A mutation review deleted `negatives()`'s no-ball filter - the exact
     # bug, re-planted - and demo() stayed green, because nothing here called it.
     import ball_clean as _BC2  # noqa: PLC0415
     if os.path.exists(MINED) and (_BC2.OUT / "tiles" / "train" / "_annotations.coco.json").exists():

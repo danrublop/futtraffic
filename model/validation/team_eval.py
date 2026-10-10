@@ -64,7 +64,7 @@ Accuracy here goes DOWN when the clustering degrades. A labelling that collapses
 to one bank scores ~50% (GT is balanced 11/11) and shows an infinite ratio; a
 labelling that calls everything 'official' scores 0. There is no way to raise
 this number by merging things together, which is the failure mode that has
-already fooled this session twice.
+already fooled this analysis twice.
 
 TEN MATCHES: was 69.7% a property of the method, or of 118575?
 --------------------------------------------------------------

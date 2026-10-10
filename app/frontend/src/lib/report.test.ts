@@ -264,7 +264,7 @@ describe("tierOf", () => {
   });
 });
 
-/** THE HONESTY INVARIANT, and the one this session broke.
+/** THE HONESTY INVARIANT, and the one an earlier change broke.
  *
  *  Contamination is 33.2% on the shipped match: a third of the detections under
  *  a track id belong to somebody else. Every figure computed per player is

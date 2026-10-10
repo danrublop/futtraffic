@@ -62,7 +62,7 @@ describe("agg", () => {
 describe("clubTotals", () => {
   const rows = [
     club("m1", "Northbridge FC", "Eastvale FC", 2, 1),
-    club("m2", "Northbridge FC", "Getafe", 1, 1),
+    club("m2", "Northbridge FC", "Westmoor", 1, 1),
     club("m3", "Northbridge FC", "Osasuna", 0, 3),
     club("m1", "Eastvale FC", "Northbridge FC", 1, 2),
   ];
@@ -90,11 +90,11 @@ describe("opponentTotals", () => {
     const rows = [
       club("m1", "Northbridge FC", "Eastvale FC", 2, 1),
       club("m2", "Northbridge FC", "Eastvale FC", 0, 1),
-      club("m3", "Northbridge FC", "Getafe", 3, 0),
+      club("m3", "Northbridge FC", "Westmoor", 3, 0),
       club("m1", "Eastvale FC", "Northbridge FC", 1, 2),
     ];
     const got = opponentTotals(rows, "Northbridge FC");
-    expect(got.map((o) => o.club)).toEqual(["Eastvale FC", "Getafe"]);
+    expect(got.map((o) => o.club)).toEqual(["Eastvale FC", "Westmoor"]);
     expect(got[0]).toMatchObject({ played: 2, w: 1, l: 1, gf: 2, ga: 2 });
     // Eastvale FC's own row must not leak into Northbridge FC's opponents.
     expect(got.some((o) => o.club === "Northbridge FC")).toBe(false);
@@ -106,7 +106,7 @@ describe("playerTotals", () => {
     const rows = [
       player("m1", "A Player", "Northbridge FC", { goals: 1 }),
       player("m2", "A Player", "Northbridge FC", { goals: 2 }),
-      player("m3", "A Player", "Getafe", { goals: 1 }),
+      player("m3", "A Player", "Westmoor", { goals: 1 }),
     ];
     const got = playerTotals(rows);
     expect(got).toHaveLength(2);
