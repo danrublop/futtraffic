@@ -1,6 +1,7 @@
 """Fetch the large result files some measured claims read, from the GitHub release.
 
-    .venv/bin/python model/validation/fetch_results.py URL            # download, verify, unpack
+    .venv/bin/python model/validation/fetch_results.py                # the GitHub release: download, verify, unpack
+    .venv/bin/python model/validation/fetch_results.py URL            # the same bundle from another URL
     .venv/bin/python model/validation/fetch_results.py PATH.tar.gz    # a bundle already on disk
     .venv/bin/python model/validation/fetch_results.py --selfcheck
 
@@ -8,7 +9,8 @@ WHY A RELEASE. Eighteen files under model/validation/out/ (tracker outputs, dete
 and a ground-truth export, ~147 MB) are inputs to measured claims in the README and docs/experiments/ (n28, n36,
 n40, n47, n49 and others). They are pipeline outputs on SoccerTrack v2 (CC BY 4.0), too large for git,
 and regenerable from the dataset by their producer scripts. The release bundle is the shortcut.
-The URL is the release asset's download link (or set FUTTRAFFIC_RESULTS_URL).
+The default URL is the release asset on github.com/danrublop/futtraffic (override with an
+argument or FUTTRAFFIC_RESULTS_URL).
 
 The bundle is checked against SHA256 before anything is written, and only members under
 model/validation/out/ are extracted - a member that would land anywhere else is refused.
@@ -29,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = "fut-traffic-results-v1.tar.gz"
 SHA256 = "6c44c9252c8e8501241801b85890d5def16fa7d517266937a08dbae55e7a2c5a"
 PREFIX = "model/validation/out/"
+URL = f"https://github.com/danrublop/futtraffic/releases/download/results-v1/{BUNDLE}"
 
 
 def safe_members(tar: tarfile.TarFile) -> list[tarfile.TarInfo]:
@@ -89,9 +92,7 @@ def main() -> None:
     args = sys.argv[1:]
     if args == ["--selfcheck"]:
         return _selfcheck()
-    src = args[0] if args else os.environ.get("FUTTRAFFIC_RESULTS_URL")
-    if not src:
-        raise SystemExit(__doc__)
+    src = args[0] if args else os.environ.get("FUTTRAFFIC_RESULTS_URL", URL)
     if os.path.exists(src):
         data = Path(src).read_bytes()
     else:
