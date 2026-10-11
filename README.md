@@ -19,17 +19,6 @@
 <p align="center">
   <a href="https://github.com/roboflow/rf-detr"><img src="https://img.shields.io/badge/Detector-RF--DETR-6f42c1" alt="RF-DETR"></a>
   <a href="https://arxiv.org/abs/2211.14317"><img src="https://img.shields.io/badge/Tracker-C--BIoU-6f42c1" alt="C-BIoU"></a>
-  <a href="https://pytorch.org/vision/stable/models/resnet.html"><img src="https://img.shields.io/badge/Roles-ResNet--18-6f42c1" alt="ResNet-18"></a>
-  <a href="https://github.com/mindee/doctr"><img src="https://img.shields.io/badge/Jersey%20OCR-docTR-6f42c1" alt="docTR"></a>
-  <a href="https://huggingface.co/google/siglip-base-patch16-224"><img src="https://img.shields.io/badge/Teams%20(experimental)-SigLIP-6f42c1" alt="SigLIP"></a>
-  <a href="https://arxiv.org/abs/2602.12080"><img src="https://img.shields.io/badge/Possession%20(external)-PathCRF-6f42c1" alt="PathCRF"></a>
-  <a href="https://github.com/opencv/opencv_zoo"><img src="https://img.shields.io/badge/Headshots-YuNet-6f42c1" alt="YuNet"></a>
-  <br>
-  <a href="https://developer.apple.com/documentation/coreml"><img src="https://img.shields.io/badge/Runtime-Core%20ML-333" alt="Core ML"></a>
-  <a href="https://pytorch.org"><img src="https://img.shields.io/badge/Runtime-PyTorch-333" alt="PyTorch"></a>
-  <a href="https://opencv.org"><img src="https://img.shields.io/badge/Vision-OpenCV-333" alt="OpenCV"></a>
-  <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/API-FastAPI-333" alt="FastAPI"></a>
-  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/UI-Next.js-333" alt="Next.js"></a>
 </p>
 
 ![Tracked players with boxes, IDs, foot rings and recent paths](docs/img/film-tracking.jpg)
