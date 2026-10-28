@@ -25,6 +25,10 @@
 <p align="center"><sub>Detection and tracking on stitched panoramic footage: every player gets a box, a track ID, a ring at the
 feet and a short trail of recent positions. SoccerTrack v2 match 118575 (University of Tsukuba, CC BY 4.0).</sub></p>
 
+<p align="center">
+  <a href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7516903604364943360/"><img src="https://img.shields.io/badge/%E2%96%B6%20Watch%20the%20demo-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Watch the demo on LinkedIn"></a>
+</p>
+
 **Contents:** [Abstract](#abstract) · [Problem and constraints](#1-problem-and-constraints) · [Method](#2-method) ·
 [Results](#3-results) · [The app](#4-the-app) · [Limitations](#5-limitations) · [Future work](#6-future-work) ·
 [Run it](#run) · [Layout](#layout) · [Data](#data) · [Honest numbers](#how-numbers-are-kept-honest) ·
